@@ -9,46 +9,63 @@ class SignUpPageState extends State<SignUpPage> {
   bool checkedValue = false;
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body:  new Center(
-        child: new Column(
+    return Scaffold(
+      body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new TextFormField(
-              decoration: new InputDecoration(
+            TextFormField(
+              decoration: InputDecoration(
                 labelText: 'Enter email'
               ),
               keyboardType: TextInputType.emailAddress,
             ),
-            new TextFormField(
-              decoration: new InputDecoration(
+            TextFormField(
+              decoration: InputDecoration(
                 labelText: 'Enter password'
               ),
               obscureText: true,
               keyboardType: TextInputType.text,
             ),
-            new TextFormField(
-              decoration: new InputDecoration(
+            TextFormField(
+              decoration: InputDecoration(
                 labelText: 'Repeat password'
               ),
               obscureText: true,
               keyboardType: TextInputType.text,
             ),
-            new CheckboxListTile(
+            CheckboxListTile(
               title: Text('Agreement!'),
               value: checkedValue,
               onChanged: (newvalue) {},
+              controlAffinity: ListTileControlAffinity.leading
             ),
-            new MaterialButton(
-              height: 42.0,
-              minWidth: 150.0,
-              color: Colors.blue,
-              splashColor: Colors.blueAccent,
-              textColor: Colors.white,
-              onPressed: () {},
-            )
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: MaterialButton(
+                    height: 42.0,
+                    minWidth: 150.0,
+                    color: Colors.blue,
+                    splashColor: Colors.blueAccent,
+                    textColor: Colors.black,
+                    child: Text('Sign Up'),
+                    onPressed: () {},
+                  ),
+                ),
+                Expanded(
+                  child: MaterialButton(
+                    height: 42.0,
+                    minWidth: 150.0,
+                    color: Colors.blue,
+                    splashColor: Colors.blueAccent,
+                    textColor: Colors.white,
+                    child: Text('Sign In'),
+                    onPressed: () {},
+                  ),
+                )
+              ],
+            ),
           ],
-        ),
       ),
     );
   }

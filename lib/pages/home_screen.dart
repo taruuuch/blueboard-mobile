@@ -13,13 +13,13 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Center(
+      body: Center(
         
       ),
-      floatingActionButton: new FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: createtrippressed,
         tooltip: 'Create trip',
-        child: new Icon(Icons.add),
+        child: Icon(Icons.add),
       ),
     );
   }
