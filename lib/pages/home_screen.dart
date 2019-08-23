@@ -13,13 +13,23 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Center(
-        
+      appBar: new AppBar(
+        title: new Text('Sign Up'),
+        centerTitle: true,
+        backgroundColor: Colors.white,
       ),
-      floatingActionButton: FloatingActionButton(
+      body: new Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          new Center(
+            child: new Text('Welcome to Blue Board'),
+          )
+        ],
+      ),
+      floatingActionButton: new FloatingActionButton(
         onPressed: createtrippressed,
         tooltip: 'Create trip',
-        child: Icon(Icons.add),
+        child: new Icon(Icons.add),
       ),
     );
   }

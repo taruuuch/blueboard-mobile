@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:blueboard/pages/signin_screen.dart';
 
 var routes = <String, WidgetBuilder> {
-  '/home': (BuildContext context) => HomeScreen(),
-  '/intro': (BuildContext context) => IntroScreen(),
+  '/home'  : (BuildContext context) => HomeScreen(),
+  '/intro' : (BuildContext context) => IntroScreen(),
   '/signin': (BuildContext context) => SignInScreen(),
   '/signup': (BuildContext context) => SignUpPage(),
 };
@@ -21,7 +21,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.lightBlue,
-        accentColor: Colors.lightBlueAccent
+        accentColor : Colors.lightBlueAccent
       ),
       debugShowCheckedModeBanner: false,
       home: SignInScreen(),
