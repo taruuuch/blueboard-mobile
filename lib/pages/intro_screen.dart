@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-class IntroScreen extends StatefulWidget {
+class IntroPage extends StatefulWidget {
   @override
-  State createState() => new IntroScreenState();
+  State createState() => new IntroPageState();
 }
 
-class IntroScreenState extends State<IntroScreen> {
+class IntroPageState extends State<IntroPage> {
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+  Widget build(BuildContext context) =>
+    new Scaffold(
+      body: new Column(
 
       ),
     );
-  }
 }

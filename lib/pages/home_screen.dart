@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  State createState() => new HomeScreenState();
+  State createState() => new HomePageState();
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class HomePageState extends State<HomePage> {
   void createTripPressed() {
 
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('SIGN UP'),
+  Widget build(BuildContext context) =>
+    new Scaffold(
+      appBar: new AppBar(
+        title: new Text('SIGN UP'),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: Column(
+      body: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-              child: Text('Welcome to Blue Board'),
+          new Center(
+            child: new Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+              child: new Text('Welcome to Blue Board'),
             ),
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: new FloatingActionButton(
         onPressed: createTripPressed,
         tooltip: 'Create trip',
-        child: Icon(Icons.add),
+        child: new Icon(Icons.add),
       ),
     );
-  }
 }

@@ -1,72 +1,20 @@
+import 'package:blueboard/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
-  State createState() => new SignInScreenState();
+  State createState() => new SignInPageState();
 }
 
-class SignInScreenState extends State<SignInScreen> {
+class SignInPageState extends State<SignInPage> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Sign In'),
+  Widget build(BuildContext context) => 
+    new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Sign In'),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Enter email'
-              ),
-              keyboardType: TextInputType.emailAddress,
-            )
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Enter password'
-              ),
-              obscureText: true,
-              keyboardType: TextInputType.text,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: FlatButton(
-                    child:Text('SIGN UP'),
-                    textColor: Colors.blue,
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: MaterialButton(
-                    child: Text('SIGN IN'),
-                    height: 42.0,
-                    minWidth: 150.0,
-                    color: Colors.blue,
-                    splashColor: Colors.blueAccent,
-                    textColor: Colors.white,
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                    },
-                  ),
-                )
-              ],
-            )
-          )
-        ],
-      )
+      body: SignInForm()
     );
-  }
 }
