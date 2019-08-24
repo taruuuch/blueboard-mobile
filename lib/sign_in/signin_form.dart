@@ -12,26 +12,22 @@ class SignInFormState extends State<SignInForm> {
   Widget build(BuildContext context) =>
     new Form(
       key: _formKey,
-      child: new Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-              child: new TextFormField(
-                decoration: InputDecoration(labelText: 'Enter email'),
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
-              )),
-          new Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: new TextFormField(
+      child: new Padding(
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new TextFormField(
+              decoration: InputDecoration(labelText: 'Enter email'),
+              keyboardType: TextInputType.emailAddress,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
+            ),
+            new TextFormField(
               decoration: InputDecoration(labelText: 'Enter password'),
               obscureText: true,
               keyboardType: TextInputType.text,
@@ -42,23 +38,20 @@ class SignInFormState extends State<SignInForm> {
                 return null;
               },
             ),
-          ),
-          new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-            child: new Row(
+            new Row(
               children: <Widget>[
                 Expanded(
                   child: new FlatButton(
-                    child: Text('SIGN UP'),
+                    child: new Text('SIGN UP'),
                     textColor: Colors.blue,
                     onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
+                      Navigator.pushReplacementNamed(context, '/signup');
                     },
                   ),
                 ),
                 Expanded(
                   child: new MaterialButton(
-                    child: Text('SIGN IN'),
+                    child: new Text('SIGN IN'),
                     height: 42.0,
                     minWidth: 150.0,
                     color: Colors.blue,
@@ -66,14 +59,14 @@ class SignInFormState extends State<SignInForm> {
                     textColor: Colors.white,
                     onPressed: () {
                       if (_formKey.currentState.validate())
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/trip');
                     },
                   ),
                 )
               ],
             )
-          )
-        ],
-      ),
+          ],
+        ),
+      )
     );
 }

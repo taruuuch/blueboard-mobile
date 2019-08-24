@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class TripPage extends StatefulWidget {
   @override
-  State createState() => new HomePageState();
+  State createState() => new TripPageState();
 }
 
-class HomePageState extends State<HomePage> {
+class TripPageState extends State<TripPage> {
   void createTripPressed() {
 
   }
@@ -14,20 +14,20 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) =>
     new Scaffold(
       appBar: new AppBar(
-        title: new Text('SIGN UP'),
+        title: new Text('TRIPS'),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: new Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Center(
-            child: new Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+      body: new Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new Center(
               child: new Text('Welcome to Blue Board'),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
       floatingActionButton: new FloatingActionButton(
         onPressed: createTripPressed,
