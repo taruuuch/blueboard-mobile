@@ -1,5 +1,3 @@
-import 'package:blueboard/pages/home_screen.dart';
-import 'package:blueboard/pages/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -10,27 +8,27 @@ class SignInScreen extends StatefulWidget {
 class SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Sign In'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sign In'),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: new Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: new TextFormField(
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
+            child: TextFormField(
               decoration: InputDecoration(
                 labelText: 'Enter email'
               ),
               keyboardType: TextInputType.emailAddress,
             )
           ),
-          new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: new TextFormField(
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
+            child: TextFormField(
               decoration: InputDecoration(
                 labelText: 'Enter password'
               ),
@@ -38,29 +36,29 @@ class SignInScreenState extends State<SignInScreen> {
               keyboardType: TextInputType.text,
             ),
           ),
-          new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-            child: new Row(
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+            child: Row(
               children: <Widget>[
                 Expanded(
-                  child: new FlatButton(
-                    child: Text('Sign Up'),
+                  child: FlatButton(
+                    child:Text('SIGN UP'),
                     textColor: Colors.blue,
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                      Navigator.pushNamed(context, '/signup');
                     },
                   ),
                 ),
                 Expanded(
-                  child: new MaterialButton(
-                    child: Text('Sign In'),
+                  child: MaterialButton(
+                    child: Text('SIGN IN'),
                     height: 42.0,
                     minWidth: 150.0,
                     color: Colors.blue,
                     splashColor: Colors.blueAccent,
                     textColor: Colors.white,
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                      Navigator.pushNamed(context, '/home');
                     },
                   ),
                 )

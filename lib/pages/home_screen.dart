@@ -6,30 +6,33 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  void createtrippressed() {
+  void createTripPressed() {
 
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Sign Up'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('SIGN UP'),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: new Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Center(
-            child: new Text('Welcome to Blue Board'),
+          Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+              child: Text('Welcome to Blue Board'),
+            ),
           )
         ],
       ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: createtrippressed,
+      floatingActionButton: FloatingActionButton(
+        onPressed: createTripPressed,
         tooltip: 'Create trip',
-        child: new Icon(Icons.add),
+        child: Icon(Icons.add),
       ),
     );
   }
