@@ -14,12 +14,12 @@ class SignUpFormState extends State<SignUpForm> {
   Widget build(BuildContext context) =>
     new Form(
       key: _formKey,
-      child: new Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: new TextFormField(
+      child: new Padding(
+        padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new TextFormField(
               decoration: InputDecoration(labelText: 'Enter email'),
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
@@ -29,10 +29,7 @@ class SignUpFormState extends State<SignUpForm> {
                 return null;
               },
             ),
-          ),
-          new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: new TextFormField(
+            new TextFormField(
               decoration: InputDecoration(labelText: 'Enter password'),
               obscureText: true,
               keyboardType: TextInputType.text,
@@ -43,10 +40,7 @@ class SignUpFormState extends State<SignUpForm> {
                 return null;
               },
             ),
-          ),
-          new Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-            child: new TextFormField(
+            new TextFormField(
               decoration: InputDecoration(labelText: 'Repeat password'),
               obscureText: true,
               keyboardType: TextInputType.text,
@@ -57,12 +51,9 @@ class SignUpFormState extends State<SignUpForm> {
                 return null;
               },
             ),
-          ),
-          new Row(
-            children: <Widget>[
-              Expanded(
-                child: new Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+            new Row(
+              children: <Widget>[
+                Expanded(
                   child: new Checkbox(
                     value: checkedValue,
                     onChanged: (newValue) {
@@ -70,24 +61,21 @@ class SignUpFormState extends State<SignUpForm> {
                         checkedValue = !checkedValue;
                       });
                     },
-                  ),
+                  )
+                ),
+                Expanded(
+                  child: new Text('Agreement!'),
                 )
-              ),
-              Expanded(
-                child: new Text('Agreement!'),
-              )
-            ],
-          ),
-          new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-            child: new Row(
+              ],
+            ),
+            new Row(
               children: <Widget>[
                 Expanded(
                   child: new FlatButton(
                     textColor: Colors.black54,
                     child: new Text('Cancel'),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/signin');
+                      Navigator.pushReplacementNamed(context, '/signin');
                     },
                   ),
                 ),
@@ -101,15 +89,15 @@ class SignUpFormState extends State<SignUpForm> {
                     child: new Text('SIGN IN'),
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
-                        Navigator.pushNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/trip');
                       }
                     },
                   ),
                 )
               ],
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+      )
     );
 }

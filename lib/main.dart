@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:blueboard/pages/home_screen.dart';
-import 'package:blueboard/pages/intro_screen.dart';
-import 'package:blueboard/pages/signup_screen.dart';
-import 'package:blueboard/pages/signin_screen.dart';
+import 'package:blueboard/trip/trip_screen.dart';
+import 'package:blueboard/intro/intro_screen.dart';
+import 'package:blueboard/sign_up/signup_screen.dart';
+import 'package:blueboard/sign_in/signin_screen.dart';
 
 var routes = <String, WidgetBuilder> {
-  '/home'  : (BuildContext context) => HomePage(),
+  '/trip'  : (BuildContext context) => TripPage(),
   '/intro' : (BuildContext context) => IntroPage(),
   '/signin': (BuildContext context) => SignInPage(),
   '/signup': (BuildContext context) => SignUpPage(),
@@ -25,7 +25,7 @@ class App extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: SignInPage(),
-      initialRoute: '/',
+      initialRoute: '/signin',
       routes: routes,
     );
 }
