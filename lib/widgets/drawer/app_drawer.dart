@@ -1,20 +1,7 @@
+import 'package:blueboard/widgets/drawer/drawer_menu_item.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
-  Widget _createDrawerItem({IconData icon, String title, GestureTapCallback onTap}) =>
-    new ListTile(
-      title: new Row(
-        children: <Widget>[
-          new Icon(icon),
-          new Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: new Text(title),
-          )
-        ],
-      ),
-      onTap: onTap,
-    );
-
   @override
   Widget build(BuildContext context) =>
     new Drawer(
@@ -35,7 +22,7 @@ class AppDrawer extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-          _createDrawerItem(
+          DrawerMenuItem(
             icon: Icons.create,
             title: 'Create Trip',
             onTap: () => Navigator.pushReplacementNamed(context, '/trip')
@@ -43,7 +30,7 @@ class AppDrawer extends StatelessWidget {
           new Divider(
             color: Colors.black38,
           ),
-          _createDrawerItem(
+          DrawerMenuItem(
             icon: Icons.local_airport,
             title: 'Trips',
             onTap: () => Navigator.pushReplacementNamed(context, '/trip')
@@ -51,12 +38,12 @@ class AppDrawer extends StatelessWidget {
           new Divider(
             color: Colors.black38,
           ),
-          _createDrawerItem(
+          DrawerMenuItem(
             icon: Icons.settings_applications,
             title: 'Settings',
             onTap: () => Navigator.pushReplacementNamed(context, '/trip')
           ),
-          _createDrawerItem(
+          DrawerMenuItem(
             icon: Icons.exit_to_app,
             title: 'Sign Out',
             onTap: () => Navigator.pushReplacementNamed(context, '/signin')

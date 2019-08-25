@@ -1,4 +1,4 @@
-import 'package:blueboard/widgets/app_drawer.dart';
+import 'package:blueboard/widgets/drawer/app_drawer.dart';
 import 'package:flutter/material.dart';
 
 class TripPage extends StatefulWidget {

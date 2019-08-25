@@ -25,6 +25,6 @@ class App extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routes: routes,
-      home: TripPage(),
+      home: SignInPage(),
     );
 }
