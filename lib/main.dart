@@ -24,8 +24,7 @@ class App extends StatelessWidget {
         accentColor : Colors.lightBlueAccent
       ),
       debugShowCheckedModeBanner: false,
-      home: SignInPage(),
-      initialRoute: '/signin',
       routes: routes,
+      home: TripPage(),
     );
 }
