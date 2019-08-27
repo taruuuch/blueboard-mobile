@@ -9,8 +9,8 @@ class Config {
   /*
   * Auth link to api
   * @signIn = sign in api link for auth user, return accessTocken and expires
-  * @signOut = 
+  * @signUp = 
   */
   String signIn = '/api/Users/sign-in';
-  String signOut = '/api/Users/sign-out';
+  String signUp = '/api/Users/sign-up';
 }
