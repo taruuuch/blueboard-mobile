@@ -6,7 +6,11 @@ class ApiClient {
   Dio dio = new Dio();
 
   apiPost(api, formData) async {
-    Response res = await dio.post(config.ip + ':' + config.port + api, data: formData);
-    print(res.data);
+    try {
+      Response response = await dio.post(config.ip + ':' + config.port + api, data: formData);
+      return response;
+    } catch (exeption) {
+      return exeption;
+    }
   }
 }
