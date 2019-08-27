@@ -1,4 +1,4 @@
-class Config {
+class ApiConfig {
   /*
   * @ip = link to api server
   * @port = server port

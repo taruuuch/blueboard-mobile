@@ -2,7 +2,7 @@ import 'package:blueboard/data/config.dart';
 import 'package:blueboard/data/api_client.dart';
 
 class UserProvider {
-  var config = Config();
+  var config = ApiConfig();
   var apiClient = ApiClient();
 
   signInUser(email, password) async {

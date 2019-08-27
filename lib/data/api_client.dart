@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:blueboard/data/config.dart';
 
 class ApiClient {
-  var config = Config();
+  var config = ApiConfig();
   Dio dio = new Dio();
 
   apiPost(api, formData) async {
