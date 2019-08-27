@@ -1,16 +1,50 @@
 import 'package:dio/dio.dart';
-import 'package:blueboard/data/config.dart';
+import 'package:blueboard/data/api_config.dart';
 
 class ApiClient {
-  var config = ApiConfig();
-  Dio dio = new Dio();
+  Dio dio;
 
-  apiPost(api, formData) async {
-    try {
-      Response response = await dio.post(config.ip + ':' + config.port + api, data: formData);
-      return response;
-    } catch (exeption) {
-      return exeption;
-    }
+  ApiClient._privateConstructor();
+
+  static final ApiClient _instance = ApiClient._privateConstructor();
+
+  static ApiClient get instance { return _instance; }
+
+  ApiClient() {
+    BaseOptions options = new BaseOptions(
+      baseUrl: ApiConfig.baseUrl,
+    );
+    
+    dio = new Dio(options);
   }
+
+  /*
+  * Post
+  * @url - 
+  * @formData - 
+  */
+  post(url, formData) => dio.post(url, data: formData);
+
+  /*
+  * Get
+  * @url - 
+  * @parameters - 
+  */
+  get(url, parameters) => dio.get(url, queryParameters: parameters);
+
+  /*
+  * Put
+  * @url - 
+  * @data - 
+  */
+  put(url, data) => dio.put(url, data: data);
+  
+  /*
+  * Delete
+  * @url - 
+  * @id - 
+  */
+  delete(url, id) => dio.delete(url + '/' + id);
+
+  //https://pub.dev/packages/dio#interceptors
 }

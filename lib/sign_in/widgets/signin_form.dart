@@ -22,7 +22,7 @@ class SignInFormState extends State<SignInForm> {
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter your email';
+                  return 'Invalid email';
                 }
                 return null;
               },
@@ -33,7 +33,7 @@ class SignInFormState extends State<SignInForm> {
               keyboardType: TextInputType.text,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter your password';
+                  return 'Invalid password';
                 }
                 return null;
               },
