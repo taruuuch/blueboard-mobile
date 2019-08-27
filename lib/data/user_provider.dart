@@ -13,4 +13,13 @@ class UserProvider {
 
     apiClient.apiPost(config.signIn, data);
   }
+
+  signUpUser(email, password) async {
+    var data = {
+      'email': email,
+      'password': password
+    };
+
+    apiClient.apiPost(config.signUp, data);
+  }
 }

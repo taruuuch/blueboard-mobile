@@ -1,4 +1,3 @@
-import 'package:blueboard/data/user_provider.dart';
 import 'package:flutter/material.dart';
 
 class SignInForm extends StatefulWidget {
@@ -8,9 +7,6 @@ class SignInForm extends StatefulWidget {
 
 class SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
-
-  final _email = TextEditingController();
-  final _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) =>
@@ -24,7 +20,6 @@ class SignInFormState extends State<SignInForm> {
             new TextFormField(
               decoration: InputDecoration(labelText: 'Enter email'),
               keyboardType: TextInputType.emailAddress,
-              controller: _email,
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter your email';
@@ -36,7 +31,6 @@ class SignInFormState extends State<SignInForm> {
               decoration: InputDecoration(labelText: 'Enter password'),
               obscureText: true,
               keyboardType: TextInputType.text,
-              controller: _password,
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter your password';
@@ -51,8 +45,6 @@ class SignInFormState extends State<SignInForm> {
                     child: new Text('SIGN UP'),
                     textColor: Colors.blue,
                     onPressed: () {
-                      // TODO: Uncomment for user provider
-                      // UserProvider().signInUser(_email.text, _password.text);
                       Navigator.pushReplacementNamed(context, '/signup'); 
                     },
                   ),
