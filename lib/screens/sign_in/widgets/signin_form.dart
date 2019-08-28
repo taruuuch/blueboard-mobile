@@ -1,3 +1,4 @@
+import 'package:blueboard/providers/token_provider.dart';
 import 'package:flutter/material.dart';
 
 class SignInForm extends StatefulWidget {
@@ -45,7 +46,8 @@ class SignInFormState extends State<SignInForm> {
                     child: new Text('SIGN UP'),
                     textColor: Colors.blue,
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/signup'); 
+                      TokenProvider().getToken();
+                      // Navigator.pushReplacementNamed(context, '/signup'); 
                     },
                   ),
                 ),

@@ -1,4 +1,4 @@
-import 'package:blueboard/sign_in/widgets/signin_form.dart';
+import 'package:blueboard/screens/sign_in/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
