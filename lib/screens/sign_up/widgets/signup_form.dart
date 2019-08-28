@@ -29,6 +29,9 @@ class SignUpFormState extends State<SignUpForm> {
                 return null;
               },
             ),
+            new SizedBox(
+              height: 15.0,
+            ),
             new TextFormField(
               decoration: InputDecoration(labelText: 'Enter password'),
               obscureText: true,
@@ -40,6 +43,9 @@ class SignUpFormState extends State<SignUpForm> {
                 return null;
               },
             ),
+            new SizedBox(
+              height: 15.0,
+            ),
             new TextFormField(
               decoration: InputDecoration(labelText: 'Repeat password'),
               obscureText: true,
@@ -50,6 +56,9 @@ class SignUpFormState extends State<SignUpForm> {
                 }
                 return null;
               },
+            ),
+            new SizedBox(
+              height: 15.0,
             ),
             new Row(
               children: <Widget>[
@@ -67,6 +76,9 @@ class SignUpFormState extends State<SignUpForm> {
                   child: new Text('Agreement!'),
                 )
               ],
+            ),
+            new SizedBox(
+              height: 15.0,
             ),
             new Row(
               children: <Widget>[

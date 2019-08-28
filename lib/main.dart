@@ -11,9 +11,7 @@ var routes = <String, WidgetBuilder> {
   '/signup': (BuildContext context) => SignUpPage(),
 };
 
-void main() => runApp(
-  App()
-);
+void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override

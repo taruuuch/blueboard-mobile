@@ -13,6 +13,8 @@ dependencies:
   dio: ^2.1.16
   shared_preferences: ^0.5.3+4
   json_annotation: ^3.0.0
+  flutter_bloc: ^0.21.0
+  equatable: 
 
 dev_dependencies:
   flutter_test:
