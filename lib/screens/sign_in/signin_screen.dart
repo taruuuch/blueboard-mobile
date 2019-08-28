@@ -1,12 +1,10 @@
 import 'package:blueboard/screens/sign_in/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignInPage extends StatefulWidget {
-  @override
-  State createState() => new SignInPageState();
-}
+import 'widgets/signin_bloc.dart';
 
-class SignInPageState extends State<SignInPage> {
+class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => 
     new Scaffold(
@@ -15,6 +13,9 @@ class SignInPageState extends State<SignInPage> {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: SignInForm()
+      body: BlocProvider<SignInBloc> (
+        builder: (context) => SignInBloc(),
+        child: SignInForm(),
+      ),
     );
 }
