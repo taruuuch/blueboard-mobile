@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:blueboard/data/api_config.dart';
+import 'package:blueboard/configs/api_config.dart';
 
 class ApiClient {
   Dio dio;
