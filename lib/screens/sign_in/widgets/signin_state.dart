@@ -1,22 +1,45 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
-abstract class SignInState extends Equatable {}
+class SignInState {
+  final bool isLoading;
+  final bool isLoginButtonEnabled;
+  final String error;
 
-class InitialSignInState extends SignInState {
-  
-}
+  const SignInState({
+    @required this.isLoading,
+    @required this.isLoginButtonEnabled,
+    @required this.error,
+  });
 
-class SignInLoadingState extends SignInState {
-  @override
-  String toString() => 'SignInLoading';
-}
+  factory SignInState.initial() {
+    return SignInState(
+      isLoading: false,
+      isLoginButtonEnabled: true,
+      error: '',
+    );
+  }
 
-class SignInSuccessState extends SignInState {
-  @override
-  String toString() => 'SignInSuccess';
-}
+  factory SignInState.loading() {
+    return SignInState(
+      isLoading: true,
+      isLoginButtonEnabled: false,
+      error: '',
+    );
+  }
 
-class SignInErrorState extends SignInState {
-  @override
-  String toString() => 'SignInError';
+  factory SignInState.error(String error) {
+    return SignInState(
+      isLoading: false,
+      isLoginButtonEnabled: true,
+      error: error,
+    );
+  }
+
+  factory SignInState.success() {
+    return SignInState(
+      isLoading: false,
+      isLoginButtonEnabled: true,
+      error: '',
+    );
+  }
 }
