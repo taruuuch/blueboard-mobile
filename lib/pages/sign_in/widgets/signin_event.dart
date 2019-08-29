@@ -8,5 +8,5 @@ class SignIn extends SignInEvent {
   final String email;
   final String password;
 
-  SignIn({this.email, this.password});
+  SignIn({this.email, this.password}):super([email, password]);
 }
