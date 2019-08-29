@@ -1,4 +1,4 @@
-import 'package:blueboard/screens/sign_in/widgets/signin_form.dart';
+import 'package:blueboard/pages/sign_in/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
