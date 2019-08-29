@@ -1,5 +1,5 @@
-import 'package:blueboard/screens/sign_in/widgets/signin_bloc.dart';
-import 'package:blueboard/screens/sign_in/widgets/signin_state.dart';
+import 'package:blueboard/pages/sign_in/widgets/signin_bloc.dart';
+import 'package:blueboard/pages/sign_in/widgets/signin_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
