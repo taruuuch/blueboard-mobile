@@ -1,16 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:blueboard/providers/user_provider.dart';
 
 import 'signin_event.dart';
 import 'signin_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   @override
-  get initialState => InitialSignInState();
-
-  Stream<SignInLoadingState> get statusState => this
-    .state
-    .where((state) => state is SignInLoadingState)
-    .cast<SignInLoadingState>();
+  get initialState => SignInState.initial();
 
   @override
   Stream<SignInState> mapEventToState(SignInEvent event) async* {
@@ -20,6 +16,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }
 
   Stream<SignInState> _signIn({String email, String password}) async* {
-    yield SignInLoadingState();
+    yield SignInState.loading();
+
+    try {
+      await UserProvider().signIn(email, password);
+      yield SignInState.success();
+    } catch (e) {
+      yield SignInState.error('sign in error');
+    }
   }
 }
