@@ -29,7 +29,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
     return new Form(
       key: _formKey,
-      child: new Padding(
+      child: new SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.start,
