@@ -17,6 +17,10 @@ class _SignUpFormState extends State<SignUpForm> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordRepeatController = TextEditingController();
 
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
+  final FocusNode _passwordRepeatFocus = FocusNode();
+
   bool checkedValue = false;
 
   @override
@@ -41,6 +45,12 @@ class _SignUpFormState extends State<SignUpForm> {
                     borderSide: new BorderSide(color: Colors.grey)),
               ),
               keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              focusNode: _emailFocus,
+              onFieldSubmitted: (term) {
+                _emailFocus.unfocus();
+                FocusScope.of(context).requestFocus(_passwordFocus);
+              },
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter your email';
@@ -62,6 +72,12 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               obscureText: true,
               keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              focusNode: _passwordFocus,
+              onFieldSubmitted: (term) {
+                _passwordFocus.unfocus();
+                FocusScope.of(context).requestFocus(_passwordRepeatFocus);
+              },
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter password';
@@ -83,6 +99,11 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               obscureText: true,
               keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.done,
+              focusNode: _passwordRepeatFocus,
+              onFieldSubmitted: (term) {
+                _passwordRepeatFocus.unfocus();
+              },
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please repeat your password';
