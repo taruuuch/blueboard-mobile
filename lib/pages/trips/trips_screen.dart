@@ -1,15 +1,8 @@
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
-class TripPage extends StatefulWidget {
-  @override
-  State createState() => new TripPageState();
-}
-
-class TripPageState extends State<TripPage> {
-  void createTripPressed() {
-
-  }
+class TripPage extends StatelessWidget {
+  static const String tag = 'trips';
 
   @override
   Widget build(BuildContext context) =>
@@ -32,7 +25,7 @@ class TripPageState extends State<TripPage> {
         ),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: createTripPressed,
+        onPressed: null,
         tooltip: 'Create trip',
         child: new Icon(Icons.add),
       ),
