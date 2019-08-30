@@ -15,6 +15,10 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     if (event is SignUp) {
       yield* _signUp(email: event.email, password: event.password);
     }
+
+    if (event is Cancel) {
+      NavigationService.navigateTo('sign-in');
+    }
   }
 
   Stream<SignUpState> _signUp({String email, String password}) async* {
@@ -23,7 +27,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     try {
       await UserProvider().signUp(email, password);
       yield SignUpState.success();
-      locator<NavigationService>().navigateTo('trips');
+      NavigationService.navigateTo('trips');
     } on DioError catch (e) {
       yield SignUpState.error(e.response.data['code'].toString());
     }

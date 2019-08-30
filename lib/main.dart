@@ -4,10 +4,8 @@ import 'pages/trips/trips_screen.dart';
 import 'pages/sign_up/sign_up_screen.dart';
 import 'pages/sign_in/sign_in_screen.dart';
 
-void main() {
-  setupLocator();
-  runApp(App());
-}
+void main() => runApp(App());
+
 
 class App extends StatelessWidget {
   @override
@@ -18,7 +16,7 @@ class App extends StatelessWidget {
         accentColor : Colors.lightBlueAccent
       ),
       debugShowCheckedModeBanner: false,
-      navigatorKey: locator<NavigationService>().navigatorKey,
+      navigatorKey: NavigationService.navigatorKey,
       onGenerateRoute: (routeSettings) {
         switch (routeSettings.name) {
           case 'sign-in':
