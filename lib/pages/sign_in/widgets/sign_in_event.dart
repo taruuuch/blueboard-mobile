@@ -11,4 +11,4 @@ class SignIn extends SignInEvent {
   SignIn({this.email, this.password}):super([email, password]);
 }
 
-class SignUp extends SignInEvent {}
+class GoToSignUpPage extends SignInEvent {}

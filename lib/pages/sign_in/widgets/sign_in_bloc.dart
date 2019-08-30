@@ -1,12 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:blueboard/pages/sign_up/sign_up_screen.dart';
+import 'package:blueboard/pages/sign_in/widgets/sign_in_event.dart';
+import 'package:blueboard/pages/sign_in/widgets/sign_in_state.dart';
 import 'package:blueboard/pages/trips/trips_screen.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 import 'package:dio/dio.dart';
-
-import 'sign_in_event.dart';
-import 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   @override
@@ -18,8 +16,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       yield* _signIn(email: event.email, password: event.password);
     }
 
-    if (event is SignUp) {
-      NavigationService.navigateTo(SignUpPage.tag);
+    if (event is GoToSignUpPage) {
+      NavigationService.toSignUpPage();
     }
   }
 
