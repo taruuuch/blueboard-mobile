@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:blueboard/providers/user_provider.dart';
+import 'package:blueboard/services/navigation.dart';
 import 'package:dio/dio.dart';
 
 import 'sign_up_event.dart';
@@ -22,6 +23,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     try {
       await UserProvider().signUp(email, password);
       yield SignUpState.success();
+      locator<NavigationService>().navigateTo('trips');
     } on DioError catch (e) {
       yield SignUpState.error(e.response.data['code'].toString());
     }

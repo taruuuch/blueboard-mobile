@@ -1,17 +1,13 @@
+import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
-import 'pages/trip/trip_screen.dart';
-import 'pages/intro/intro_screen.dart';
+import 'pages/trips/trips_screen.dart';
 import 'pages/sign_up/sign_up_screen.dart';
 import 'pages/sign_in/sign_in_screen.dart';
 
-var routes = <String, WidgetBuilder> {
-  '/trip'  : (BuildContext context) => TripPage(),
-  '/intro' : (BuildContext context) => IntroPage(),
-  '/signin': (BuildContext context) => SignInPage(),
-  '/signup': (BuildContext context) => SignUpPage(),
-};
-
-void main() => runApp(App());
+void main() {
+  setupLocator();
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   @override
@@ -22,7 +18,23 @@ class App extends StatelessWidget {
         accentColor : Colors.lightBlueAccent
       ),
       debugShowCheckedModeBanner: false,
-      routes: routes,
+      navigatorKey: locator<NavigationService>().navigatorKey,
+      onGenerateRoute: (routeSettings) {
+        switch (routeSettings.name) {
+          case 'sign-in':
+            return MaterialPageRoute(builder: (context) => SignInPage());
+            break;
+          case 'sign-up':
+            return MaterialPageRoute(builder: (context) => SignUpPage());
+            break;
+          case 'trips':
+            return MaterialPageRoute(builder: (context) => TripPage());
+            break;
+          default:
+            return MaterialPageRoute(builder: (context) => SignInPage());
+            break;
+        }
+      },
       home: SignInPage(),
     );
 }
