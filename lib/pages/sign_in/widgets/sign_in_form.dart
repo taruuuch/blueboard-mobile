@@ -17,6 +17,9 @@ class _SignInFormState extends State<SignInForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     final SignInBloc bloc = BlocProvider.of<SignInBloc>(context);
@@ -35,6 +38,12 @@ class _SignInFormState extends State<SignInForm> {
                   borderSide: new BorderSide(color: Colors.grey)),
             ),
             keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            focusNode: _emailFocus,
+            onFieldSubmitted: (term) {
+              _emailFocus.unfocus();
+              FocusScope.of(context).requestFocus(_passwordFocus);
+            },
             validator: (value) {
               if (value.isEmpty) {
                 return 'Enter email';
@@ -56,6 +65,11 @@ class _SignInFormState extends State<SignInForm> {
             ),
             obscureText: true,
             keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.done,
+            focusNode: _passwordFocus,
+            onFieldSubmitted: (term) {
+              _passwordFocus.unfocus();
+            },
             validator: (value) {
               if (value.isEmpty) {
                 return 'Enter password';
