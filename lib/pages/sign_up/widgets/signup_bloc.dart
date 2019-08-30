@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:blueboard/providers/user_provider.dart';
+import 'package:dio/dio.dart';
 
 import 'signup_event.dart';
 import 'signup_state.dart';
@@ -21,8 +22,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     try {
       await UserProvider().signUp(email, password);
       yield SignUpState.success();
-    } catch (e) {
-      yield SignUpState.error('sign up error');
+    } on DioError catch (e) {
+      if (e.response.data['code'].toString() == 'email_in_use')
+        yield SignUpState.error('Email is already in use');
+      else
+        yield SignUpState.error(e.response.statusCode.toString());
     }
   }
 }
