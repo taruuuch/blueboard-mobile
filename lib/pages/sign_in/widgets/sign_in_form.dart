@@ -1,3 +1,4 @@
+import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -74,7 +75,7 @@ class _SignInFormState extends State<SignInForm> {
                   child: new Text('SIGN UP'),
                   textColor: Colors.blue,
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/signup');
+                    locator<NavigationService>().navigateTo('sign-up');
                   },
                 ),
               ),

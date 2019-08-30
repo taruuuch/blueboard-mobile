@@ -15,6 +15,7 @@ dependencies:
   json_annotation: ^3.0.0
   flutter_bloc: ^0.21.0
   equatable: 
+  get_it:
 
 dev_dependencies:
   flutter_test:

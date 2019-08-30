@@ -1,3 +1,4 @@
+import 'package:blueboard/services/navigation.dart';
 import 'package:blueboard/widgets/drawer/drawer_menu_item.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class AppDrawer extends StatelessWidget {
           DrawerMenuItem(
             icon: Icons.create,
             title: 'Create Trip',
-            onTap: () => Navigator.pushReplacementNamed(context, '/trip')
+            onTap: () => locator<NavigationService>().navigateTo('trips')
           ),
           new Divider(
             color: Colors.black38,
@@ -33,7 +34,7 @@ class AppDrawer extends StatelessWidget {
           DrawerMenuItem(
             icon: Icons.local_airport,
             title: 'Trips',
-            onTap: () => Navigator.pushReplacementNamed(context, '/trip')
+            onTap: () => locator<NavigationService>().navigateTo('trips')
           ),
           new Divider(
             color: Colors.black38,
@@ -41,12 +42,12 @@ class AppDrawer extends StatelessWidget {
           DrawerMenuItem(
             icon: Icons.settings_applications,
             title: 'Settings',
-            onTap: () => Navigator.pushReplacementNamed(context, '/trip')
+            onTap: () => locator<NavigationService>().navigateTo('trips')
           ),
           DrawerMenuItem(
             icon: Icons.exit_to_app,
             title: 'Sign Out',
-            onTap: () => Navigator.pushReplacementNamed(context, '/signin')
+            onTap: () => locator<NavigationService>().navigateTo('sign-in')
           ),
         ],
       ),
