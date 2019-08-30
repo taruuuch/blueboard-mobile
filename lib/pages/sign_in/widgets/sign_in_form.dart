@@ -1,4 +1,3 @@
-import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -85,13 +84,16 @@ class _SignInFormState extends State<SignInForm> {
           new Row(
             children: <Widget>[
               Expanded(
-                child: new FlatButton(
-                  child: new Text('SIGN UP'),
-                  textColor: Colors.blue,
-                  onPressed: () {
-                    locator<NavigationService>().navigateTo('sign-up');
+                child: new StreamBuilder(
+                  stream: bloc.state,
+                  builder: (context, snapshot) {
+                    return new FlatButton(
+                      child: new Text('SIGN UP'),
+                      textColor: Colors.blue,
+                      onPressed: () => _onSignUpPressed(bloc),
+                    );
                   },
-                ),
+                )
               ),
               Expanded(
                   child: new StreamBuilder(
@@ -137,5 +139,9 @@ class _SignInFormState extends State<SignInForm> {
       email: _emailController.text,
       password: _passwordController.text,
     ));
+  }
+
+  void _onSignUpPressed(SignInBloc bloc) {    
+    bloc.dispatch(SignUp());
   }
 }

@@ -139,13 +139,16 @@ class _SignUpFormState extends State<SignUpForm> {
             new Row(
               children: <Widget>[
                 Expanded(
-                  child: new FlatButton(
-                    textColor: Colors.black54,
-                    child: new Text('Cancel'),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/signin');
+                  child: new StreamBuilder(
+                    stream: bloc.state,
+                    builder: (context, snapshot) {
+                        return new FlatButton(
+                        textColor: Colors.black54,
+                        child: new Text('Cancel'),
+                        onPressed: () => _onCancelPressed(bloc),
+                      );
                     },
-                  ),
+                  )
                 ),
                 Expanded(
                   child: new StreamBuilder(
@@ -194,5 +197,9 @@ class _SignUpFormState extends State<SignUpForm> {
       email: _emailController.text,
       password: _passwordController.text,
     ));
+  }
+
+  void _onCancelPressed(SignUpBloc bloc) {
+    bloc.dispatch(Cancel());
   }
 }

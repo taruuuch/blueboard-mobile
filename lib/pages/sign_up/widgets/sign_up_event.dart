@@ -10,3 +10,5 @@ class SignUp extends SignUpEvent {
 
   SignUp({this.email, this.password}):super([email, password]);
 }
+
+class Cancel extends SignUpEvent {}

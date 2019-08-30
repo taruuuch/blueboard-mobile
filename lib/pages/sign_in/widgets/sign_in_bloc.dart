@@ -14,6 +14,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     if (event is SignIn) {
       yield* _signIn(email: event.email, password: event.password);
     }
+
+    if (event is SignUp) {
+      NavigationService.navigateTo('sign-up');
+    }
   }
 
   Stream<SignInState> _signIn({String email, String password}) async* {
@@ -22,7 +26,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       await UserProvider().signIn(email, password);
       yield SignInState.success();
-      locator<NavigationService>().navigateTo('trips');
+      NavigationService.navigateTo('trips');
     } catch (e) {
       yield SignInState.error('sign in error');
     }

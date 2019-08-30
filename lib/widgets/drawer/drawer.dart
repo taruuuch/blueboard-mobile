@@ -26,7 +26,7 @@ class AppDrawer extends StatelessWidget {
           DrawerMenuItem(
             icon: Icons.create,
             title: 'Create Trip',
-            onTap: () => locator<NavigationService>().navigateTo('trips')
+            onTap: () => NavigationService.navigateTo('trips')
           ),
           new Divider(
             color: Colors.black38,
@@ -34,7 +34,7 @@ class AppDrawer extends StatelessWidget {
           DrawerMenuItem(
             icon: Icons.local_airport,
             title: 'Trips',
-            onTap: () => locator<NavigationService>().navigateTo('trips')
+            onTap: () => NavigationService.navigateTo('trips')
           ),
           new Divider(
             color: Colors.black38,
@@ -42,12 +42,12 @@ class AppDrawer extends StatelessWidget {
           DrawerMenuItem(
             icon: Icons.settings_applications,
             title: 'Settings',
-            onTap: () => locator<NavigationService>().navigateTo('trips')
+            onTap: () => NavigationService.navigateTo('trips')
           ),
           DrawerMenuItem(
             icon: Icons.exit_to_app,
             title: 'Sign Out',
-            onTap: () => locator<NavigationService>().navigateTo('sign-in')
+            onTap: () => NavigationService.navigateTo('sign-in')
           ),
         ],
       ),
