@@ -17,7 +17,7 @@ class UserProvider {
   Future signUp(email, password) async {
     var data = {'email': email, 'password': password};
 
-    var _token = await apiClient.post(ApiConfig.signUpUrl, data);
-    tokenProvider.setToken(_token);
+    var response = await apiClient.post(ApiConfig.signUpUrl, data);
+    tokenProvider.setToken(Token.fromJson(response.data));
   }
 }
