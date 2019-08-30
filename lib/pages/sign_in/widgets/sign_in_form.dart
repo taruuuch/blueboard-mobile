@@ -142,6 +142,6 @@ class _SignInFormState extends State<SignInForm> {
   }
 
   void _onSignUpPressed(SignInBloc bloc) {    
-    bloc.dispatch(SignUp());
+    bloc.dispatch(GoToSignUpPage());
   }
 }
