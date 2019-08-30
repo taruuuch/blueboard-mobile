@@ -1,13 +1,13 @@
-import 'package:blueboard/pages/sign_in/widgets/signin_bloc.dart';
-import 'package:blueboard/pages/sign_in/widgets/signin_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'signin_bloc.dart';
 import 'signin_event.dart';
+import 'signin_state.dart';
 
 class SignInForm extends StatefulWidget {
   @override
-  _SignInFormState createState() => _SignInFormState();
+  State createState() => _SignInFormState();
 }
 
 class _SignInFormState extends State<SignInForm> {
@@ -21,7 +21,7 @@ class _SignInFormState extends State<SignInForm> {
     final SignInBloc bloc = BlocProvider.of<SignInBloc>(context);
     return new Form(
       key: _formKey,
-        child: new Padding(
+      child: new Padding(
       padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +89,7 @@ class _SignInFormState extends State<SignInForm> {
                             color: Colors.blue,
                             splashColor: Colors.blueAccent,
                             textColor: Colors.white,
-                            onPressed: ( !snapshot.hasData || !snapshot.data.isLoading ) ? () => onClick(bloc, _formKey) : null
+                            onPressed: ( !snapshot.hasData || !snapshot.data.isLoading ) ? () => _onSignInPressed(bloc, _formKey) : null
                         );
                       }))
             ],
@@ -115,12 +115,12 @@ class _SignInFormState extends State<SignInForm> {
     ));
   }
 
-    void onClick(SignInBloc bloc, _formKey) {
-      if (!_formKey.currentState.validate()) return;
-      
-      bloc.dispatch(SignIn(
-        email: _emailController.text,
-        password: _passwordController.text,
-      ));
-    }
+  void _onSignInPressed(SignInBloc bloc, _formKey) {
+    if (!_formKey.currentState.validate()) return;
+    
+    bloc.dispatch(SignIn(
+      email: _emailController.text,
+      password: _passwordController.text,
+    ));
+  }
 }
