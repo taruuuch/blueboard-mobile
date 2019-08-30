@@ -4,12 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'widgets/sign_up_bloc.dart';
 import 'widgets/sign_up_form.dart';
 
-class SignUpPage extends StatefulWidget {
-  @override
-  State createState() => new SignUpPageState();
-}
-
-class SignUpPageState extends State<SignUpPage> {
+class SignUpPage extends StatelessWidget {
+  static const String tag = 'sign-up';
   @override
   Widget build(BuildContext context) => 
     new Scaffold(

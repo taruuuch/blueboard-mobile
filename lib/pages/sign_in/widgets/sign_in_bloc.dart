@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:blueboard/pages/sign_up/sign_up_screen.dart';
+import 'package:blueboard/pages/trips/trips_screen.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 
@@ -16,7 +18,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     }
 
     if (event is SignUp) {
-      NavigationService.navigateTo('sign-up');
+      NavigationService.navigateTo(SignUpPage.tag);
     }
   }
 
@@ -26,7 +28,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       await UserProvider().signIn(email, password);
       yield SignInState.success();
-      NavigationService.navigateTo('trips');
+      NavigationService.navigateTo(TripPage.tag);
     } catch (e) {
       yield SignInState.error('sign in error');
     }

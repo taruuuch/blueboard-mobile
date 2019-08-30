@@ -19,13 +19,13 @@ class App extends StatelessWidget {
       navigatorKey: NavigationService.navigatorKey,
       onGenerateRoute: (routeSettings) {
         switch (routeSettings.name) {
-          case 'sign-in':
+          case SignInPage.tag:
             return MaterialPageRoute(builder: (context) => SignInPage());
             break;
-          case 'sign-up':
+          case SignUpPage.tag:
             return MaterialPageRoute(builder: (context) => SignUpPage());
             break;
-          case 'trips':
+          case TripPage.tag:
             return MaterialPageRoute(builder: (context) => TripPage());
             break;
           default:

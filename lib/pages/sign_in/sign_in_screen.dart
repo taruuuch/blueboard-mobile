@@ -5,6 +5,8 @@ import 'widgets/sign_in_form.dart';
 import 'widgets/sign_in_bloc.dart';
 
 class SignInPage extends StatelessWidget {
+  static const String tag = 'sign-in';
+  
   @override
   Widget build(BuildContext context) => 
     new Scaffold(
