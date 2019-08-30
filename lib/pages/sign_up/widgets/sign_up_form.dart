@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'signup_bloc.dart';
-import 'signup_event.dart';
-import 'signup_state.dart';
+import 'sign_up_bloc.dart';
+import 'sign_up_event.dart';
+import 'sign_up_state.dart';
 
 class SignUpForm extends StatefulWidget {
   @override

@@ -1,8 +1,8 @@
-import 'package:blueboard/pages/sign_in/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'widgets/signin_bloc.dart';
+import 'widgets/sign_in_form.dart';
+import 'widgets/sign_in_bloc.dart';
 
 class SignInPage extends StatelessWidget {
   @override

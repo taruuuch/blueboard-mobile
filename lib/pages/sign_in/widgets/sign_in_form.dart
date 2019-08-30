@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'signin_bloc.dart';
-import 'signin_event.dart';
-import 'signin_state.dart';
+import 'sign_in_bloc.dart';
+import 'sign_in_event.dart';
+import 'sign_in_state.dart';
 
 class SignInForm extends StatefulWidget {
   @override

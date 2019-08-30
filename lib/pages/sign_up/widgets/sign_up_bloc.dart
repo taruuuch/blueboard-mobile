@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:dio/dio.dart';
 
-import 'signup_event.dart';
-import 'signup_state.dart';
+import 'sign_up_event.dart';
+import 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   @override
