@@ -1,32 +1,32 @@
+import 'package:blueboard/configs/app_style.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
-  final Icon icon;
-  final double height;
-  final double minWidth;
+  final child;
+  final double minWidth = 100.0;
   final Color color;
   final Color splashColor;
   final Color textColor;
+  final Function onPressed;
 
   Button({
-    this.icon,
-    this.height,
-    this.minWidth,
+    this.child,
     this.color,
     this.splashColor,
     this.textColor,
+    this.onPressed,
   }) : super();
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      child: icon,
-      height: height,
+      child: child,
+      height: AppStyle.buttonHeight,
       minWidth: minWidth,
       color: color,
       splashColor: splashColor,
       textColor: textColor,
-      onPressed: () => {}
+      onPressed: onPressed
     );
   }
 }

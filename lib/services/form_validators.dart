@@ -1,13 +1,13 @@
 class FormValidators {
   static String emailRegex = r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   static var _validatorConstants = {
-    'empty_email': 'Enter email',
-    'invalid_email': 'Invalid email',
-    'emply_password': 'Enter password',
+    'empty_email'    : 'Enter email',
+    'invalid_email'  : 'Invalid email',
+    'emply_password' : 'Enter password',
     'password_length': 'Minimum password length 6'
   };
 
-  static emailValidate(value) {
+  static emailValidate({ value }) {
     if (value.isEmpty) {
         return _validatorConstants['empty_email'];
     } else if (!RegExp(emailRegex).hasMatch(value)) {
@@ -17,7 +17,7 @@ class FormValidators {
     return null;
   }
 
-  static phoneValidate(value) {
+  static passwordValidate({ value }) {
     if (value.isEmpty) {
       return _validatorConstants['emply_password'];
     } else if (value.length < 6) {
