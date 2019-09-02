@@ -1,3 +1,4 @@
+import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class TripPage extends StatelessWidget {
       ),
       drawer: AppDrawer(),
       body: new Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
+        padding: const EdgeInsets.symmetric(vertical: AppStyle.formPadding, horizontal: AppStyle.formPadding),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
