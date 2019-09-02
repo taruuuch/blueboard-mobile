@@ -1,4 +1,3 @@
-import 'package:blueboard/services/form_validators.dart';
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
@@ -7,8 +6,7 @@ class InputField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final TextInputAction textInputAction;
-  final FocusNode focusNode;
-  final FormValidators formValidators; 
+  final Function formValidator; 
 
   InputField({
     key, 
@@ -17,9 +15,10 @@ class InputField extends StatelessWidget {
     this.obscureText,
     this.controller,
     this.textInputAction,
-    this.focusNode,
-    this.formValidators,
+    this.formValidator,
   }) : super(key: key);
+
+  final FocusNode _focusNode = new FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class InputField extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       textInputAction: textInputAction,
-      focusNode: focusNode,
+      focusNode: _focusNode,
       decoration: InputDecoration(
         labelText: labelText,
         border: new OutlineInputBorder(
@@ -36,10 +35,10 @@ class InputField extends StatelessWidget {
         ),
       ),
       onFieldSubmitted: (value) {
-        focusNode.unfocus();
+        _focusNode.unfocus();
         FocusScope.of(context).nextFocus();
       },
-      validator: (value) => FormValidators.emailValidate(value)
+      validator: (value) => ''
     );
   }
 }
