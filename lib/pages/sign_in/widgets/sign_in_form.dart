@@ -1,5 +1,8 @@
 // import 'package:blueboard/services/form_validators.dart';
+import 'package:blueboard/configs/app_constans.dart';
+import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/pages/sign_in/widgets/sign_in_social.dart';
+import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/button.dart';
 import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +32,9 @@ class _SignInFormState extends State<SignInForm> {
     ));
   }
 
-  void _onSignUpPressed(SignInBloc bloc) {    
-    bloc.dispatch(GoToSignUpPage());
-  }
+  void _onSignUpPressed(SignInBloc bloc) => bloc.dispatch(GoToSignUpPage());
+
+  _sizdeBox(height) => new SizedBox(height: height);
 
   @override
   Widget build(BuildContext context) {
@@ -47,27 +50,20 @@ class _SignInFormState extends State<SignInForm> {
               new FlutterLogo(
                 size: 100.0,
               ),
-              new SizedBox(
-                height: 15.0,
-              ),
+              _sizdeBox(AppStyle.primaryPadding),
               new InputField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                // formValidator: FormValidators.emailValidate(),
-                labelText: 'Enter email',
-                obscureText: false,
-                textInputAction: TextInputAction.next,
+                formValidator: FormValidators.emailValidate,
+                labelText: AppConstants.emailInput,
               ),
-              new SizedBox(
-                height: 15.0,
-              ),
+              _sizdeBox(AppStyle.primaryPadding),
               new InputField(
                 controller: _passwordController,
                 keyboardType: TextInputType.text,
-                // formValidator: FormValidators.passwordValidate(),
-                labelText: 'Enter password',
+                formValidator: FormValidators.passwordValidate,
+                labelText: AppConstants.passwordInput,
                 obscureText: true,
-                textInputAction: TextInputAction.done,
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -78,9 +74,7 @@ class _SignInFormState extends State<SignInForm> {
                   ),
                 ],
               ),
-              new SizedBox(
-                height: 15.0,
-              ),
+              _sizdeBox(AppStyle.primaryPadding),
               new StreamBuilder(
                 stream: bloc.state,
                 builder: (context, AsyncSnapshot<SignInState> snapshot) {
@@ -94,13 +88,9 @@ class _SignInFormState extends State<SignInForm> {
                     return new SizedBox.shrink();
                 },
               ),
-              new SizedBox(
-                height: 15.0,
-              ),
+              _sizdeBox(AppStyle.primaryPadding),
               SignInSocial(),
-              new SizedBox(
-                height: 30.0,
-              ),
+              _sizdeBox(30.0),
               new RichText(
                 textAlign: TextAlign.center,
                 text: new TextSpan(
@@ -115,9 +105,7 @@ class _SignInFormState extends State<SignInForm> {
                   ],
                 )
               ),
-              new SizedBox(
-                height: 30.0,
-              ),
+              _sizdeBox(30.0),
               new Row(
                 children: <Widget>[
                   Expanded(

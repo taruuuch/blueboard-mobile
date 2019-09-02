@@ -6,19 +6,19 @@ class InputField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final TextInputAction textInputAction;
-  final Function formValidator; 
+  final String Function(String) formValidator; 
+
+  final FocusNode _focusNode = new FocusNode();
 
   InputField({
     key, 
     this.keyboardType, 
     this.labelText, 
-    this.obscureText,
+    this.obscureText = false,
     this.controller,
-    this.textInputAction,
+    this.textInputAction = TextInputAction.next,
     this.formValidator,
   }) : super(key: key);
-
-  final FocusNode _focusNode = new FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class InputField extends StatelessWidget {
       obscureText: obscureText,
       textInputAction: textInputAction,
       focusNode: _focusNode,
-      decoration: InputDecoration(
+      decoration: new InputDecoration(
         labelText: labelText,
         border: new OutlineInputBorder(
           borderSide: new BorderSide(color: Colors.grey[400]),
@@ -38,7 +38,7 @@ class InputField extends StatelessWidget {
         _focusNode.unfocus();
         FocusScope.of(context).nextFocus();
       },
-      validator: (value) => ''
+      validator: (value) => formValidator(value)
     );
   }
 }
