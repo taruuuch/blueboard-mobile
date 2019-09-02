@@ -43,7 +43,7 @@ class _SignInFormState extends State<SignInForm> {
       key: _formKey,
       child: new Center(
         child: new SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: AppStyle.formPadding),
           child: new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
