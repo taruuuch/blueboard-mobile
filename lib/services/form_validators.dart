@@ -4,10 +4,12 @@ class FormValidators {
     'empty_email'    : 'Enter email',
     'invalid_email'  : 'Invalid email',
     'emply_password' : 'Enter password',
-    'password_length': 'Minimum password length 6'
+    'password_length': 'Minimum password length 6',
+    'password_repeat': 'Please repeat your password',
+    'password_not_match': 'Your password not matched',
   };
 
-  static emailValidate({ value }) {
+  static Function(String) emailValidate = (String value) {
     if (value.isEmpty) {
         return _validatorConstants['empty_email'];
     } else if (!RegExp(emailRegex).hasMatch(value)) {
@@ -15,9 +17,9 @@ class FormValidators {
     }
 
     return null;
-  }
+  };
 
-  static passwordValidate({ value }) {
+  static Function(String) passwordValidate = (String value) {
     if (value.isEmpty) {
       return _validatorConstants['emply_password'];
     } else if (value.length < 6) {
@@ -25,5 +27,15 @@ class FormValidators {
     }
     
     return null;
-  }
+  };
+
+  static Function(String) passwordRepeatValidate = (String value) {
+    if (value.isEmpty) {
+      return _validatorConstants['password_repeat'];
+    } 
+    // else if (value != password) {
+    //   return _validatorConstants['password_not_match'];
+    // }
+    return null;
+  };
 }

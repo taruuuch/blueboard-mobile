@@ -1,3 +1,8 @@
+import 'package:blueboard/configs/app_constans.dart';
+import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/services/form_validators.dart';
+import 'package:blueboard/widgets/button.dart';
+import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,14 +20,24 @@ class _SignUpFormState extends State<SignUpForm> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _passwordRepeatController =
-      TextEditingController();
-
-  final FocusNode _emailFocus = FocusNode();
-  final FocusNode _passwordFocus = FocusNode();
-  final FocusNode _passwordRepeatFocus = FocusNode();
+  final TextEditingController _passwordRepeatController = TextEditingController();
 
   bool checkedValue = false;
+
+  void _onSignUpPressed(SignUpBloc bloc, _formKey) {
+    if (!_formKey.currentState.validate() || !checkedValue) return;
+
+    bloc.dispatch(SignUp(
+      email: _emailController.text,
+      password: _passwordController.text,
+    ));
+  }
+
+  void _onCancelPressed(SignUpBloc bloc) {
+    bloc.dispatch(Cancel());
+  }
+
+  _sizdeBox(height) => new SizedBox(height: height);
 
   @override
   Widget build(BuildContext context) {
@@ -37,107 +52,49 @@ class _SignUpFormState extends State<SignUpForm> {
               child: new Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  new SizedBox(height: 15.0),
-                  new TextFormField(
+                  new FlutterLogo(size: 100),
+                  _sizdeBox(AppStyle.primaryPadding),
+                  new InputField(
                     controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Enter email',
-                      border: new OutlineInputBorder(
-                          borderSide: new BorderSide(color: Colors.grey)),
-                    ),
                     keyboardType: TextInputType.emailAddress,
-                    textInputAction: TextInputAction.next,
-                    focusNode: _emailFocus,
-                    onFieldSubmitted: (term) {
-                      _emailFocus.unfocus();
-                      FocusScope.of(context).requestFocus(_passwordFocus);
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please enter your email';
-                      } else if (!RegExp(
-                              r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                          .hasMatch(value)) {
-                        return 'Invalid email';
-                      }
-                      return null;
-                    },
+                    labelText: AppConstants.emailInput,
+                    formValidator: FormValidators.emailValidate,
                   ),
-                  new SizedBox(
-                    height: 15.0,
-                  ),
-                  new TextFormField(
+                  _sizdeBox(AppStyle.primaryPadding),
+                  new InputField(
                     controller: _passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Enter password',
-                      border: new OutlineInputBorder(
-                          borderSide: new BorderSide(color: Colors.grey)),
-                    ),
-                    obscureText: true,
                     keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.next,
-                    focusNode: _passwordFocus,
-                    onFieldSubmitted: (term) {
-                      _passwordFocus.unfocus();
-                      FocusScope.of(context).requestFocus(_passwordRepeatFocus);
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please enter password';
-                      } else if (value.length < 6) {
-                        return 'Minimum password length 6';
-                      }
-                      return null;
-                    },
+                    labelText: AppConstants.passwordInput,
+                    formValidator: FormValidators.passwordValidate,
+                    obscureText: true,
                   ),
-                  new SizedBox(
-                    height: 15.0,
-                  ),
-                  new TextFormField(
+                  _sizdeBox(AppStyle.primaryPadding),
+                  new InputField(
                     controller: _passwordRepeatController,
-                    decoration: InputDecoration(
-                      labelText: 'Repeat password',
-                      border: new OutlineInputBorder(
-                          borderSide: new BorderSide(color: Colors.grey)),
-                    ),
-                    obscureText: true,
                     keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    focusNode: _passwordRepeatFocus,
-                    onFieldSubmitted: (term) {
-                      _passwordRepeatFocus.unfocus();
-                    },
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Please repeat your password';
-                      } else if (value != _passwordController.text) {
-                        return 'Your password not matched';
-                      }
-                      return null;
-                    },
+                    labelText: AppConstants.passwordRepeatInput,
+                    formValidator: FormValidators.passwordRepeatValidate,
+                    obscureText: true,
                   ),
-                  new SizedBox(
-                    height: 5.0,
-                  ),
+                  _sizdeBox(5.0),
                   new Row(
                     children: <Widget>[
-                      Expanded(
-                          child: new Checkbox(
+                      new Checkbox(
                         value: checkedValue,
                         onChanged: (newValue) {
                           setState(() {
                             checkedValue = !checkedValue;
                           });
                         },
-                      )),
-                      Expanded(
-                        child: new Text('Agreement!'),
-                      )
+                      ),
+                      new FlatButton(
+                        textColor: Colors.black54,
+                        child: new Text('Accept agreement'),
+                        onPressed: () => setState(() { checkedValue = !checkedValue; }),
+                      ),
                     ],
                   ),
-                  new SizedBox(
-                    height: 5.0,
-                  ),
+                  _sizdeBox(5.0),
                   new Row(
                     children: <Widget>[
                       Expanded(
@@ -145,35 +102,31 @@ class _SignUpFormState extends State<SignUpForm> {
                         stream: bloc.state,
                         builder: (context, snapshot) {
                           return new FlatButton(
-                            textColor: Colors.black54,
+                            textColor: Colors.blue,
                             child: new Text('Cancel'),
                             onPressed: () => _onCancelPressed(bloc),
                           );
                         },
                       )),
                       Expanded(
-                          child: new StreamBuilder(
-                              stream: bloc.state,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<SignUpState> snapshot) {
-                                return new MaterialButton(
-                                  child: new Text('SIGN IN'),
-                                  height: 42.0,
-                                  minWidth: 150.0,
-                                  color: Colors.blue,
-                                  splashColor: Colors.blueAccent,
-                                  textColor: Colors.white,
-                                  onPressed: (!snapshot.hasData ||
-                                          !snapshot.data.isLoading)
-                                      ? () => _onSignUpPressed(bloc, _formKey)
-                                      : null,
-                                );
-                              }))
+                        child: new StreamBuilder(
+                          stream: bloc.state,
+                          builder: (BuildContext context, AsyncSnapshot<SignUpState> snapshot) {
+                            return new Button(
+                              child: new Text(AppConstants.signUpButton),
+                              color: Colors.blue,
+                              splashColor: Colors.blueAccent,
+                              textColor: Colors.white,
+                              onPressed: (!snapshot.hasData || !snapshot.data.isLoading) 
+                                ? () => _onSignUpPressed(bloc, _formKey) 
+                                : null,
+                            );
+                          }
+                        )
+                      )
                     ],
                   ),
-                  new SizedBox(
-                    height: 15.0,
-                  ),
+                  _sizdeBox(AppStyle.primaryPadding),
                   new StreamBuilder(
                     stream: bloc.state,
                     builder: (context, AsyncSnapshot<SignUpState> snapshot) {
@@ -192,18 +145,5 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
         ));
-  }
-
-  void _onSignUpPressed(SignUpBloc bloc, _formKey) {
-    if (!_formKey.currentState.validate() || !checkedValue) return;
-
-    bloc.dispatch(SignUp(
-      email: _emailController.text,
-      password: _passwordController.text,
-    ));
-  }
-
-  void _onCancelPressed(SignUpBloc bloc) {
-    bloc.dispatch(Cancel());
   }
 }

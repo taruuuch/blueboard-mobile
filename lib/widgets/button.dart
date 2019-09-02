@@ -18,15 +18,13 @@ class Button extends StatelessWidget {
   }) : super();
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      child: child,
-      height: AppStyle.buttonHeight,
-      minWidth: minWidth,
-      color: color,
-      splashColor: splashColor,
-      textColor: textColor,
-      onPressed: onPressed
-    );
-  }
+  Widget build(BuildContext context) => MaterialButton(
+    child: child,
+    height: AppStyle.buttonHeight,
+    minWidth: minWidth,
+    color: color,
+    splashColor: splashColor,
+    textColor: textColor,
+    onPressed: onPressed
+  );
 }
