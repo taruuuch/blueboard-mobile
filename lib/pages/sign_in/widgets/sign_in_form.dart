@@ -54,14 +54,14 @@ class _SignInFormState extends State<SignInForm> {
               new InputField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                formValidator: FormValidators.emailValidate,
+                formValidator: (value) => FormValidators.emailValidate(value),
                 labelText: AppConstants.emailInput,
               ),
               _sizdeBox(AppStyle.primaryPadding),
               new InputField(
                 controller: _passwordController,
                 keyboardType: TextInputType.text,
-                formValidator: FormValidators.passwordValidate,
+                formValidator: (value) => FormValidators.passwordValidate(value),
                 labelText: AppConstants.passwordInput,
                 obscureText: true,
               ),

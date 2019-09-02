@@ -29,13 +29,12 @@ class FormValidators {
     return null;
   };
 
-  static Function(String) passwordRepeatValidate = (String value) {
+  static Function(String, String) passwordRepeatValidate = (String value, String password) {
     if (value.isEmpty) {
       return _validatorConstants['password_repeat'];
-    } 
-    // else if (value != password) {
-    //   return _validatorConstants['password_not_match'];
-    // }
+    } else if (value != password) {
+      return _validatorConstants['password_not_match'];
+    }
     return null;
   };
 }
