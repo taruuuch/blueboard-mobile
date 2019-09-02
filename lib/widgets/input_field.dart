@@ -38,7 +38,7 @@ class InputField extends StatelessWidget {
         _focusNode.unfocus();
         FocusScope.of(context).nextFocus();
       },
-      validator: (value) => formValidator(value)
+      validator: formValidator
     );
   }
 }
