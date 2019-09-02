@@ -10,8 +10,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) => new MaterialApp(
         theme: new ThemeData(
-            primaryColor: Colors.lightBlue,
-            accentColor: Colors.lightBlueAccent),
+          primaryColor: Colors.lightBlue,
+          accentColor: Colors.lightBlueAccent,
+        ),
         debugShowCheckedModeBanner: false,
         navigatorKey: NavigationService.navigatorKey,
         onGenerateRoute: (routeSettings) {

@@ -1,3 +1,4 @@
+import 'package:blueboard/services/form_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,7 +9,7 @@ import 'sign_in_state.dart';
 
 class SignInForm extends StatefulWidget {
   @override
-  State createState() => _SignInFormState();
+  State<StatefulWidget> createState() => new _SignInFormState();
 }
 
 class _SignInFormState extends State<SignInForm> {
@@ -64,14 +65,7 @@ class _SignInFormState extends State<SignInForm> {
                   _emailFocus.unfocus();
                   FocusScope.of(context).requestFocus(_passwordFocus);
                 },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter email';
-                  } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
-                    return 'Invalid email';
-                  }
-                  return null;
-                },
+                validator: (value) => FormValidators.emailValidate(value)
               ),
               new SizedBox(
                 height: 15.0,
@@ -90,14 +84,7 @@ class _SignInFormState extends State<SignInForm> {
                 onFieldSubmitted: (term) {
                   _passwordFocus.unfocus();
                 },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter password';
-                  } else if (value.length < 6) {
-                    return 'Minimum password length 6';
-                  }
-                  return null;
-                },
+                validator: (value) => FormValidators.phoneValidate(value)
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.end,
