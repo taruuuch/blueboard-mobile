@@ -12,7 +12,7 @@ import 'sign_up_state.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
-  State createState() => new _SignUpFormState();
+  State<StatefulWidget> createState() => new _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
@@ -37,8 +37,6 @@ class _SignUpFormState extends State<SignUpForm> {
     bloc.dispatch(Cancel());
   }
 
-  _sizdeBox(height) => new SizedBox(height: height);
-
   @override
   Widget build(BuildContext context) {
     final SignUpBloc bloc = BlocProvider.of<SignUpBloc>(context);
@@ -53,30 +51,30 @@ class _SignUpFormState extends State<SignUpForm> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   new FlutterLogo(size: 100),
-                  _sizdeBox(AppStyle.primaryPadding),
+                  new SizedBox(height: AppStyle.primaryPadding),
                   new InputField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    labelText: AppConstants.emailInput,
+                    labelText: AppConstants.emailInputLabel,
                     formValidator: (value) => FormValidators.emailValidate(value),
                   ),
-                  _sizdeBox(AppStyle.primaryPadding),
+                  new SizedBox(height: AppStyle.primaryPadding),
                   new InputField(
                     controller: _passwordController,
                     keyboardType: TextInputType.text,
-                    labelText: AppConstants.passwordInput,
+                    labelText: AppConstants.passwordInputLabel,
                     formValidator: (value) => FormValidators.passwordValidate(value),
                     obscureText: true,
                   ),
-                  _sizdeBox(AppStyle.primaryPadding),
+                  new SizedBox(height: AppStyle.primaryPadding),
                   new InputField(
                     controller: _passwordRepeatController,
                     keyboardType: TextInputType.text,
-                    labelText: AppConstants.passwordRepeatInput,
+                    labelText: AppConstants.passwordRepeatInputLabel,
                     formValidator: (value) => FormValidators.passwordRepeatValidate(value, _passwordController.text),
                     obscureText: true,
                   ),
-                  _sizdeBox(5.0),
+                  new SizedBox(height: 5.0),
                   new Row(
                     children: <Widget>[
                       new Checkbox(
@@ -94,7 +92,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       ),
                     ],
                   ),
-                  _sizdeBox(5.0),
+                  new SizedBox(height: 5.0),
                   new Row(
                     children: <Widget>[
                       Expanded(
@@ -113,7 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           stream: bloc.state,
                           builder: (BuildContext context, AsyncSnapshot<SignUpState> snapshot) {
                             return new Button(
-                              child: new Text(AppConstants.signUpButton),
+                              child: new Text(AppConstants.signUpButtonLabel),
                               color: Colors.blue,
                               splashColor: Colors.blueAccent,
                               textColor: Colors.white,
@@ -126,7 +124,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       )
                     ],
                   ),
-                  _sizdeBox(AppStyle.primaryPadding),
+                  new SizedBox(height: AppStyle.primaryPadding),
                   new StreamBuilder(
                     stream: bloc.state,
                     builder: (context, AsyncSnapshot<SignUpState> snapshot) {
