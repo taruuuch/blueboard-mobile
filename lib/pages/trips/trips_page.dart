@@ -2,7 +2,7 @@ import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
-class TripPage extends StatelessWidget {
+class TripsPage extends StatelessWidget {
   static const String tag = 'trips';
 
   @override

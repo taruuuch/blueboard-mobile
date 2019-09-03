@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:blueboard/pages/sign_in/widgets/sign_in_event.dart';
 import 'package:blueboard/pages/sign_in/widgets/sign_in_state.dart';
-import 'package:blueboard/pages/trips/trips_screen.dart';
+import 'package:blueboard/pages/trips/trips_page.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 import 'package:dio/dio.dart';
@@ -27,7 +27,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       await UserProvider().signIn(email, password);
       yield SignInState.success();
-      NavigationService.navigateTo(TripPage.tag);
+      NavigationService.navigateTo(TripsPage.tag);
     } on DioError catch (e) {
       yield SignInState.error(e.response.statusMessage.toString());
     }
