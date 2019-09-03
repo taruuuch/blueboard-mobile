@@ -1,8 +1,8 @@
 class AppConstants {
-  static String signInButton = 'Sign In';
-  static String signUpButton = 'Sign Up';
+  static String signInButtonLabel = 'SIGN IN';
+  static String signUpButtonLabel = 'SIGN UP';
 
-  static String emailInput = 'Enter email';
-  static String passwordInput = 'Enter password';
-  static String passwordRepeatInput = 'Repeat password';
+  static String emailInputLabel = 'Enter email';
+  static String passwordInputLabel = 'Enter password';
+  static String passwordRepeatInputLabel = 'Repeat password';
 }

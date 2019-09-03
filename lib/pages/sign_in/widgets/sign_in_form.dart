@@ -12,12 +12,7 @@ import 'sign_in_bloc.dart';
 import 'sign_in_event.dart';
 import 'sign_in_state.dart';
 
-class SignInForm extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => new _SignInFormState();
-}
-
-class _SignInFormState extends State<SignInForm> {
+class SignInForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
@@ -34,8 +29,6 @@ class _SignInFormState extends State<SignInForm> {
 
   void _onSignUpPressed(SignInBloc bloc) => bloc.dispatch(GoToSignUpPage());
 
-  _sizdeBox(height) => new SizedBox(height: height);
-
   @override
   Widget build(BuildContext context) {
     final SignInBloc bloc = BlocProvider.of<SignInBloc>(context);
@@ -50,19 +43,19 @@ class _SignInFormState extends State<SignInForm> {
               new FlutterLogo(
                 size: 100.0,
               ),
-              _sizdeBox(AppStyle.primaryPadding),
+              new SizedBox(height: AppStyle.primaryPadding),
               new InputField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 formValidator: (value) => FormValidators.emailValidate(value),
-                labelText: AppConstants.emailInput,
+                labelText: AppConstants.emailInputLabel,
               ),
-              _sizdeBox(AppStyle.primaryPadding),
+              new SizedBox(height: AppStyle.primaryPadding),
               new InputField(
                 controller: _passwordController,
                 keyboardType: TextInputType.text,
                 formValidator: (value) => FormValidators.passwordValidate(value),
-                labelText: AppConstants.passwordInput,
+                labelText: AppConstants.passwordInputLabel,
                 obscureText: true,
               ),
               new Row(
@@ -74,7 +67,7 @@ class _SignInFormState extends State<SignInForm> {
                   ),
                 ],
               ),
-              _sizdeBox(AppStyle.primaryPadding),
+              new SizedBox(height: AppStyle.primaryPadding),
               new StreamBuilder(
                 stream: bloc.state,
                 builder: (context, AsyncSnapshot<SignInState> snapshot) {
@@ -88,9 +81,9 @@ class _SignInFormState extends State<SignInForm> {
                     return new SizedBox.shrink();
                 },
               ),
-              _sizdeBox(AppStyle.primaryPadding),
+              new SizedBox(height: AppStyle.primaryPadding),
               SignInSocial(),
-              _sizdeBox(30.0),
+              new SizedBox(height: 30.0),
               new RichText(
                 textAlign: TextAlign.center,
                 text: new TextSpan(
@@ -105,7 +98,7 @@ class _SignInFormState extends State<SignInForm> {
                   ],
                 )
               ),
-              _sizdeBox(30.0),
+              new SizedBox(height: 30.0),
               new Row(
                 children: <Widget>[
                   Expanded(
