@@ -12,7 +12,12 @@ import 'sign_in_bloc.dart';
 import 'sign_in_event.dart';
 import 'sign_in_state.dart';
 
-class SignInForm extends StatelessWidget {
+class SignInForm extends StatefulWidget {
+  @override
+  State createState() => new _SignInFormState();
+}
+
+class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
