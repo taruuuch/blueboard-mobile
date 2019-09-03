@@ -12,7 +12,7 @@ import 'sign_up_state.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _SignUpFormState();
+  State createState() => new _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
