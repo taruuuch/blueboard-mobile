@@ -7,6 +7,8 @@ class FormValidators {
     'password_length': 'Minimum password length 6',
     'password_repeat': 'Please repeat your password',
     'password_not_match': 'Your password not matched',
+		'first_name_empty': 'Please enter your name',
+		'last_name_empty': 'Please enter your last name',
   };
 
   static Function(String) emailValidate = (String value) {
@@ -35,6 +37,23 @@ class FormValidators {
     } else if (value != password) {
       return _validatorConstants['password_not_match'];
     }
+
     return null;
   };
+
+	static Function(String) firstNameValidate = (String value) {
+		if (value.isEmpty) {
+			return _validatorConstants['first_name_empty'];
+		}
+
+		return null;
+	};
+
+	static Function(String) lastNameValidate = (String value) {
+		if (value.isEmpty) {
+			return _validatorConstants['last_name_empty'];
+		}
+
+		return null;
+	};
 }

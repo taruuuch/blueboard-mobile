@@ -7,10 +7,9 @@ import 'package:blueboard/widgets/button.dart';
 import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'sign_in_bloc.dart';
-import 'sign_in_event.dart';
-import 'sign_in_state.dart';
+import 'package:blueboard/pages/sign_in/widgets/sign_in_bloc.dart';
+import 'package:blueboard/pages/sign_in/widgets/sign_in_event.dart';
+import 'package:blueboard/pages/sign_in/widgets/sign_in_state.dart';
 
 class SignInForm extends StatefulWidget {
   @override

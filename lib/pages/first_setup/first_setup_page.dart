@@ -1,3 +1,5 @@
+import 'package:blueboard/pages/first_setup/widgets/first_setup_bloc.dart';
+import 'package:blueboard/pages/first_setup/widgets/first_setup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

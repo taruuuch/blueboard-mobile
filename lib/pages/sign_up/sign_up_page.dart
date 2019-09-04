@@ -1,8 +1,7 @@
+import 'package:blueboard/pages/sign_up/widgets/sign_up_bloc.dart';
+import 'package:blueboard/pages/sign_up/widgets/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'widgets/sign_up_bloc.dart';
-import 'widgets/sign_up_form.dart';
 
 class SignUpPage extends StatelessWidget {
   static const String tag = 'sign-up';
