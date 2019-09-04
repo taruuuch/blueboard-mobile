@@ -3,7 +3,6 @@ import 'package:blueboard/pages/sign_in/widgets/sign_in_event.dart';
 import 'package:blueboard/pages/sign_in/widgets/sign_in_state.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
-import 'package:dio/dio.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   @override
@@ -26,8 +25,16 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     try {
       await UserProvider().signIn(email, password);
       yield SignInState.success();
-      NavigationService.toTripsPage();
-    } on DioError catch (e) {
+
+			var user = await UserProvider().get();
+			if (user.status == 1)
+				NavigationService.toFirstSetupPage();
+			else if (user.status == 4)
+				return;
+			else
+				NavigationService.toTripsPage();
+				
+    } catch (e) {
       yield SignInState.error(e.response.statusMessage.toString());
     }
   }

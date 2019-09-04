@@ -23,10 +23,10 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 	void _onSavePressed(FirstSetupBloc bloc, _formKey) {
 		if (!_formKey.currentState.validate()) return;
 
-		// bloc.dispatch(SaveUserData(
-		// 	firstName: _firstNameController.text,
-		// 	lastName: _lastNameController.text
-		// ));
+		bloc.dispatch(SaveUserData(
+			firstName: _firstNameController.text,
+			lastName: _lastNameController.text
+		));
 	}
 
 	@override
@@ -55,7 +55,7 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 								labelText: AppConstants.lastNameLabel,
 								keyboardType: TextInputType.text,
 								textInputAction: TextInputAction.done,
-								formValidator: (value) => FormValidators.firstNameValidate(value),
+								formValidator: (value) => FormValidators.lastNameValidate(value),
 							),
 							// TODO: Email field
 							// new SizedBox(height: AppStyle.primaryPadding),
