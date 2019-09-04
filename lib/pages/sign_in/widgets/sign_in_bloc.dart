@@ -5,6 +5,8 @@ import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
+	final _userProvider = UserProvider();
+
   @override
   get initialState => SignInState.initial();
 
@@ -23,10 +25,10 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     yield SignInState.loading();
 
     try {
-      await UserProvider().signIn(email, password);
+      await _userProvider.signIn(email, password);
       yield SignInState.success();
 
-			var user = await UserProvider().get();
+			var user = await _userProvider.get();
 			if (user.status == 1)
 				NavigationService.toFirstSetupPage();
 			else if (user.status == 4)
