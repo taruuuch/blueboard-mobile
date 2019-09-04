@@ -12,4 +12,5 @@ class ApiConfig {
   */
   static String signInUrl = '/Users/sign-in';
   static String signUpUrl = '/Users/sign-up';
+	static String userDataUrl = '/me';
 }

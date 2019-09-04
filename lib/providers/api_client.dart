@@ -1,8 +1,10 @@
+import 'package:blueboard/models/token.dart';
 import 'package:dio/dio.dart';
 import 'package:blueboard/configs/api_config.dart';
 
 class ApiClient {
   Dio dio;
+	Token token;
 
   ApiClient._privateConstructor();
 
@@ -11,11 +13,18 @@ class ApiClient {
   static ApiClient get instance { return _instance; }
 
   ApiClient() {
-    BaseOptions options = new BaseOptions(
-      baseUrl: ApiConfig.baseUrl,
-    );
+		BaseOptions options = new BaseOptions(
+			baseUrl: ApiConfig.baseUrl,
+		);
     
     dio = new Dio(options);
+
+		dio.interceptors.add(InterceptorsWrapper(
+			onRequest: (RequestOptions options) {
+				options.headers['Authorization'] = 'Bearer ' + token.accessToken;
+				return options;
+			}
+		));
   }
 
   /*
@@ -30,7 +39,7 @@ class ApiClient {
   * @url - 
   * @parameters - 
   */
-  get(url, parameters) => dio.get(url, queryParameters: parameters);
+  get(url) => dio.get(url);
 
   /*
   * Put
