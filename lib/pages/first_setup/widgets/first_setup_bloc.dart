@@ -6,6 +6,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 
 class FirstSetupBloc extends Bloc<FirstSetupEvent, FirstSetupState> {
+	final _userProvider = UserProvider();
+
 	@override
 	get initialState => FirstSetupState.initial();
 
@@ -20,7 +22,7 @@ class FirstSetupBloc extends Bloc<FirstSetupEvent, FirstSetupState> {
 		yield FirstSetupState.loading();
 
 		try {
-			await UserProvider().initialUpdate(firstName, lastName);
+			await _userProvider.initialUpdate(firstName, lastName);
 			yield FirstSetupState.success();
 			NavigationService.toTripsPage();
 		} on DioError catch (e) {

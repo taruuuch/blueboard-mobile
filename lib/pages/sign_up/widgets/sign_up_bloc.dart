@@ -5,8 +5,9 @@ import 'package:blueboard/services/navigation.dart';
 import 'package:dio/dio.dart';
 import 'package:bloc/bloc.dart';
 
-
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
+	final _userProvider = UserProvider();
+
   @override
   get initialState => SignUpState.initial();
 
@@ -25,7 +26,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     yield SignUpState.loading();
 
     try {
-      await UserProvider().signUp(email, password);
+      await _userProvider.signUp(email, password);
       yield SignUpState.success();
       NavigationService.toFirstSetupPage();
     } on DioError catch (e) {
