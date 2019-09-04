@@ -12,7 +12,7 @@ class User {
 		this.email, 
 		this.phone, 
 		this.password,
-		this.avatar
+		// this.avatar
 	);
 
   String id;
@@ -21,8 +21,8 @@ class User {
 	String email;
 	String phone;
 	String password;
-	String status;
-	Uri avatar;
+	int status;
+	// Uri avatar;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

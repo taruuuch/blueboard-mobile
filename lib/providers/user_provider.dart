@@ -9,6 +9,7 @@ import 'package:blueboard/providers/token_provider.dart';
 class UserProvider {
   var apiClient = ApiClient();
   var tokenProvider = TokenProvider();
+	
   User user;
 
   Future signIn(email, password) async {
@@ -28,17 +29,15 @@ class UserProvider {
   Future initialUpdate(firstName, lastName) async {
     var data = {'firstName': firstName, 'lastName': lastName};
 
-    var response = await apiClient.put(ApiConfig.userDataUrl, data);
-		return User.fromJson(json.decode(response.data));
+    await apiClient.put(ApiConfig.userSetupUrl, data);
   }
 
   Future update(User user) async {
-    var response = await apiClient.put(ApiConfig.userDataUrl, json.encode(user.toJson()));
-		return response;
+    await apiClient.put(ApiConfig.userUrl, json.encode(user.toJson()));
   }
 
   Future get() async {
-    var response = await apiClient.get(ApiConfig.userDataUrl);
-		return User.fromJson(json.decode(response.data));
+    var response = await apiClient.get(ApiConfig.userUrl);
+		return User.fromJson(response.data);
   }
 }

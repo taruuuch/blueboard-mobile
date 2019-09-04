@@ -11,11 +11,10 @@ User _$UserFromJson(Map<String, dynamic> json) {
     json['id'] as String,
     json['firstName'] as String,
     json['lastName'] as String,
-    json['status'] as String,
+    json['status'] as int,
     json['email'] as String,
     json['phone'] as String,
     json['password'] as String,
-    json['avatar'] == null ? null : Uri.parse(json['avatar'] as String),
   );
 }
 
@@ -27,5 +26,4 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'phone': instance.phone,
       'password': instance.password,
       'status': instance.status,
-      'avatar': instance.avatar?.toString(),
     };

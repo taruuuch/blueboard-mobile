@@ -8,5 +8,5 @@ class SaveUserData extends FirstSetupEvent {
 	final String firstName;
 	final String lastName;
 
-	SaveUserData(this.firstName, this.lastName) : super([firstName, lastName]);
+	SaveUserData({this.firstName, this.lastName}) : super([firstName, lastName]);
 }
