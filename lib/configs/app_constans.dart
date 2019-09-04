@@ -8,5 +8,5 @@ class AppConstants {
   static String passwordRepeatInputLabel = 'Repeat password';
 
 	static String firstNameLabel = 'Enter your first name';
-	static String lastNameLabel = 'Entre your last name';
+	static String lastNameLabel = 'Enter your last name';
 }
