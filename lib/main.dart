@@ -1,9 +1,10 @@
 import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/pages/first_setup/first_setup_page.dart';
 import 'package:blueboard/pages/sign_in/sign_in_page.dart';
 import 'package:blueboard/pages/sign_up/sign_up_page.dart';
+import 'package:blueboard/pages/trips/trips_page.dart';
 import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
-import 'pages/trips/trips_page.dart';
 
 void main() => runApp(App());
 
@@ -24,6 +25,9 @@ class App extends StatelessWidget {
             case TripsPage.tag:
               return MaterialPageRoute(builder: (context) => TripsPage());
               break;
+						case FirstSetupPage.tag:
+							return MaterialPageRoute(builder: (context) => FirstSetupPage());
+							break;
             default:
               return MaterialPageRoute(builder: (context) => SignInPage());
               break;
