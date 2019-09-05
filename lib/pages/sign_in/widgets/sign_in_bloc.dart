@@ -29,10 +29,9 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       yield SignInState.success();
 
 			var user = await _userProvider.get();
+
 			if (user.status == 1)
 				NavigationService.toFirstSetupPage();
-			else if (user.status == 4)
-				return;
 			else
 				NavigationService.toTripsPage();
 				

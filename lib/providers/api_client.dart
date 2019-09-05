@@ -4,25 +4,18 @@ import 'package:dio/dio.dart';
 
 class ApiClient {
   Dio dio;
+	var _tokenProvider = TokenProvider();
 
-	var tokenProvider = TokenProvider();
-
-  ApiClient._privateConstructor();
-
-  static final ApiClient _instance = ApiClient._privateConstructor();
-
-  static ApiClient get instance { return _instance; }
-
-  ApiClient() {
+	ApiClient._privateConstructor() {
 		BaseOptions options = new BaseOptions(
 			baseUrl: ApiConfig.baseUrl,
 		);
-    
+
     dio = new Dio(options);
 
 		dio.interceptors.add(InterceptorsWrapper(
 			onRequest: (RequestOptions options) async {
-				var token = await tokenProvider.getToken();
+				var token = await _tokenProvider.getToken();
 
 				if (token != null) {
 					options.headers['Authorization'] = 'Bearer ' + token.accessToken;
@@ -32,7 +25,10 @@ class ApiClient {
 				return options;
 			},
 		));
-  }
+	}
+	
+  static final ApiClient _instance = ApiClient._privateConstructor();
+	static ApiClient get instance => _instance;
 
   /*
   * Post
