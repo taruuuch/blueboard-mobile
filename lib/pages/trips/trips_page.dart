@@ -1,4 +1,5 @@
 import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/pages/trips/widgets/trip_item.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -19,9 +20,7 @@ class TripsPage extends StatelessWidget {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Center(
-              child: new Text('Welcome to Blue Board'),
-            )
+            new TripItem()
           ],
         ),
       ),
