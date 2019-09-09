@@ -1,7 +1,9 @@
 import 'package:blueboard/configs/app_style.dart';
-import 'package:blueboard/pages/trips/widgets/trip_item.dart';
+import 'package:blueboard/pages/trips/widgets/trips_bloc.dart';
+import 'package:blueboard/pages/trips/widgets/trips_item.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TripsPage extends StatelessWidget {
   static const String tag = 'trips';
@@ -15,19 +17,14 @@ class TripsPage extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       drawer: AppDrawer(),
-      body: new Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppStyle.formPadding, horizontal: AppStyle.formPadding),
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new TripItem()
-          ],
-        ),
+      body: BlocProvider<TripsBloc> (
+        builder: (context) => TripsBloc(),
+        child: TripsPage(),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: null,
         tooltip: 'Create trip',
         child: new Icon(Icons.add),
+        onPressed: () => null,
       ),
     );
 }
