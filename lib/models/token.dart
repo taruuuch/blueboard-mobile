@@ -4,7 +4,10 @@ part 'token.g.dart';
 
 @JsonSerializable()
 class Token {
-  Token(this.accessToken, this.expires);
+  Token(
+		this.accessToken, 
+		this.expires
+	);
 
   String accessToken;
   int expires;
