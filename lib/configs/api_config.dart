@@ -15,8 +15,15 @@ class ApiConfig {
 
 	/*
   * User links to api
-  * @userDataUrl = 
+  * @userUrl = 
+  * @userSetupUrl = 
   */
 	static String userUrl = '/me';
 	static String userSetupUrl = '/me/setup';
+
+	/*
+  * User links to api
+  * @tripUrl = 
+  */
+	static String tripUrl = '/Trips';
 }
