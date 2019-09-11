@@ -1,13 +1,56 @@
+import 'package:blueboard/pages/trips/widgets/trips_item.dart';
 import 'package:flutter/material.dart';
 
-class TripList extends StatefulWidget {
+class TripList extends StatelessWidget {
 	@override
-	State createState() => new _TripListState();
-}
-
-class _TripListState extends State<TripList> {
-	@override
-	Widget build(BuildContext context) => new Container(
-		
-	);
+	Widget build(BuildContext context) => 
+		new ListView(
+			children: <Widget>[
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+				new TripItem(
+					decorationImage: AssetImage('assets/testimage.jpg'),
+					title: 'Austria trip 2019',
+					create: 'by Artemchuk Dmytro'
+				),
+			],
+		);
 }
