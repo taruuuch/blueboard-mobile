@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:blueboard/pages/trips/widgets/trips_event.dart';
-import 'package:blueboard/pages/trips/widgets/trips_state.dart';
+import 'package:blueboard/pages/trips/trips_event.dart';
+import 'package:blueboard/pages/trips/trips_state.dart';
 import 'package:blueboard/services/navigation.dart';
 
 class TripsBloc extends Bloc<TripsEvent, TripsState> {

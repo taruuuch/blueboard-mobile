@@ -1,5 +1,5 @@
-import 'package:blueboard/pages/sign_up/widgets/sign_up_event.dart';
-import 'package:blueboard/pages/sign_up/widgets/sign_up_state.dart';
+import 'package:blueboard/pages/sign_up/sign_up_event.dart';
+import 'package:blueboard/pages/sign_up/sign_up_state.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 import 'package:dio/dio.dart';

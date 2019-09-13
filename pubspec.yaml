@@ -16,6 +16,8 @@ dependencies:
   flutter_bloc: ^0.21.0
   equatable: ^0.5.1
   font_awesome_flutter: ^8.5.0
+  flutter_datetime_picker: ^1.2.6
+  intl: ^0.16.0
 
 dev_dependencies:
   flutter_test:

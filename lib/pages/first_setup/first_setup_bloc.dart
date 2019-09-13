@@ -1,5 +1,5 @@
-import 'package:blueboard/pages/first_setup/widgets/first_setup_event.dart';
-import 'package:blueboard/pages/first_setup/widgets/first_setup_state.dart';
+import 'package:blueboard/pages/first_setup/first_setup_event.dart';
+import 'package:blueboard/pages/first_setup/first_setup_state.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 import 'package:bloc/bloc.dart';

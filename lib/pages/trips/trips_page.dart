@@ -1,4 +1,4 @@
-import 'package:blueboard/pages/trips/widgets/trips_bloc.dart';
+import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/pages/trips/widgets/trips_list.dart';
 import 'package:blueboard/pages/trips/widgets/trips_search.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
@@ -17,9 +17,16 @@ class TripsPage extends StatelessWidget {
 				backgroundColor: Colors.white,
 			),
 			drawer: AppDrawer(),
-			body: BlocProvider<TripsBloc> (
-				builder: (context) => TripsBloc(),
-				child: new TripList()
+			body: BlocProvider.value(
+				value: BlocProvider.of<TripsBloc>(context),
+				child: new Column(
+					children: <Widget>[
+						new TripSearchForm(),
+						Expanded(
+							child: new TripList(),
+						)
+					],
+				)
 			),
 			floatingActionButton: new FloatingActionButton(
 				tooltip: 'Create trip',
