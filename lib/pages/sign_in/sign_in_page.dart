@@ -1,5 +1,5 @@
 import 'package:blueboard/pages/sign_in/widgets/sign_in_form.dart';
-import 'package:blueboard/pages/sign_in/widgets/sign_in_bloc.dart';
+import 'package:blueboard/pages/sign_in/sign_in_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,9 +14,9 @@ class SignInPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: BlocProvider<SignInBloc> (
-        builder: (context) => SignInBloc(),
-        child: SignInForm(),
-      ),
+			body: BlocProvider.value(
+				value: BlocProvider.of<SignInBloc>(context),
+				child: new SignInForm()
+			),
     );
 }

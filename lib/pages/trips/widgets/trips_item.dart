@@ -1,3 +1,4 @@
+import 'package:blueboard/configs/app_style.dart';
 import 'package:flutter/material.dart';
 
 class TripItem extends StatelessWidget {
@@ -14,16 +15,27 @@ class TripItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new GestureDetector(
-			onTap: () => print('tap'),
-			onLongPress: () => print('long tap'),
+			onTap: () => print('test tap'),
+			onLongPress: () => print('test long tap'),
       child: new Card(
-        margin: const EdgeInsets.only(left: 15.0, right: 15.0, top: 15.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        margin: const EdgeInsets.only(
+					left: AppStyle.tripItemPadding, 
+					right: AppStyle.tripItemPadding, 
+					top: AppStyle.tripItemPadding
+				),
+        shape: RoundedRectangleBorder(
+					borderRadius: BorderRadius.circular(AppStyle.tripItemBorderRadius)
+				),
         elevation: 5,
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: new Container(
-          padding: EdgeInsets.only(top: 50.0, left: 15.0, right: 15.0, bottom: 15.0),
+          padding: EdgeInsets.only(
+						top: 50.0, 
+						left: AppStyle.tripItemPadding, 
+						right: AppStyle.tripItemPadding, 
+						bottom: AppStyle.tripItemPadding
+					),
           decoration: new BoxDecoration(
 						image: DecorationImage(
 							image: decorationImage,
@@ -43,9 +55,10 @@ class TripItem extends StatelessWidget {
               new Text(
                 title,
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w900),
+									color: Colors.white,
+									fontSize: 20,
+									fontWeight: FontWeight.w900
+								),
               ),
               new Text(
                 create,

@@ -1,8 +1,8 @@
 import 'package:blueboard/configs/app_constans.dart';
 import 'package:blueboard/configs/app_style.dart';
-import 'package:blueboard/pages/first_setup/widgets/first_setup_bloc.dart';
-import 'package:blueboard/pages/first_setup/widgets/first_setup_event.dart';
-import 'package:blueboard/pages/first_setup/widgets/first_setup_state.dart';
+import 'package:blueboard/pages/first_setup/first_setup_bloc.dart';
+import 'package:blueboard/pages/first_setup/first_setup_event.dart';
+import 'package:blueboard/pages/first_setup/first_setup_state.dart';
 import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/button.dart';
 import 'package:blueboard/widgets/input_field.dart';

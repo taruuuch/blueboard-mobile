@@ -9,6 +9,7 @@ class FormValidators {
     'password_not_match': 'Your password not matched',
 		'first_name_empty': 'Please enter your name',
 		'last_name_empty': 'Please enter your last name',
+		'search_empty': 'Please enter your search value',
   };
 
   static Function(String) emailValidate = (String value) {
@@ -52,6 +53,14 @@ class FormValidators {
 	static Function(String) lastNameValidate = (String value) {
 		if (value.isEmpty) {
 			return _validatorConstants['last_name_empty'];
+		}
+
+		return null;
+	};
+
+	static Function(String) searchValidate = (String value) {
+		if (value.isEmpty) {
+			return _validatorConstants['search_empty'];
 		}
 
 		return null;

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:blueboard/pages/sign_in/widgets/sign_in_event.dart';
-import 'package:blueboard/pages/sign_in/widgets/sign_in_state.dart';
+import 'package:blueboard/pages/sign_in/sign_in_event.dart';
+import 'package:blueboard/pages/sign_in/sign_in_state.dart';
 import 'package:blueboard/providers/user_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 

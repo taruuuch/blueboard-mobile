@@ -1,6 +1,6 @@
-import 'package:blueboard/pages/sign_up/widgets/sign_up_bloc.dart';
-import 'package:blueboard/pages/sign_up/widgets/sign_up_event.dart';
-import 'package:blueboard/pages/sign_up/widgets/sign_up_state.dart';
+import 'package:blueboard/pages/sign_up/sign_up_bloc.dart';
+import 'package:blueboard/pages/sign_up/sign_up_event.dart';
+import 'package:blueboard/pages/sign_up/sign_up_state.dart';
 import 'package:blueboard/configs/app_constans.dart';
 import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/services/form_validators.dart';
