@@ -9,25 +9,25 @@ import 'package:blueboard/pages/trips/trips_page.dart';
 import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) => 
-		new MultiBlocProvider(
+		new MultiProvider(
 			providers: [
-				BlocProvider<SignInBloc> (
+				Provider<SignInBloc> (
 					builder: (context) => SignInBloc(),
 				),
-				BlocProvider<SignUpBloc> (
+				Provider<SignUpBloc> (
 					builder: (context) => SignUpBloc(),
 				),
-				BlocProvider<FirstSetupBloc> (
+				Provider<FirstSetupBloc> (
 					builder: (context) => FirstSetupBloc(),
 				),
-				BlocProvider<TripsBloc> (
+				Provider<TripsBloc> (
 					builder: (context) => TripsBloc(),
 				),
 			],
