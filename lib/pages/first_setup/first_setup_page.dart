@@ -1,7 +1,5 @@
-import 'package:blueboard/pages/first_setup/first_setup_bloc.dart';
 import 'package:blueboard/pages/first_setup/widgets/first_setup_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FirstSetupPage extends StatelessWidget {
   static const String tag = 'first-setup';
@@ -14,9 +12,6 @@ class FirstSetupPage extends StatelessWidget {
 				centerTitle: true,
 				backgroundColor: Colors.white,
 			),
-			body: BlocProvider.value(
-				value: BlocProvider.of<FirstSetupBloc>(context),
-				child: new FirstSetupForm()
-			),
+			body: new FirstSetupForm()
 		);
 }

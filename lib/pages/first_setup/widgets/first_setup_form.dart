@@ -7,7 +7,7 @@ import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/button.dart';
 import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class FirstSetupForm extends StatefulWidget {
 	@override
@@ -20,10 +20,10 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 	final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
 
-	void _onSavePressed(FirstSetupBloc bloc, _formKey) {
+	void _onSavePressed(FirstSetupBloc _bloc, _formKey) {
 		if (!_formKey.currentState.validate()) return;
 
-		bloc.dispatch(SaveUserData(
+		_bloc.dispatch(SaveUserData(
 			firstName: _firstNameController.text,
 			lastName: _lastNameController.text
 		));
@@ -31,7 +31,7 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 
 	@override
 	Widget build(BuildContext context) {
-    final FirstSetupBloc bloc = BlocProvider.of<FirstSetupBloc>(context);
+    final FirstSetupBloc _bloc = Provider.of<FirstSetupBloc>(context);
 		return new Form(
 			key: _formKey,
 			child: new Center(
@@ -74,14 +74,14 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
 									new StreamBuilder(
-										stream: bloc.state,
+										stream: _bloc.state,
 										builder: (context, AsyncSnapshot<FirstSetupState> snapshot) {
 											return new Button(
 												child: new Text(AppConstants.firstSetupButtonLabel),
 												color: Colors.blue,
 												splashColor: Colors.blueAccent,
 												textColor: Colors.white,
-												onPressed: ( !snapshot.hasData || !snapshot.data.isLoading ) ? () => _onSavePressed(bloc, _formKey) : null,
+												onPressed: ( !snapshot.hasData || !snapshot.data.isLoading ) ? () => _onSavePressed(_bloc, _formKey) : null,
 											);
 										},
 									),
@@ -89,7 +89,7 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 							),
               new SizedBox(height: AppStyle.primaryPadding),
               new StreamBuilder(
-                stream: bloc.state,
+                stream: _bloc.state,
                 builder: (context, AsyncSnapshot<FirstSetupState> snapshot) {
                   if (snapshot.hasData && snapshot.data.error != '')
                     return new Text(

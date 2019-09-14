@@ -7,7 +7,7 @@ import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/button.dart';
 import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -23,22 +23,22 @@ class _SignUpFormState extends State<SignUpForm> {
 
   bool checkedValue = false;
 
-  void _onSignUpPressed(SignUpBloc bloc, _formKey) {
+  void _onSignUpPressed(SignUpBloc _bloc, _formKey) {
     if (!_formKey.currentState.validate() || !checkedValue) return;
 
-    bloc.dispatch(SignUp(
+    _bloc.dispatch(SignUp(
       email: _emailController.text,
       password: _passwordController.text,
     ));
   }
 
-  void _onCancelPressed(SignUpBloc bloc) {
-    bloc.dispatch(Cancel());
+  void _onCancelPressed(SignUpBloc _bloc) {
+    _bloc.dispatch(Cancel());
   }
 
   @override
   Widget build(BuildContext context) {
-    final SignUpBloc bloc = BlocProvider.of<SignUpBloc>(context);
+    final SignUpBloc _bloc = Provider.of<SignUpBloc>(context);
 
     return new Form(
         key: _formKey,
@@ -96,18 +96,18 @@ class _SignUpFormState extends State<SignUpForm> {
                     children: <Widget>[
                       Expanded(
                           child: new StreamBuilder(
-                        stream: bloc.state,
+                        stream: _bloc.state,
                         builder: (context, snapshot) {
                           return new FlatButton(
                             textColor: Colors.blue,
                             child: new Text('Cancel'),
-                            onPressed: () => _onCancelPressed(bloc),
+                            onPressed: () => _onCancelPressed(_bloc),
                           );
                         },
                       )),
                       Expanded(
                         child: new StreamBuilder(
-                          stream: bloc.state,
+                          stream: _bloc.state,
                           builder: (BuildContext context, AsyncSnapshot<SignUpState> snapshot) {
                             return new Button(
                               child: new Text(AppConstants.signUpButtonLabel),
@@ -115,7 +115,7 @@ class _SignUpFormState extends State<SignUpForm> {
                               splashColor: Colors.blueAccent,
                               textColor: Colors.white,
                               onPressed: (!snapshot.hasData || !snapshot.data.isLoading) 
-                                ? () => _onSignUpPressed(bloc, _formKey) 
+                                ? () => _onSignUpPressed(_bloc, _formKey) 
                                 : null,
                             );
                           }
@@ -125,7 +125,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   ),
                   new SizedBox(height: AppStyle.primaryPadding),
                   new StreamBuilder(
-                    stream: bloc.state,
+                    stream: _bloc.state,
                     builder: (context, AsyncSnapshot<SignUpState> snapshot) {
                       if (snapshot.hasData && snapshot.data.error != '')
                         return new Text(

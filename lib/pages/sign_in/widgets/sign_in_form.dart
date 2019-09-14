@@ -4,11 +4,11 @@ import 'package:blueboard/pages/sign_in/widgets/sign_in_social.dart';
 import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/button.dart';
 import 'package:blueboard/widgets/input_field.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blueboard/pages/sign_in/sign_in_bloc.dart';
 import 'package:blueboard/pages/sign_in/sign_in_event.dart';
 import 'package:blueboard/pages/sign_in/sign_in_state.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -34,7 +34,7 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    final SignInBloc bloc = BlocProvider.of<SignInBloc>(context);
+    final SignInBloc _bloc = Provider.of<SignInBloc>(context);
     return new Form(
       key: _formKey,
       child: new Center(
@@ -72,7 +72,7 @@ class _SignInFormState extends State<SignInForm> {
               ),
               new SizedBox(height: AppStyle.primaryPadding),
               new StreamBuilder(
-                stream: bloc.state,
+                stream: _bloc.state,
                 builder: (context, AsyncSnapshot<SignInState> snapshot) {
                   if (snapshot.hasData && snapshot.data.error != '')
                     return new Text(
@@ -106,26 +106,26 @@ class _SignInFormState extends State<SignInForm> {
                 children: <Widget>[
                   Expanded(
                     child: new StreamBuilder(
-                      stream: bloc.state,
+                      stream: _bloc.state,
                       builder: (context, snapshot) {
                         return new FlatButton(
                           child: new Text('New user? Sign up here'),
                           textColor: Colors.blue,
-                          onPressed: () => _onSignUpPressed(bloc),
+                          onPressed: () => _onSignUpPressed(_bloc),
                         );
                       },
                     )
                   ),
                   Expanded(
                     child: new StreamBuilder(
-                      stream: bloc.state,
+                      stream: _bloc.state,
                       builder: (BuildContext context, AsyncSnapshot<SignInState> snapshot) {
                         return new Button(
                           child: new Text('SIGN IN'),
                           color: Colors.blue,
                           splashColor: Colors.blueAccent,
                           textColor: Colors.white,
-                          onPressed: ( !snapshot.hasData || !snapshot.data.isLoading ) ? () => _onSignInPressed(bloc, _formKey) : null
+                          onPressed: ( !snapshot.hasData || !snapshot.data.isLoading ) ? () => _onSignInPressed(_bloc, _formKey) : null
                         );
                       }
                     )
