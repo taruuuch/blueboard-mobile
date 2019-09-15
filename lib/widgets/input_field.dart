@@ -7,6 +7,7 @@ class InputField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputAction textInputAction;
   final String Function(String) formValidator; 
+  final void Function(String) fieldSubmitted;
 
   final FocusNode _focusNode = new FocusNode();
 
@@ -16,8 +17,9 @@ class InputField extends StatelessWidget {
     this.labelText, 
     this.obscureText = false,
     this.controller,
-    this.textInputAction = TextInputAction.next,
+    this.textInputAction,
     this.formValidator,
+    this.fieldSubmitted,
   }) : super(key: key);
 
   @override
@@ -34,10 +36,7 @@ class InputField extends StatelessWidget {
           borderSide: new BorderSide(color: Colors.grey[400]),
         ),
       ),
-      onFieldSubmitted: (value) {
-        _focusNode.unfocus();
-        FocusScope.of(context).nextFocus();
-      },
+      onFieldSubmitted: fieldSubmitted,
       validator: formValidator
     );
   }

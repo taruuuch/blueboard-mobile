@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class TokenProvider {
-	SharedPreferences prefs;
+  SharedPreferences prefs;
 
   setToken(Token token) async {
     prefs = await SharedPreferences.getInstance();
@@ -12,6 +12,8 @@ class TokenProvider {
 
   getToken() async {
     prefs = await SharedPreferences.getInstance();
-    return Token.fromJson(json.decode(prefs.getString('token')));
+    String tokenString = prefs.getString('token');
+    if (tokenString != null) return Token.fromJson(json.decode(tokenString));
+    return null;
   }
 }

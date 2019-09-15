@@ -56,6 +56,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     keyboardType: TextInputType.emailAddress,
                     labelText: AppConstants.emailInputLabel,
                     formValidator: (value) => FormValidators.emailValidate(value),
+                    textInputAction: TextInputAction.next,
+                    fieldSubmitted: (value) {
+                      FocusScope.of(context).nextFocus();
+                    },
                   ),
                   new SizedBox(height: AppStyle.primaryPadding),
                   new InputField(
@@ -64,6 +68,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     labelText: AppConstants.passwordInputLabel,
                     formValidator: (value) => FormValidators.passwordValidate(value),
                     obscureText: true,
+                    textInputAction: TextInputAction.next,
+                    fieldSubmitted: (value) {
+                      FocusScope.of(context).nextFocus();
+                    },
                   ),
                   new SizedBox(height: AppStyle.primaryPadding),
                   new InputField(
@@ -72,6 +80,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     labelText: AppConstants.passwordRepeatInputLabel,
                     formValidator: (value) => FormValidators.passwordRepeatValidate(value, _passwordController.text),
                     obscureText: true,
+                    textInputAction: TextInputAction.done,
+                    fieldSubmitted: (value) {
+                      FocusScope.of(context).nextFocus();
+                    },
                   ),
                   new SizedBox(height: 5.0),
                   new Row(
