@@ -7,8 +7,8 @@ class TripsPage extends StatelessWidget {
   static const String tag = 'trips';
 
   @override
-  Widget build(BuildContext context) => 
-		new Scaffold(
+  Widget build(BuildContext context) {
+		return new Scaffold(
 			appBar: new AppBar(
 				title: new Text('TRIPS'),
 				centerTitle: true,
@@ -19,7 +19,7 @@ class TripsPage extends StatelessWidget {
         children: <Widget>[
           new TripSearchForm(),
           Expanded(
-            child: new TripList(),
+            child: new TripList()
           )
         ],
       ),
@@ -29,4 +29,5 @@ class TripsPage extends StatelessWidget {
 				onPressed: () => null,
 			),
 		);
+  }
 }

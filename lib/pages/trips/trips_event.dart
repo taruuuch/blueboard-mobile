@@ -6,7 +6,7 @@ abstract class TripsEvent extends Equatable {
 
 class LoadTrips extends TripsEvent {}
 
-class ShowTrips extends TripsEvent {}
+class ShowTrip extends TripsEvent {}
 
 class SearchTrips extends TripsEvent {
   final String searchParams;

@@ -3,7 +3,6 @@ import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/flat_button.dart';
 import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 class TripSearchForm extends StatefulWidget {

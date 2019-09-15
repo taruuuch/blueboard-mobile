@@ -52,14 +52,25 @@ class _SignInFormState extends State<SignInForm> {
                 keyboardType: TextInputType.emailAddress,
                 formValidator: (value) => FormValidators.emailValidate(value),
                 labelText: AppConstants.emailInputLabel,
+                textInputAction: TextInputAction.next,
+                fieldSubmitted: (value) {
+                  FocusScope.of(context).nextFocus();
+                },
               ),
               new SizedBox(height: AppStyle.primaryPadding),
-              new InputField(
-                controller: _passwordController,
-                keyboardType: TextInputType.text,
-                formValidator: (value) => FormValidators.passwordValidate(value),
-                labelText: AppConstants.passwordInputLabel,
-                obscureText: true,
+              new StreamBuilder(
+                stream: _bloc.state,
+                builder: (BuildContext context, AsyncSnapshot<SignInState> snapshot) {
+                  return new InputField(
+                    controller: _passwordController,
+                    keyboardType: TextInputType.text,
+                    formValidator: (value) => FormValidators.passwordValidate(value),
+                    labelText: AppConstants.passwordInputLabel,
+                    obscureText: true,
+                    textInputAction: TextInputAction.done,
+                    fieldSubmitted: ( !snapshot.hasData || !snapshot.data.isLoading ) ? (value) => _onSignInPressed(_bloc, _formKey) : null,
+                  );
+                }
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.end,
