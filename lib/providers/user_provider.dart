@@ -12,7 +12,7 @@ class UserProvider {
   Future signIn(email, password) async {
     var data = {'email': email, 'password': password};
 
-    var response = await ApiClient.instance.post(ApiConfig.signInUrl, data);
+    var response = await _apiClient.post(ApiConfig.signInUrl, data);
     _tokenProvider.setToken(Token.fromJson(response.data));
   }
 

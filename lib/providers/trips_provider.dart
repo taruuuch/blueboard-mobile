@@ -9,7 +9,7 @@ class TripsProvider {
 	// TODO: getAll - return all user trips
 	Future getAll() async {
 		var response = await _apiClient.get(ApiConfig.tripUrl);
-		return response.data;
+		return List<Trip>.from(response.data.map((i) => Trip.fromJson(i)));;
 	}
 
 	Future add(Trip trip) async {
