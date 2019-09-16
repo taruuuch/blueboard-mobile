@@ -17,21 +17,19 @@ class _TripListState extends State<TripList> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () {
-      _bloc.dispatch(LoadTrips());
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     final TripsBloc _bloc = Provider.of<TripsBloc>(context);
     _bloc.dispatch(LoadTrips());
+
     return new Container(
       child: new StreamBuilder(
         stream: _bloc.state,
         builder: (context, AsyncSnapshot<TripsState> snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data.trips != []) {
+            if (snapshot.data.trips.isNotEmpty) {
               List<Trip> items = snapshot.data.trips;
               return new ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
@@ -62,7 +60,7 @@ class _TripListState extends State<TripList> {
               );
             }
           } else {
-            return null;
+            return new SizedBox.shrink();
           }
         }
       )
