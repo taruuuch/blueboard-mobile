@@ -9,6 +9,8 @@ class ApiClient {
 	ApiClient._privateConstructor() {
 		BaseOptions options = new BaseOptions(
 			baseUrl: ApiConfig.baseUrl,
+      connectTimeout: ApiConfig.connectTimeout,
+      receiveTimeout: ApiConfig.receiveTimeout,
 		);
 
     dio = new Dio(options);

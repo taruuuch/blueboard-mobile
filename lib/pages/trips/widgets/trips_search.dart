@@ -13,6 +13,10 @@ class TripSearchForm extends StatefulWidget {
 class _TripSearchFormState extends State<TripSearchForm> {
 	final TextEditingController _searchController = TextEditingController();
 
+  static final _date = new DateTime.now();
+  static final _minDate = new DateTime(2018, 1, 1);
+  static final _maxDate = new DateTime(_date.year + 3, _date.month, _date.day);
+
 	@override
 	Widget build(BuildContext context) => 
 		new Column(
@@ -34,15 +38,15 @@ class _TripSearchFormState extends State<TripSearchForm> {
                   DatePicker.showDatePicker(
                     context,
                     showTitleActions: true,
-                    minTime: DateTime(2018, 3, 5),
-                    maxTime: DateTime.now(), 
+                    minTime: _minDate,
+                    maxTime: _maxDate, 
                     onChanged: (date) {
                       // _fromDate = DateFormat('yyyy-MM-dd').format(date);
                     },
                     onConfirm: (date) {
                       // _fromDate = DateFormat('yyyy-MM-dd').format(date);
                     }, 
-                    currentTime: DateTime.now(), 
+                    currentTime: _date, 
                     locale: LocaleType.en
                   )
                 },
@@ -55,15 +59,15 @@ class _TripSearchFormState extends State<TripSearchForm> {
                   DatePicker.showDatePicker(
                     context,
                     showTitleActions: true,
-                    minTime: DateTime(2018, 3, 5),
-                    maxTime: DateTime.now(), 
+                    minTime: _minDate,
+                    maxTime: _maxDate, 
                     onChanged: (date) {
                       // _toDate = DateFormat('yyyy-MM-dd').format(date);
                     },
                     onConfirm: (date) {
                       // _toDate = DateFormat('yyyy-MM-dd').format(date);
                     }, 
-                    currentTime: DateTime.now(), 
+                    currentTime: _date, 
                     locale: LocaleType.en
                   )
                 },

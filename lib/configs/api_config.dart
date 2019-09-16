@@ -1,4 +1,6 @@
 class ApiConfig {
+  static int connectTimeout = 5000;
+  static int receiveTimeout = 3000;
   /*
   * @ip = link to api server
   * @port = server port
