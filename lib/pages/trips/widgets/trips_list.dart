@@ -12,8 +12,6 @@ class TripList extends StatefulWidget {
 }
 
 class _TripListState extends State<TripList> {
-  TripsBloc _bloc;
-
   @override
   void initState() {
     super.initState();
