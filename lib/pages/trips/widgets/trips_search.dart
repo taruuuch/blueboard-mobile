@@ -13,9 +13,11 @@ class TripSearchForm extends StatefulWidget {
 class _TripSearchFormState extends State<TripSearchForm> {
 	final TextEditingController _searchController = TextEditingController();
 
-  static final _date = new DateTime.now();
-  static final _minDate = new DateTime(2018, 1, 1);
-  static final _maxDate = new DateTime(_date.year + 3, _date.month, _date.day);
+  static final DateTime _date = new DateTime.now();
+  static final DateTime _minDate = new DateTime(2018, 1, 1);
+  static final DateTime _maxDate = new DateTime(_date.year + 3, _date.month, _date.day);
+  static DateTime _fromDate;
+  static DateTime _toDate;
 
 	@override
 	Widget build(BuildContext context) => 
@@ -41,10 +43,10 @@ class _TripSearchFormState extends State<TripSearchForm> {
                     minTime: _minDate,
                     maxTime: _maxDate, 
                     onChanged: (date) {
-                      // _fromDate = DateFormat('yyyy-MM-dd').format(date);
+                      _fromDate = date;
                     },
                     onConfirm: (date) {
-                      // _fromDate = DateFormat('yyyy-MM-dd').format(date);
+                      _fromDate = date;
                     }, 
                     currentTime: _date, 
                     locale: LocaleType.en
@@ -59,13 +61,13 @@ class _TripSearchFormState extends State<TripSearchForm> {
                   DatePicker.showDatePicker(
                     context,
                     showTitleActions: true,
-                    minTime: _minDate,
+                    minTime: new DateTime(_fromDate.year, _fromDate.month, _fromDate.day + 1),
                     maxTime: _maxDate, 
                     onChanged: (date) {
-                      // _toDate = DateFormat('yyyy-MM-dd').format(date);
+                      _toDate = date;
                     },
                     onConfirm: (date) {
-                      // _toDate = DateFormat('yyyy-MM-dd').format(date);
+                      _toDate = date;
                     }, 
                     currentTime: _date, 
                     locale: LocaleType.en
