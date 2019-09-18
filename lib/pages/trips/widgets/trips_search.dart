@@ -1,11 +1,9 @@
 import 'package:blueboard/configs/app_style.dart';
-import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/flat_button.dart';
 import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class TripSearchForm extends StatefulWidget {
 	@override
@@ -44,14 +42,12 @@ class _TripSearchFormState extends State<TripSearchForm> {
                     context,
                     showTitleActions: true,
                     minTime: _minDate,
-                    maxTime: (_toDate == null) 
-                      ? _maxDate 
-                      : new DateTime(_toDate.year, _toDate.month, _toDate.day - 1), 
+                    maxTime: _maxDate,
                     onConfirm: (date) {
                       _fromDate = date;
-                      _toDate = (_toDate == null) ? _maxDate : _toDate;
+                      _toDate = null;
                     }, 
-                    currentTime: _date, 
+                    currentTime: (_fromDate != null) ? _fromDate : _date, 
                     locale: LocaleType.en
                   )
                 },
@@ -72,7 +68,7 @@ class _TripSearchFormState extends State<TripSearchForm> {
                       _fromDate = (_fromDate == null) ? _minDate : _fromDate;
                       _toDate = date;
                     }, 
-                    currentTime: _date, 
+                    currentTime: (_toDate != null) ? _toDate : _date, 
                     locale: LocaleType.en
                   )
                 },
