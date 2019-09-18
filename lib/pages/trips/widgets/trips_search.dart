@@ -65,7 +65,6 @@ class _TripSearchFormState extends State<TripSearchForm> {
                       : new DateTime(_fromDate.year, _fromDate.month, _fromDate.day + 1),
                     maxTime: _maxDate, 
                     onConfirm: (date) {
-                      _fromDate = _fromDate ?? _date;
                       _toDate = date;
                     }, 
                     currentTime: _toDate ?? _date, 
