@@ -45,9 +45,9 @@ class _TripSearchFormState extends State<TripSearchForm> {
                     maxTime: _maxDate,
                     onConfirm: (date) {
                       _fromDate = date;
-                      _toDate = null;
+                      _toDate = (_fromDate.difference(_toDate).inDays > 0) ? null : _toDate;
                     }, 
-                    currentTime: (_fromDate != null) ? _fromDate : _date, 
+                    currentTime: _fromDate ?? _date, 
                     locale: LocaleType.en
                   )
                 },
@@ -65,10 +65,10 @@ class _TripSearchFormState extends State<TripSearchForm> {
                       : new DateTime(_fromDate.year, _fromDate.month, _fromDate.day + 1),
                     maxTime: _maxDate, 
                     onConfirm: (date) {
-                      _fromDate = (_fromDate == null) ? _minDate : _fromDate;
+                      _fromDate = _fromDate ?? _date;
                       _toDate = date;
                     }, 
-                    currentTime: (_toDate != null) ? _toDate : _date, 
+                    currentTime: _toDate ?? _date, 
                     locale: LocaleType.en
                   )
                 },
