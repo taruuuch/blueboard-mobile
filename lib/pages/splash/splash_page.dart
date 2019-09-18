@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
           var _date = new DateTime.now();
           var _expiresDate = new DateTime.fromMillisecondsSinceEpoch(_token.expires);
 
-          if (_expiresDate.compareTo(_date) == 0) {
+          if (_expiresDate.compareTo(_date) <= 0) {
             NavigationService.toSignInPage();
           } else {
             NavigationService.toTripsPage();
