@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/models/token.dart';
 import 'package:blueboard/providers/token_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,20 @@ class _SplashPageState extends State<SplashPage> {
     Timer(
       Duration(seconds: 2),
       () async {
-        var token = await _tokenProvider.getToken();
-        if (token == null)
+        Token _token = await _tokenProvider.getToken();
+       
+        if (_token == null) {
           NavigationService.toSignInPage();
-        else
-          NavigationService.toTripsPage();
+        } else {
+          var _date = new DateTime.now();
+          var _expiresDate = new DateTime.fromMillisecondsSinceEpoch(_token.expires);
+
+          if (_expiresDate.compareTo(_date) == 0) {
+            NavigationService.toSignInPage();
+          } else {
+            NavigationService.toTripsPage();
+          }
+        }
       }
     );
   }
