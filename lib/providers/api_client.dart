@@ -44,7 +44,7 @@ class ApiClient {
   * @url - 
   * @parameters - 
   */
-  get(url) => dio.get(url);
+  get(url, {parameters}) => dio.get(url, queryParameters: parameters);
 
   /*
   * Put

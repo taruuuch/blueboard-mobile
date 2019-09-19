@@ -9,15 +9,15 @@ class LoadTrips extends TripsEvent {}
 class ShowTrip extends TripsEvent {}
 
 class SearchTrips extends TripsEvent {
-  final String searchParams;
-  final DateTime startDate;
-  final DateTime endDate;
+  final String searchValue;
+  final DateTime fromDate;
+  final DateTime toDate;
 
   SearchTrips({
-		this.searchParams, 
-		this.startDate, 
-		this.endDate
-		}) : super([searchParams, startDate, endDate]);
+		this.searchValue, 
+		this.fromDate, 
+		this.toDate
+		}) : super([searchValue, fromDate, toDate]);
 }
 
 class CreateTrip extends TripsEvent {}
