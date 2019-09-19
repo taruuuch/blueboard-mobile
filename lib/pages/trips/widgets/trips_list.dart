@@ -9,59 +9,69 @@ import 'package:provider/provider.dart';
 class TripList extends StatefulWidget {
   @override
   State createState() => _TripListState();
+
+  
 }
 
 class _TripListState extends State<TripList> {
+  TripsBloc _bloc;
+
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, _loadTrips);
+    // WidgetsBinding.instance.addPostFrameCallback(_loadTrips);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = Provider.of<TripsBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final TripsBloc _bloc = Provider.of<TripsBloc>(context);
-    _bloc.dispatch(LoadTrips());
-
     return new Container(
-      child: new StreamBuilder(
-        stream: _bloc.state,
-        builder: (context, AsyncSnapshot<TripsState> snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data.trips.isNotEmpty) {
-              List<Trip> items = snapshot.data.trips;
-              return new ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  return new TripItem(
-                    decorationImage: AssetImage('assets/testimage.jpg'),
-                    title: items[index].name,
-                    create: items[index].description,
+        child: new StreamBuilder(
+            stream: _bloc.state,
+            builder: (context, AsyncSnapshot<TripsState> snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data.trips.isNotEmpty) {
+                  List<Trip> items = snapshot.data.trips;
+                  return new ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
+                      return new TripItem(
+                        decorationImage: AssetImage('assets/testimage.jpg'),
+                        title: items[index].name,
+                        create: items[index].description,
+                      );
+                    },
+                    itemCount: items.length,
                   );
-                },
-                itemCount: items.length,
-              );
-            } else {
-              return new Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Text('Trips not found!'),
-                  new GestureDetector(
-                    onTap: () => print('tap to create trip!'),
-                    child: new Text(
-                      'Create a trip to this country?',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline
-                      ),  
-                    ),
-                  ),
-                ],
-              );
-            }
-          } else {
-            return new SizedBox.shrink();
-          }
-        }
-      )
-    );
+                } else {
+                  return new Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      new Text('Trips not found!'),
+                      new GestureDetector(
+                        onTap: () => print('tap to create trip!'),
+                        child: new Text(
+                          'Create a trip to this country?',
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+              } else {
+                return new SizedBox.shrink();
+              }
+            }));
+  }
+
+  void _loadTrips() {
+    _bloc.dispatch(LoadTrips());
   }
 }
