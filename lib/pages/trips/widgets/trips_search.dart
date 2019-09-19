@@ -34,8 +34,12 @@ class _TripSearchFormState extends State<TripSearchForm> {
 
   _onClearPressed(TripsBloc _bloc) {
     _searchController.clear();
-    _fromDate = null;
-    _toDate = null;
+    
+    setState(() {
+      _fromDate = null;
+      _toDate = null;
+    });
+
     _bloc.dispatch(LoadTrips());
   }
 
