@@ -2,11 +2,10 @@ class ApiConfig {
   static int connectTimeout = 5000;
   static int receiveTimeout = 3000;
   /*
-  * @ip = link to api server
-  * @port = server port
+  * @baseUrl = link to api server
   */
-  static String baseUrl = 'http://10.0.2.2:5000/api/v1';
-  //static String baseUrl = 'http://192.168.1.49:5000/api/v1';
+  static String baseUrl = 'http://10.0.2.2:5000/api/v1'; //For use server on emulator :)
+  // static String baseUrl = 'http://192.168.1.49:5000/api/v1'; //For use server on wifi :)
 
   /*
   * Auth links to api

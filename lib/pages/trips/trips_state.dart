@@ -28,7 +28,7 @@ class TripsState {
       trips: [],
       searchValue: '',
       fromDate: null,
-      toDate:  null,
+      toDate: null,
 		);
 	}
 
@@ -40,7 +40,7 @@ class TripsState {
       trips: [],
       searchValue: '',
       fromDate: null,
-      toDate:  null,
+      toDate: null,
     );
   }
 
