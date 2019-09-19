@@ -29,4 +29,16 @@ class TripsProvider {
 	Future delete(id) async {
 		await _apiClient.delete(ApiConfig.tripUrl, id);
 	}
+
+	// TODO: Search trips
+	Future search({String searchValue, DateTime fromDate, DateTime toDate}) async {
+    Map<String, dynamic> parameters = {};
+
+    if (searchValue != "") parameters['query'] = searchValue;
+    if (fromDate != null) parameters['fromDate'] = fromDate.toString();
+    if (toDate != null) parameters['toDate'] = toDate.toString();
+
+		var response = await _apiClient.get(ApiConfig.tripSearchUrl, parameters: parameters);
+		return List<Trip>.from(response.data.map((i) => Trip.fromJson(i)));
+	}
 }

@@ -18,7 +18,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     }
 
 		if (event is SearchTrips) {
-      yield* _searchTrips();
+      yield* _searchTrips(searchValue: event.searchValue, fromDate: event.fromDate, toDate: event.toDate);
 		}
 
     if (event is CreateTrip) {
@@ -30,10 +30,6 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     }
   }  
 	
-	Stream<TripsState> _showTrip() async* {
-
-  }
-
   Stream<TripsState> _loadTrips() async* {
     yield TripsState.loading();
 
@@ -45,11 +41,18 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     }
   }
 
-	Stream<TripsState> _searchTrips({String searchParam, String from, String to}) async* {
+	Stream<TripsState> _searchTrips({String searchValue, DateTime fromDate, DateTime toDate}) async* {
+    yield TripsState.search(searchValue: searchValue, fromDate: fromDate, toDate: toDate);
 
+    try {
+      trips = await _tripsProvider.search(searchValue: searchValue, fromDate: fromDate, toDate: toDate);
+      yield TripsState.success(trips, searchValue: searchValue, fromDate: fromDate, toDate: toDate);
+    } catch (e) {
+      yield TripsState.error(e.response.statusMessage.toString());
+    }
   }
 
-  Stream<TripsState> _createTrip() async* {
+  Stream<TripsState> _createTrip() async* {}
 
-  }
+	Stream<TripsState> _showTrip() async* {}
 }
