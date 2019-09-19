@@ -2,11 +2,10 @@ import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/pages/trips/trips_event.dart';
 import 'package:blueboard/pages/trips/trips_state.dart';
+import 'package:blueboard/pages/trips/widgets/trips_search_date.dart';
 import 'package:blueboard/services/form_validators.dart';
-import 'package:blueboard/widgets/input_field.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class TripSearchForm extends StatefulWidget {
@@ -90,107 +89,71 @@ class _TripSearchFormState extends State<TripSearchForm> {
             },
           ),
         ),
+        new SizedBox(height: 5.0),
         new Row(
           children: <Widget>[
             Expanded(
-              child: new Column(
-                children: <Widget>[
-                  new StreamBuilder(
-                    stream: _bloc.state,
-                    builder: (context, snapshot) {
-                      return new GestureDetector(
-                        onTap: () => DatePicker.showDatePicker(
-                          context,
-                          showTitleActions: true,
-                          minTime: _minDate,
-                          maxTime: _maxDate,
-                          onConfirm: (date) {
-                            _fromDate = date;
-                            _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
+              child: new StreamBuilder(
+                stream: _bloc.state,
+                builder: (context, AsyncSnapshot<TripsState> snapshot) {
+                  return new GestureDetector(
+                    onTap: () => DatePicker.showDatePicker(
+                      context,
+                      showTitleActions: true,
+                      minTime: _minDate,
+                      maxTime: _maxDate,
+                      onConfirm: (date) {
+                        setState(() {
+                          _fromDate = date;
+                          _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
+                        });
 
-                            _onSearchConfirm(_bloc, searchValue: _searchController.text, fromDate: _fromDate, toDate: _toDate);
-                          }, 
-                          currentTime: _fromDate ?? _date, 
-                          locale: LocaleType.en
-                        ),
-                        child: new Text(
-                          'From date',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700
-                          )
-                        ),
-                      );
-                    }
-                  ),
-                  new StreamBuilder(
-                    stream: _bloc.state,
-                    builder: (context, AsyncSnapshot<TripsState> snapshot) {
-                      if (snapshot.data.fromDate != null)
-                        return new Column(
-                          children: <Widget>[
-                            new SizedBox(height: 5.0),
-                            new Text(DateFormat('dd.MM.yyyy').format(snapshot.data.fromDate))
-                          ],
-                        );
-                      else
-                        return new SizedBox.shrink();
-                    },
-                  ),
-                  new SizedBox(height: 5.0),
-                ],
-              )
+                        _onSearchConfirm(_bloc, searchValue: _searchController.text, fromDate: _fromDate, toDate: _toDate);
+                      }, 
+                      currentTime: _fromDate ?? _date, 
+                      locale: LocaleType.en
+                    ),
+                    child: TripsSearchDate(
+                      title: 'From date', 
+                      date: (snapshot.hasData) ? snapshot.data.fromDate : null,
+                    )
+                  );
+                }
+              ),
             ),
             Expanded(
-              child: new Column(
-                children: <Widget>[
-                  new StreamBuilder(
-                    stream: _bloc.state,
-                    builder: (context, snapshot) {
-                      return new GestureDetector(
-                        onTap: () => DatePicker.showDatePicker(
-                          context,
-                          showTitleActions: true,
-                          minTime: (_fromDate == null) 
-                            ? _minDate 
-                            : new DateTime(_fromDate.year, _fromDate.month, _fromDate.day + 1),
-                          maxTime: _maxDate, 
-                          onConfirm: (date) {
-                            _toDate = date;
+              child: new StreamBuilder(
+                stream: _bloc.state,
+                builder: (context, AsyncSnapshot<TripsState> snapshot) {
+                  return new GestureDetector(
+                    onTap: () => DatePicker.showDatePicker(
+                      context,
+                      showTitleActions: true,
+                      minTime: (_fromDate == null) 
+                        ? _minDate 
+                        : new DateTime(_fromDate.year, _fromDate.month, _fromDate.day + 1),
+                      maxTime: _maxDate, 
+                      onConfirm: (date) {
+                        setState(() {
+                          _toDate = date;
+                        });
 
-                            _onSearchConfirm(_bloc, searchValue: _searchController.text, fromDate: _fromDate, toDate: _toDate);
-                          }, 
-                          currentTime: _toDate ?? _date, 
-                          locale: LocaleType.en
-                        ),
-                        child: new Text(
-                          'To date',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700
-                          )
-                        ),
-                      );
-                    }
-                  ),
-                  new StreamBuilder(
-                    stream: _bloc.state,
-                    builder: (context, AsyncSnapshot<TripsState> snapshot) {
-                      if (snapshot.data.toDate != null)
-                        return  new Column(
-                          children: <Widget>[
-                            new SizedBox(height: 5.0),
-                            new Text(DateFormat('dd.MM.yyyy').format(snapshot.data.toDate)),
-                          ]
-                        );
-                      else
-                        return new SizedBox.shrink();
-                    },
-                  ),
-                  new SizedBox(height: 5.0),
-                ],
-              )
+                        _onSearchConfirm(_bloc, searchValue: _searchController.text, fromDate: _fromDate, toDate: _toDate);
+                      }, 
+                      currentTime: _toDate ?? _date, 
+                      locale: LocaleType.en
+                    ),
+                    child: TripsSearchDate(
+                      title: 'To date', 
+                      date: (snapshot.hasData) ? snapshot.data.toDate : null,
+                    )
+                  );
+                }
+              ),
             )
           ],
         ),
+        new SizedBox(height: 10.0),
         new Divider(color: Colors.grey),
       ],
     );
