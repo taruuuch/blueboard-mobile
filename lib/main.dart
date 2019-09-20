@@ -6,6 +6,7 @@ import 'package:blueboard/pages/sign_in/sign_in_bloc.dart';
 import 'package:blueboard/pages/sign_up/sign_up_page.dart';
 import 'package:blueboard/pages/sign_up/sign_up_bloc.dart';
 import 'package:blueboard/pages/splash/splash_page.dart';
+import 'package:blueboard/pages/trip/trip_bloc.dart';
 import 'package:blueboard/pages/trip/trip_page.dart';
 import 'package:blueboard/pages/trips/trips_page.dart';
 import 'package:blueboard/pages/trips/trips_bloc.dart';
@@ -32,8 +33,8 @@ class App extends StatelessWidget {
 				Provider<TripsBloc> (
 					builder: (context) => TripsBloc(),
 				),
-        Provider<TripPage> (
-          builder: (context) => TripPage(),
+        Provider<TripBloc> (
+          builder: (context) => TripBloc(),
         )
 			],
 			child: new MaterialApp(
@@ -58,7 +59,7 @@ class App extends StatelessWidget {
 							return MaterialPageRoute(builder: (context) => SplashPage());
 							break;
             case TripPage.tag:
-              return MaterialPageRoute(builder: (context) => TripPage());
+              return MaterialPageRoute(builder: (context) => TripPage(tripId: routeSettings.arguments));
               break;
 						default:
 							return MaterialPageRoute(builder: (context) => SignInPage());
