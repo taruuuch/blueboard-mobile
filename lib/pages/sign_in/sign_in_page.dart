@@ -1,3 +1,4 @@
+import 'package:blueboard/configs/app_constans.dart';
 import 'package:blueboard/pages/sign_in/widgets/sign_in_form.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) => 
     new Scaffold(
       appBar: new AppBar(
-        title: new Text('Sign In'),
+        title: new Text(AppConstants.signInTitle),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),

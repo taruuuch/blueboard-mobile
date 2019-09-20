@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:blueboard/configs/app_constans.dart';
 import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/models/token.dart';
 import 'package:blueboard/providers/token_provider.dart';
@@ -54,7 +55,7 @@ class _SplashPageState extends State<SplashPage> {
                 flex: 2,
                 child: new Container(
                   child: new FlutterLogo(
-                    size: 100,
+                    size: AppStyle.splashLogoSize,
                   ),
                 )
               ),
@@ -66,15 +67,11 @@ class _SplashPageState extends State<SplashPage> {
                     new CircularProgressIndicator(
                       backgroundColor: Colors.white,
                     ),
-                    new SizedBox(height: AppStyle.formPadding,),
+                    new SizedBox(height: AppStyle.formPadding),
                     new Text(
-                      'Blue Board\nPlan your trip!',
+                      AppConstants.splashText,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: AppStyle.splashTextStyle,
                     ),
                   ],
                 ),

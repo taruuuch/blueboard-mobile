@@ -1,3 +1,4 @@
+import 'package:blueboard/configs/app_constans.dart';
 import 'package:blueboard/models/trip.dart';
 import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/pages/trips/trips_event.dart';
@@ -55,11 +56,11 @@ class _TripListState extends State<TripList> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      new Text('Trips not found!'),
+                      new Text(AppConstants.tripsNotFound),
                       new GestureDetector(
                         onTap: () => print('tap to create trip!'),
                         child: new Text(
-                          'Create a trip to this country?',
+                          AppConstants.tripsOnScreenCreateTrip,
                           style:
                               TextStyle(decoration: TextDecoration.underline),
                         ),

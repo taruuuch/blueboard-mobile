@@ -4,6 +4,25 @@ class AppStyle {
 	// TODO: Global variables
   static const primaryPadding = 15.0;
   static const primaryColor = Colors.lightBlue;
+  static const secondaryColor = Colors.grey;
+
+  // TODO: Splash variables
+  static const splashLogoSize = 100.0;
+  static TextStyle splashTextStyle = new TextStyle(
+    fontSize: 20,
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+  );
+
+	// TODO: SignIn variables
+  static const signInDividerPadding = 15.0;
+  static const signInLogoSize = 100.0;
+
+	// TODO: SignUp variables
+  static const signUpLogoSize = 100.0;
+
+  // TODO: First setup variables
+  static const firstSetupLogoSize = 100.0;
 
 	// TODO: Form variables
   static const formPadding = 15.0;
@@ -19,9 +38,9 @@ class AppStyle {
 
 	// TODO: Application theme
   static final ThemeData themeDataLight = new ThemeData(
-    primaryColor: primaryColor,
+    primaryColor: Colors.lightBlue,
     accentColor: Colors.lightBlueAccent,
-    buttonColor: primaryColor,
+    buttonColor: Colors.lightBlue,
     fontFamily: 'Montserrat',
     textTheme: TextTheme(
       headline: TextStyle(),
@@ -36,5 +55,6 @@ class AppStyle {
 			display4: TextStyle(),
 			button: TextStyle(),
     ),
+    errorColor: Colors.redAccent,
   );
 }

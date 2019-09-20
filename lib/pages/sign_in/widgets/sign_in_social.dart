@@ -1,3 +1,5 @@
+import 'package:blueboard/configs/app_constans.dart';
+import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,7 +15,7 @@ class SignInSocial extends StatelessWidget {
           Expanded(
             child: new Divider(
               color: Colors.blueGrey,
-              endIndent: 15.0,
+              endIndent: AppStyle.signInDividerPadding,
             ),
           ),
           new RichText(
@@ -22,7 +24,7 @@ class SignInSocial extends StatelessWidget {
               style: DefaultTextStyle.of(context).style,
               children: <TextSpan>[
                 TextSpan(
-                  text: 'or social', 
+                  text: AppConstants.signInSocialLabel, 
                   style: TextStyle(
                     fontWeight: FontWeight.bold
                   ),
@@ -33,7 +35,7 @@ class SignInSocial extends StatelessWidget {
           Expanded(
             child: new Divider(
               color: Colors.blueGrey,
-              indent: 15.0,
+              indent: AppStyle.signInDividerPadding,
             ),
           ),
         ],

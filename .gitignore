@@ -1,3 +1,7 @@
+# FileHashes
+fileHashes.bin
+fileHashes.lock
+
 # Miscellaneous
 *.class
 *.lock
