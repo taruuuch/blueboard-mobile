@@ -56,18 +56,6 @@ class TripsState {
     );
   }
 
-  factory TripsState.search({searchValue, fromDate, toDate}) {
-    return TripsState(
-      isLoading: false,
-      isSearchButtonEnabled: true,
-      error: '',
-      trips: [],
-      searchValue: searchValue,
-      fromDate: fromDate,
-      toDate: toDate,
-    );
-  }
-
   factory TripsState.success(trips, {searchValue, fromDate, toDate}) {
     return TripsState(
       isLoading: false,

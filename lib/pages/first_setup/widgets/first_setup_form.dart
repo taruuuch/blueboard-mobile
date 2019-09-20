@@ -77,7 +77,7 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 										stream: _bloc.state,
 										builder: (context, AsyncSnapshot<FirstSetupState> snapshot) {
 											return new Button(
-												child: new Text(AppConstants.firstSetupButtonLabel),
+												child: (!snapshot.hasData || snapshot.data.isLoading) ? new CircularProgressIndicator() : new Text(AppConstants.firstSetupButtonLabel),
 												color: Colors.blue,
 												splashColor: Colors.blueAccent,
 												textColor: Colors.white,

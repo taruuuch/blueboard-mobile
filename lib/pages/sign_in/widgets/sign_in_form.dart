@@ -132,7 +132,7 @@ class _SignInFormState extends State<SignInForm> {
                       stream: _bloc.state,
                       builder: (BuildContext context, AsyncSnapshot<SignInState> snapshot) {
                         return new Button(
-                          child: new Text('SIGN IN'),
+                          child: (!snapshot.hasData || snapshot.data.isLoading) ? new CircularProgressIndicator() : new Text('SIGN IN'),
                           color: Colors.blue,
                           splashColor: Colors.blueAccent,
                           textColor: Colors.white,

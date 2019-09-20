@@ -36,6 +36,8 @@ class _TripListState extends State<TripList> {
             stream: _bloc.state,
             builder: (context, AsyncSnapshot<TripsState> snapshot) {
               if (snapshot.hasData) {
+                if (snapshot.data.isLoading) return new Center(child: new CircularProgressIndicator());
+
                 if (snapshot.data.trips.isNotEmpty) {
                   List<Trip> items = snapshot.data.trips;
                   return new ListView.builder(

@@ -42,7 +42,7 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
   }
 
 	Stream<TripsState> _searchTrips({String searchValue, DateTime fromDate, DateTime toDate}) async* {
-    yield TripsState.search(searchValue: searchValue, fromDate: fromDate, toDate: toDate);
+    yield TripsState.loading();
 
     try {
       trips = await _tripsProvider.search(searchValue: searchValue, fromDate: fromDate, toDate: toDate);
