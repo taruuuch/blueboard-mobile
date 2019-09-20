@@ -18,10 +18,10 @@ Trip _$TripFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$TripToJson(Trip instance) => <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'description': instance.description,
       'startDate': instance.startDate,
       'endDate': instance.endDate,
       'countries': instance.countries,
-      'id': instance.id,
     };
