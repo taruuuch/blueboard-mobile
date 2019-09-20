@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 class TripPage extends StatelessWidget {
   static const String tag = 'trip';
   
+  final String tripId;
+
+  TripPage({
+    this.tripId
+  }) : super();
+  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -14,12 +20,7 @@ class TripPage extends StatelessWidget {
 				backgroundColor: Colors.white,
 			),
 			drawer: AppDrawer(),
-			body: new TripInfo(),
-			floatingActionButton: new FloatingActionButton(
-				tooltip: 'Edit trip',
-				child: new Icon(Icons.edit),
-				onPressed: () => null,
-			),
+			body: new TripInfo(tripId: tripId),
 		);
   }
 }

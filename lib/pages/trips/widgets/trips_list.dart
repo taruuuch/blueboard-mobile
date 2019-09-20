@@ -42,9 +42,10 @@ class _TripListState extends State<TripList> {
                   return new ListView.builder(
                     itemBuilder: (BuildContext context, int index) {
                       return new TripItem(
+                        id: items[index].id,
                         decorationImage: AssetImage('assets/testimage.jpg'),
                         title: items[index].name,
-                        create: items[index].description,
+                        description: items[index].description,
                       );
                     },
                     itemCount: items.length,

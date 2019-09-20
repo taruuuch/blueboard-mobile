@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class NavigationService {
   static GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
-  static Future<dynamic> navigateTo(String routeName) => navigatorKey.currentState.pushReplacementNamed(routeName);
+  static Future<dynamic> navigateTo(String routeName, {dynamic arguments}) => navigatorKey.currentState.pushReplacementNamed(routeName, arguments: arguments);
 
   static toSignUpPage() => navigateTo(SignUpPage.tag);
   static toSignInPage() => navigateTo(SignInPage.tag);

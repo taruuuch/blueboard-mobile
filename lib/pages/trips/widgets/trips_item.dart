@@ -1,23 +1,24 @@
 import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
 
 class TripItem extends StatelessWidget {
   final String id;
   final AssetImage decorationImage;
   final String title;
-  final String create;
+  final String description;
 
   TripItem({
     this.id,
 		this.decorationImage, 
 		this.title, 
-		this.create
+		this.description
 	}) : super();
 
   @override
   Widget build(BuildContext context) {
     return new GestureDetector(
-			onTap: () => print('test tap'),
+			onTap: () => NavigationService.navigateTo('trip', arguments: id),
 			onLongPress: () => print('test long tap'),
       child: new Card(
         margin: const EdgeInsets.only(
@@ -63,7 +64,7 @@ class TripItem extends StatelessWidget {
 								),
               ),
               new Text(
-                create,
+                description,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 14,

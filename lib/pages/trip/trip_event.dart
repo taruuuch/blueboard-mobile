@@ -4,6 +4,10 @@ abstract class TripEvent extends Equatable {
   TripEvent([List props = const []]) : super(props);
 }
 
-class LoadTrip extends TripEvent {}
+class LoadTrip extends TripEvent {
+  final String id;
 
-class BackToTrip extends TripEvent {}
+  LoadTrip({this.id}) : super([id]);
+}
+
+class BackToTrips extends TripEvent {}
