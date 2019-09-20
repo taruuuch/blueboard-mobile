@@ -122,7 +122,7 @@ class _SignUpFormState extends State<SignUpForm> {
                           stream: _bloc.state,
                           builder: (BuildContext context, AsyncSnapshot<SignUpState> snapshot) {
                             return new Button(
-                              child: new Text(AppConstants.signUpButtonLabel),
+                              child: (!snapshot.hasData || snapshot.data.isLoading) ? new CircularProgressIndicator() : new Text(AppConstants.signUpButtonLabel),
                               color: Colors.blue,
                               splashColor: Colors.blueAccent,
                               textColor: Colors.white,
