@@ -2,11 +2,13 @@ import 'package:blueboard/configs/app_style.dart';
 import 'package:flutter/material.dart';
 
 class TripItem extends StatelessWidget {
+  final String id;
   final AssetImage decorationImage;
   final String title;
   final String create;
 
   TripItem({
+    this.id,
 		this.decorationImage, 
 		this.title, 
 		this.create
