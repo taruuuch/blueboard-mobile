@@ -10,8 +10,6 @@ import 'package:provider/provider.dart';
 class TripList extends StatefulWidget {
   @override
   State createState() => _TripListState();
-
-  
 }
 
 class _TripListState extends State<TripList> {
