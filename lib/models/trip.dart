@@ -5,12 +5,12 @@ part 'trip.g.dart';
 @JsonSerializable()
 class Trip {
   Trip(
-		this.id,
 		this.name, 
 		this.description, 
 		this.startDate, 
 		this.endDate, 
 		this.countries, 
+		this.id,
 	);
 
   String id;
