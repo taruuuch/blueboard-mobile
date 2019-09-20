@@ -43,13 +43,16 @@ class _SignUpFormState extends State<SignUpForm> {
     return new Form(
         key: _formKey,
         child: new Padding(
-          padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: AppStyle.formPadding),
+          padding: const EdgeInsets.only(
+            left: AppStyle.formPadding, 
+            right: AppStyle.formPadding
+          ),
           child: Center(
             child: SingleChildScrollView(
               child: new Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  new FlutterLogo(size: 100),
+                  new FlutterLogo(size: AppStyle.signUpLogoSize),
                   new SizedBox(height: AppStyle.primaryPadding),
                   new InputField(
                     controller: _emailController,
@@ -98,7 +101,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       ),
                       new FlatButton(
                         textColor: Colors.black54,
-                        child: new Text('Accept agreement'),
+                        child: new Text(AppConstants.signUpAcceptAgreement),
                         onPressed: () => setState(() { checkedValue = !checkedValue; }),
                       ),
                     ],
@@ -112,7 +115,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         builder: (context, snapshot) {
                           return new FlatButton(
                             textColor: Colors.blue,
-                            child: new Text('Cancel'),
+                            child: new Text(AppConstants.signUpCancel),
                             onPressed: () => _onCancelPressed(_bloc),
                           );
                         },

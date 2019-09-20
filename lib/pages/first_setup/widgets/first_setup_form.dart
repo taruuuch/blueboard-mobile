@@ -40,7 +40,7 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 					child: new Column(
 						children: <Widget>[
 							// TODO: In future this change to user avatar upload
-							new FlutterLogo(size: 100),
+							new FlutterLogo(size: AppStyle.firstSetupLogoSize),
 							new SizedBox(height: AppStyle.primaryPadding),
 							new InputField(
 								controller: _firstNameController,

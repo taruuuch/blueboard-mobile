@@ -1,3 +1,4 @@
+import 'package:blueboard/configs/app_constans.dart';
 import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/pages/trips/trips_event.dart';
@@ -61,7 +62,7 @@ class _TripSearchFormState extends State<TripSearchForm> {
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
-                      labelText: 'Input search value...',
+                      labelText: AppConstants.tripsSearchInputLabel,
                       border: new OutlineInputBorder(
                         borderSide: new BorderSide(color: Colors.grey[400]),
                       ),
@@ -114,7 +115,7 @@ class _TripSearchFormState extends State<TripSearchForm> {
                       locale: LocaleType.en
                     ),
                     child: TripsSearchDate(
-                      title: 'From date', 
+                      title: AppConstants.tripsSearchFromDate, 
                       date: (snapshot.hasData) ? snapshot.data.fromDate : null,
                     )
                   );
@@ -144,7 +145,7 @@ class _TripSearchFormState extends State<TripSearchForm> {
                       locale: LocaleType.en
                     ),
                     child: TripsSearchDate(
-                      title: 'To date', 
+                      title: AppConstants.tripsSearchToDate, 
                       date: (snapshot.hasData) ? snapshot.data.toDate : null,
                     )
                   );

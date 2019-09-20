@@ -44,7 +44,7 @@ class _SignInFormState extends State<SignInForm> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new FlutterLogo(
-                size: 100.0,
+                size: AppStyle.signInLogoSize,
               ),
               new SizedBox(height: AppStyle.primaryPadding),
               new InputField(
@@ -75,9 +75,17 @@ class _SignInFormState extends State<SignInForm> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  new FlatButton(
-                    child: new Text('Forgot password?'),
-                    onPressed: () => {},
+                  new GestureDetector(
+                    onTap: () => debugPrint('tap on forgot password'),
+                    child: new Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: new Text(
+                        AppConstants.signInForgotPassword,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700
+                        ),
+                      ),
+                    )
                   ),
                 ],
               ),
@@ -104,7 +112,7 @@ class _SignInFormState extends State<SignInForm> {
                   style: DefaultTextStyle.of(context).style,
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'By creating an account, you agree to our Terms of Service and Privacy Policy', 
+                      text: AppConstants.signInTerms, 
                       style: TextStyle(
                         color: Colors.black26
                       ),
@@ -120,7 +128,7 @@ class _SignInFormState extends State<SignInForm> {
                       stream: _bloc.state,
                       builder: (context, snapshot) {
                         return new FlatButton(
-                          child: new Text('New user? Sign up here'),
+                          child: new Text(AppConstants.signInSignUpButtonLabel),
                           textColor: Colors.blue,
                           onPressed: () => _onSignUpPressed(_bloc),
                         );
@@ -132,7 +140,7 @@ class _SignInFormState extends State<SignInForm> {
                       stream: _bloc.state,
                       builder: (BuildContext context, AsyncSnapshot<SignInState> snapshot) {
                         return new Button(
-                          child: (!snapshot.hasData || snapshot.data.isLoading) ? new CircularProgressIndicator() : new Text('SIGN IN'),
+                          child: (!snapshot.hasData || snapshot.data.isLoading) ? new CircularProgressIndicator() : new Text(AppConstants.signInButtonLabel),
                           color: Colors.blue,
                           splashColor: Colors.blueAccent,
                           textColor: Colors.white,
