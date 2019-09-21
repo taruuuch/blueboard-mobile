@@ -31,46 +31,46 @@ class _TripListState extends State<TripList> {
   @override
   Widget build(BuildContext context) {
     return new Container(
-        child: new StreamBuilder(
-            stream: _bloc.state,
-            builder: (context, AsyncSnapshot<TripsState> snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data.isLoading) return new Center(child: new CircularProgressIndicator());
+      child: new StreamBuilder(
+        stream: _bloc.state,
+        builder: (context, AsyncSnapshot<TripsState> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data.isLoading) return new Center(child: new CircularProgressIndicator());
 
-                if (snapshot.data.trips.isNotEmpty) {
-                  List<Trip> items = snapshot.data.trips;
-                  return new ListView.builder(
-                    itemBuilder: (BuildContext context, int index) {
-                      return new TripItem(
-                        id: items[index].id,
-                        decorationImage: AssetImage('assets/testimage.jpg'),
-                        title: items[index].name,
-                        description: items[index].description,
-                      );
-                    },
-                    itemCount: items.length,
+            if (snapshot.data.trips.isNotEmpty) {
+              List<Trip> items = snapshot.data.trips;
+              return new ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return new TripItem(
+                    id: items[index].id,
+                    decorationImage: AssetImage('assets/testimage.jpg'),
+                    title: items[index].name,
+                    description: items[index].description,
                   );
-                } else {
-                  return new Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Text(AppConstants.tripsNotFound),
-                      new GestureDetector(
-                        onTap: () => print('tap to create trip!'),
-                        child: new Text(
-                          AppConstants.tripsOnScreenCreateTrip,
-                          style:
-                              TextStyle(decoration: TextDecoration.underline),
-                        ),
-                      ),
-                    ],
-                  );
-                }
-              } else {
-                return new SizedBox.shrink();
-              }
-            }));
+                },
+                itemCount: items.length,
+              );
+            } else {
+              return new Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new Text(AppConstants.tripsNotFound),
+                  new GestureDetector(
+                    onTap: () => print('tap to create trip!'),
+                    child: new Text(
+                      AppConstants.tripsOnScreenCreateTrip,
+                      style:
+                          TextStyle(decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ],
+              );
+            }
+          } else {
+            return new SizedBox.shrink();
+          }
+        }));
   }
 
   void _loadTrips() {
