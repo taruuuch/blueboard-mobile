@@ -15,7 +15,7 @@ class TripBloc extends Bloc<TripEvent, TripState> {
   @override
   Stream<TripState> mapEventToState(TripEvent event) async* {
     if (event is LoadTrip) {
-      _loadTrip(tripId: event.id);
+      yield* _loadTrip(tripId: event.id);
     }
 
     if (event is BackToTrips) {

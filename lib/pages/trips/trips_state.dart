@@ -1,10 +1,10 @@
-import 'package:blueboard/models/trip.dart';
+import 'package:blueboard/models/tripSlim.dart';
 import 'package:flutter/foundation.dart';
 
 class TripsState {
 	final bool isLoading;
 	final bool isSearchButtonEnabled;
-  final List<Trip> trips;
+  final List<TripSlim> trips;
   final String searchValue;
   final DateTime fromDate;
   final DateTime toDate;

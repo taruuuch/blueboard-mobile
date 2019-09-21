@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:blueboard/configs/api_config.dart';
 import 'package:blueboard/models/trip.dart';
+import 'package:blueboard/models/tripSlim.dart';
 import 'package:blueboard/providers/api_client.dart';
 
 class TripsProvider {
@@ -9,7 +10,7 @@ class TripsProvider {
 	// TODO: getAll - return all user trips
 	Future getAll() async {
 		var response = await _apiClient.get(ApiConfig.tripUrl);
-		return List<Trip>.from(response.data.map((i) => Trip.fromJson(i)));
+		return List<TripSlim>.from(response.data.map((i) => TripSlim.fromJson(i)));
 	}
 
 	Future add(Trip trip) async {
@@ -39,6 +40,6 @@ class TripsProvider {
     if (toDate != null) parameters['toDate'] = toDate.toString();
 
 		var response = await _apiClient.get(ApiConfig.tripSearchUrl, parameters: parameters);
-		return List<Trip>.from(response.data.map((i) => Trip.fromJson(i)));
+		return List<TripSlim>.from(response.data.map((i) => TripSlim.fromJson(i)));
 	}
 }

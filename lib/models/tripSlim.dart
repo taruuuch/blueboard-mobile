@@ -1,11 +1,10 @@
-import 'package:blueboard/models/country.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'trip.g.dart';
+part 'tripSlim.g.dart';
 
 @JsonSerializable()
-class Trip {
-  Trip(
+class TripSlim {
+  TripSlim(
 		this.name, 
 		this.description, 
 		this.startDate, 
@@ -19,9 +18,9 @@ class Trip {
   String description;
   String startDate;
   String endDate;
-  List<Country> countries;
+  String countries;
 
-  factory Trip.fromJson(Map<String, dynamic> json) => _$TripFromJson(json);
+  factory TripSlim.fromJson(Map<String, dynamic> json) => _$TripSlimFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TripToJson(this);
+  Map<String, dynamic> toJson() => _$TripSlimToJson(this);
 }
