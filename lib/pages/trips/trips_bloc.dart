@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:blueboard/models/trip.dart';
+import 'package:blueboard/models/tripSlim.dart';
 import 'package:blueboard/pages/trips/trips_event.dart';
 import 'package:blueboard/pages/trips/trips_state.dart';
 import 'package:blueboard/providers/trips_provider.dart';
 
 class TripsBloc extends Bloc<TripsEvent, TripsState> {
   final _tripsProvider = TripsProvider();
-  List<Trip> trips;
+  List<TripSlim> trips;
 
   @override
   get initialState => TripsState.initial();

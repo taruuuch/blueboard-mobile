@@ -1,5 +1,5 @@
 import 'package:blueboard/configs/app_constans.dart';
-import 'package:blueboard/models/trip.dart';
+import 'package:blueboard/models/tripSlim.dart';
 import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/pages/trips/trips_event.dart';
 import 'package:blueboard/pages/trips/trips_state.dart';
@@ -38,7 +38,7 @@ class _TripListState extends State<TripList> {
             if (snapshot.data.isLoading) return new Center(child: new CircularProgressIndicator());
 
             if (snapshot.data.trips.isNotEmpty) {
-              List<Trip> items = snapshot.data.trips;
+              List<TripSlim> items = snapshot.data.trips;
               return new ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return new TripItem(
