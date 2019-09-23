@@ -21,6 +21,10 @@ class TripBloc extends Bloc<TripEvent, TripState> {
     if (event is BackToTrips) {
       NavigationService.toTripsPage();
     }
+
+    if (event is DeleteTrip) {
+      yield* _deleteTrip(tripId: event.id);
+    }
   }  
 	
   Stream<TripState> _loadTrip({String tripId}) async* {
@@ -29,6 +33,17 @@ class TripBloc extends Bloc<TripEvent, TripState> {
     try {
       trip = await _tripsProvider.get(tripId);
       yield TripState.success(trip);
+    } catch (e) {
+      yield TripState.error(e.response.statusMessage.toString());
+    }
+  }
+
+  Stream<TripState> _deleteTrip({String tripId}) async* {
+    yield TripState.loading();
+
+    try {
+      await _tripsProvider.delete(tripId);
+      NavigationService.toTripsPage();
     } catch (e) {
       yield TripState.error(e.response.statusMessage.toString());
     }
