@@ -1,7 +1,10 @@
 import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/pages/trip/trip_bloc.dart';
+import 'package:blueboard/pages/trip/trip_event.dart';
 import 'package:blueboard/pages/trip/widgets/trip_info.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TripPage extends StatefulWidget {
   static const String tag = 'trip';
@@ -15,6 +18,8 @@ class TripPage extends StatefulWidget {
 }
 
 class _TripPageState extends State<TripPage> {
+  TripBloc _bloc;
+  
   int _selectedTabIndex = 0;
 
   static String id;
@@ -22,7 +27,7 @@ class _TripPageState extends State<TripPage> {
   static const String edit = 'Edit';
   static const String delete = 'Delete';
 
-  static const List<String> choices = <String>[
+  static const List<String> _listChoices = <String>[
     edit,
     delete,
   ];
@@ -33,26 +38,18 @@ class _TripPageState extends State<TripPage> {
     Text('People'),
   ];
 
-  void _onTabItemTapped(int index) {
-    setState(() {
-      _selectedTabIndex = index;
-    });
-  }
-
-  void choiceAction(String choice){
-    if(choice == edit) {
-      print('Edit');
-    } else if(choice == delete) {
-      print('Delete');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     setState(() {
       id = widget.tripId;
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = Provider.of<TripBloc>(context);
   }
   
   @override
@@ -63,9 +60,9 @@ class _TripPageState extends State<TripPage> {
 				backgroundColor: Colors.white,
         actions: <Widget>[
           PopupMenuButton<String>(
-            onSelected: choiceAction,
+            onSelected: _onSelectedAction,
             itemBuilder: (BuildContext context){
-              return choices.map((String choice){
+              return _listChoices.map((String choice){
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -99,5 +96,23 @@ class _TripPageState extends State<TripPage> {
         onTap: _onTabItemTapped,
       ),
 		);
+  }
+  
+  void _onTabItemTapped(int index) {
+    setState(() {
+      _selectedTabIndex = index;
+    });
+  }
+
+  void _onSelectedAction(String choice){
+    if(choice == edit) {
+      debugPrint('Edit');
+    } else if(choice == delete) {
+      _onDeleteTrip(id);
+    }
+  }
+
+  void _onDeleteTrip(_id) {
+    _bloc.dispatch(DeleteTrip(id: _id));
   }
 }

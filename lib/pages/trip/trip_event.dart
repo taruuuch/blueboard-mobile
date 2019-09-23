@@ -10,4 +10,10 @@ class LoadTrip extends TripEvent {
   LoadTrip({this.id}) : super([id]);
 }
 
+class DeleteTrip extends TripEvent {
+  final String id;
+
+  DeleteTrip({this.id}) : super([id]);
+}
+
 class BackToTrips extends TripEvent {}
