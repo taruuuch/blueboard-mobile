@@ -15,8 +15,17 @@ class TripPage extends StatefulWidget {
 }
 
 class _TripPageState extends State<TripPage> {
-  int _selectedIndex = 0;
+  int _selectedTabIndex = 0;
+
   static String id;
+
+  static const String edit = 'Edit';
+  static const String delete = 'Delete';
+
+  static const List<String> choices = <String>[
+    edit,
+    delete,
+  ];
 
   static List<Widget> _widgetOptions = <Widget>[
     TripInfo(tripId: id),
@@ -24,10 +33,18 @@ class _TripPageState extends State<TripPage> {
     Text('People'),
   ];
 
-  void _onItemTapped(int index) {
+  void _onTabItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedTabIndex = index;
     });
+  }
+
+  void choiceAction(String choice){
+    if(choice == edit) {
+      print('Edit');
+    } else if(choice == delete) {
+      print('Delete');
+    }
   }
 
   @override
@@ -42,13 +59,25 @@ class _TripPageState extends State<TripPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-				title: new Text('TRIP'),
 				centerTitle: true,
 				backgroundColor: Colors.white,
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: choiceAction,
+            itemBuilder: (BuildContext context){
+              return choices.map((String choice){
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          )
+        ],
 			),
 			drawer: AppDrawer(),
 			body: new Container(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(_selectedTabIndex),
       ),
       bottomNavigationBar: new BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -65,9 +94,9 @@ class _TripPageState extends State<TripPage> {
             title: new Text('People'),
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedTabIndex,
         selectedItemColor: AppStyle.primaryColor,
-        onTap: _onItemTapped,
+        onTap: _onTabItemTapped,
       ),
 		);
   }
