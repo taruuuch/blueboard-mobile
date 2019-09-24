@@ -1,7 +1,9 @@
 import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/pages/trip/trip_bloc.dart';
 import 'package:blueboard/pages/trip/trip_event.dart';
+import 'package:blueboard/pages/trip/widgets/trip_budget.dart';
 import 'package:blueboard/pages/trip/widgets/trip_info.dart';
+import 'package:blueboard/pages/trip/widgets/trip_participant.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +36,8 @@ class _TripPageState extends State<TripPage> {
 
   static List<Widget> _widgetOptions = <Widget>[
     TripInfo(tripId: id),
-    Text('Price'),
-    Text('People'),
+    TripBudget(),
+    TripParticipant(),
   ];
 
   @override

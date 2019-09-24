@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TripPeople extends StatelessWidget {
+class TripParticipant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
