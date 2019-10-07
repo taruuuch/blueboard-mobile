@@ -51,7 +51,7 @@ class _SignInFormState extends State<SignInForm> {
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 formValidator: (value) => FormValidators.loginValidate(value),
-                labelText: AppConstants.emailInputLabel,
+                labelText: AppConstants.loginInputLabel,
                 textInputAction: TextInputAction.next,
                 fieldSubmitted: (value) {
                   FocusScope.of(context).nextFocus();
