@@ -50,7 +50,7 @@ class _SignInFormState extends State<SignInForm> {
               new InputField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                formValidator: (value) => FormValidators.emailValidate(value),
+                formValidator: (value) => FormValidators.loginValidate(value),
                 labelText: AppConstants.emailInputLabel,
                 textInputAction: TextInputAction.next,
                 fieldSubmitted: (value) {
