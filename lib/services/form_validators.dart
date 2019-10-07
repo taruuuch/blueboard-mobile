@@ -2,11 +2,11 @@ class FormValidators {
   static String emailRegex = r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
   static String loginRegex = r"^[a-z0-9_.-]*$";
   static var _validatorConstants = {
-    'empty_email': 'Enter email',
-    'empty_login': 'Enter email or username',
-    'emply_password': 'Enter password',
-    'invalid_email': 'Invalid email',
-    'invalid_username': 'Invalid username',
+    'empty_email': 'Please enter email',
+    'empty_login': 'Please enter email or username',
+    'emply_password': 'Please enter enter password',
+    'invalid_email': 'Please enter a valid email',
+    'invalid_username': 'Please enter a valid username',
     'password_length': 'Minimum password length 6',
     'password_repeat': 'Please repeat your password',
     'password_not_match': 'Your password not matched',
