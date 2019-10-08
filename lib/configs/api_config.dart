@@ -5,7 +5,7 @@ class ApiConfig {
   * @baseUrl = link to api server
   */
   static String baseUrl = 'http://10.0.2.2:5000/api/v1'; //For use server on emulator :)
-  // static String baseUrl = 'http://192.168.1.49:5000/api/v1'; //For use server on wifi :)
+  // static String baseUrl = 'http://192.168.1.10:5000/api/v1'; //For use server on wifi :)
 
   /*
   * Auth links to api
@@ -29,4 +29,5 @@ class ApiConfig {
   */
 	static String tripUrl = '/Trips';
   static String tripSearchUrl = '/Trips/search';
+  static String countries = '/countries';
 }

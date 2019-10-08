@@ -32,4 +32,9 @@ class AppConstants {
 
 	static String firstNameLabel = 'Enter your first name';
 	static String lastNameLabel = 'Enter your last name';
+
+  static String nameTripLabel = 'e.g: Austria trip 2019';
+  static String descriptionTripLabel = 'e.g: In september we visited Austria!';
+
+  static String createTripCountriesLabel = 'Visited countries *';
 }

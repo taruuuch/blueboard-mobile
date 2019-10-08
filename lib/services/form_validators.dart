@@ -10,6 +10,8 @@ class FormValidators {
 		'first_name_empty': 'Please enter your name',
 		'last_name_empty': 'Please enter your last name',
 		'search_empty': 'Please enter your search value',
+		'name_empty': 'Please enter trip name',
+		'description_empty': 'Please enter trip description',
   };
 
   static Function(String) emailValidate = (String value) {
@@ -28,7 +30,7 @@ class FormValidators {
     } else if (value.length < 6) {
       return _validatorConstants['password_length'];
     }
-    
+
     return null;
   };
 
@@ -65,4 +67,20 @@ class FormValidators {
 
 		return null;
 	};
+
+  static Function(String) nameValidate = (String value) {
+    if (value.isEmpty) {
+			return _validatorConstants['name_empty'];
+		}
+
+    return null;
+  };
+
+  static Function(String) descriptionValidate = (String value) {
+    if (value.isEmpty) {
+			return _validatorConstants['description_empty'];
+		}
+
+    return null;
+  };
 }

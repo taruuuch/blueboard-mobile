@@ -1,3 +1,4 @@
+import 'package:blueboard/models/country.dart';
 import 'package:blueboard/models/trip.dart';
 import 'package:flutter/foundation.dart';
 
@@ -6,12 +7,14 @@ class CreateTripState {
 	final bool isCreateButtonEnabled;
 	final String error;
   final Trip trip;
+  final List<Country> countries;
 
 	const CreateTripState({
 		@required this.isLoading,
 		@required this.isCreateButtonEnabled,
 		@required this.error,
     @required this.trip,
+    @required this.countries,
 	});
 
 	factory CreateTripState.initial() {
@@ -20,6 +23,7 @@ class CreateTripState {
 			isCreateButtonEnabled: false,
 			error: '',
       trip: null,
+      countries: null,
 		);
 	}
 
@@ -29,6 +33,7 @@ class CreateTripState {
       isCreateButtonEnabled: false,
       error: '',
       trip: null,
+      countries: null,
     );
   }
 
@@ -38,15 +43,17 @@ class CreateTripState {
       isCreateButtonEnabled: true,
       error: error,
       trip: null,
+      countries: null,
     );
   }
 
-  factory CreateTripState.success(trip) {
+  factory CreateTripState.success({trip, countries}) {
     return CreateTripState(
       isLoading: false,
       isCreateButtonEnabled: true,
       error: '',
       trip: trip,
+      countries: countries,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:blueboard/configs/api_config.dart';
+import 'package:blueboard/models/country.dart';
 import 'package:blueboard/models/trip.dart';
 import 'package:blueboard/models/tripSlim.dart';
 import 'package:blueboard/providers/api_client.dart';
@@ -42,4 +43,9 @@ class TripsProvider {
 		var response = await _apiClient.get(ApiConfig.tripSearchUrl, parameters: parameters);
 		return List<TripSlim>.from(response.data.map((i) => TripSlim.fromJson(i)));
 	}
+
+  Future countries() async {
+    var response = await _apiClient.get(ApiConfig.countries);
+    return List<Country>.from(response.data.map((i) => Country.fromJson(i)));
+  }
 }

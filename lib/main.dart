@@ -1,4 +1,6 @@
 import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/pages/create_trip/create_trip_bloc.dart';
+import 'package:blueboard/pages/create_trip/create_trip_page.dart';
 import 'package:blueboard/pages/first_setup/first_setup_page.dart';
 import 'package:blueboard/pages/first_setup/first_setup_bloc.dart';
 import 'package:blueboard/pages/sign_in/sign_in_page.dart';
@@ -35,6 +37,9 @@ class App extends StatelessWidget {
 				),
         Provider<TripBloc> (
           builder: (context) => TripBloc(),
+        ),
+        Provider<CreateTripBloc> (
+          builder: (context) => CreateTripBloc(),
         )
 			],
 			child: new MaterialApp(
@@ -61,6 +66,9 @@ class App extends StatelessWidget {
             case TripPage.tag:
               return MaterialPageRoute(builder: (context) => TripPage(tripId: routeSettings.arguments));
               break;
+						case CreateTripPage.tag:
+							return MaterialPageRoute(builder: (context) => CreateTripPage());
+							break;
 						default:
 							return MaterialPageRoute(builder: (context) => SignInPage());
 							break;

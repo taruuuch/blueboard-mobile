@@ -1,5 +1,6 @@
 import 'package:blueboard/pages/trips/widgets/trips_list.dart';
 import 'package:blueboard/pages/trips/widgets/trips_search.dart';
+import 'package:blueboard/services/navigation.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class TripsPage extends StatelessWidget {
 			floatingActionButton: new FloatingActionButton(
 				tooltip: 'Create trip',
 				child: new Icon(Icons.add),
-				onPressed: () => null,
+				onPressed: () => NavigationService.toCreateTripPage(),
 			),
 		);
   }

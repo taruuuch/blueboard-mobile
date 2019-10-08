@@ -1,17 +1,18 @@
 import 'package:blueboard/models/trip.dart';
-import 'package:blueboard/pages/trips/trips_event.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class CreateTripEvent extends Equatable {
   CreateTripEvent([List props = const []]) : super(props);
 }
 
-class LoadCountry extends TripsEvent {
+class LoadCountry extends CreateTripEvent {
   final Trip trip;
 
   LoadCountry({this.trip}) : super([trip]);
 }
 
-class CreateTrip extends TripsEvent {}
+class CreateTrip extends CreateTripEvent {}
 
-class BackToTrips extends TripsEvent {}
+class Cancel extends CreateTripEvent {}
+
+class GetCountries extends CreateTripEvent {}
