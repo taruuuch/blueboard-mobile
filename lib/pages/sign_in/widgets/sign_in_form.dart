@@ -18,14 +18,14 @@ class SignInForm extends StatefulWidget {
 class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   void _onSignInPressed(SignInBloc bloc, _formKey) {
     if (!_formKey.currentState.validate()) return;
     
     bloc.dispatch(SignIn(
-      email: _emailController.text,
+      login: _loginController.text,
       password: _passwordController.text,
     ));
   }
@@ -48,10 +48,10 @@ class _SignInFormState extends State<SignInForm> {
               ),
               new SizedBox(height: AppStyle.primaryPadding),
               new InputField(
-                controller: _emailController,
+                controller: _loginController,
                 keyboardType: TextInputType.emailAddress,
-                formValidator: (value) => FormValidators.emailValidate(value),
-                labelText: AppConstants.emailInputLabel,
+                formValidator: (value) => FormValidators.loginValidate(value),
+                labelText: AppConstants.loginInputLabel,
                 textInputAction: TextInputAction.next,
                 fieldSubmitted: (value) {
                   FocusScope.of(context).nextFocus();

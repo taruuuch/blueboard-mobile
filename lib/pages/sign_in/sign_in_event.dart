@@ -5,10 +5,10 @@ abstract class SignInEvent extends Equatable {
 }
 
 class SignIn extends SignInEvent {
-  final String email;
+  final String login;
   final String password;
 
-  SignIn({this.email, this.password}):super([email, password]);
+  SignIn({this.login, this.password}):super([login, password]);
 }
 
 class GoToSignUpPage extends SignInEvent {}

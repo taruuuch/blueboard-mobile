@@ -27,6 +27,7 @@ class AppConstants {
   static String tripsSearchToDate = 'To date';
 
   static String emailInputLabel = 'Enter email';
+  static String loginInputLabel = 'Enter email or username';
   static String passwordInputLabel = 'Enter password';
   static String passwordRepeatInputLabel = 'Repeat password';
 
