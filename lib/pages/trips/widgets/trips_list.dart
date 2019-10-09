@@ -4,6 +4,7 @@ import 'package:blueboard/pages/trips/trips_bloc.dart';
 import 'package:blueboard/pages/trips/trips_event.dart';
 import 'package:blueboard/pages/trips/trips_state.dart';
 import 'package:blueboard/pages/trips/widgets/trips_item.dart';
+import 'package:blueboard/services/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -57,7 +58,7 @@ class _TripListState extends State<TripList> {
                 children: <Widget>[
                   new Text(AppConstants.tripsNotFound),
                   new GestureDetector(
-                    onTap: () => print('tap to create trip!'),
+                    onTap: () => NavigationService.toCreateTripPage(),
                     child: new Text(
                       AppConstants.tripsOnScreenCreateTrip,
                       style:

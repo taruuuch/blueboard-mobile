@@ -4,6 +4,7 @@ import 'package:blueboard/models/country.dart';
 import 'package:blueboard/pages/create_trip/create_trip_bloc.dart';
 import 'package:blueboard/pages/create_trip/create_trip_event.dart';
 import 'package:blueboard/pages/create_trip/create_trip_state.dart';
+import 'package:blueboard/pages/trips/widgets/trips_search_date.dart';
 import 'package:blueboard/services/form_validators.dart';
 import 'package:blueboard/widgets/button.dart';
 import 'package:blueboard/widgets/dropdown.dart';
@@ -88,57 +89,60 @@ class _CreateTripFormState extends State<CreateTripForm> {
                 },
               ),
               new SizedBox(height: AppStyle.primaryPadding),
-              // new StreamBuilder(
-              //   stream: _bloc.state,
-              //   builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
-              //     return new GestureDetector(
-              //       onTap: () => DatePicker.showDatePicker(
-              //         context,
-              //         showTitleActions: true,
-              //         minTime: _minDate,
-              //         maxTime: _maxDate,
-              //         onConfirm: (date) {
-              //           setState(() {
-              //             // _fromDate = date;
-              //             // _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
-              //           });
-              //         }, 
-              //         currentTime: _fromDate ?? _date,
-              //         locale: LocaleType.en
-              //       ),
-              //       // child: new TripsSearchDate(
-              //       //   title: AppConstants.tripsSearchFromDate,
-              //       //   date: (snapshot.hasData) ? ((snapshot.data.trip.startDate != null) ? DateTime.now() : DateTime.parse(snapshot.data.trip.startDate)) : null,
-              //       // )
-              //     );
-              //   }
-              // ),
+              new StreamBuilder(
+                stream: _bloc.state,
+                builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
+                  return new GestureDetector(
+                    onTap: () => DatePicker.showDatePicker(
+                      context,
+                      showTitleActions: true,
+                      minTime: _minDate,
+                      maxTime: _maxDate,
+                      onConfirm: (date) {
+                        setState(() {
+                          _fromDate = date;
+                          // _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
+                        });
+                      }, 
+                      currentTime: _date,
+                      locale: LocaleType.en
+                    ),
+                    child: new TripsSearchDate(
+                      title: AppConstants.tripsSearchFromDate,
+                      date: _fromDate,
+                      // date: (snapshot.hasData) ? ((snapshot.data.trip.startDate != null) ? DateTime.now() : DateTime.parse(snapshot.data.trip.startDate)) : null,
+                    )
+                  );
+                }
+              ),
               new SizedBox(height: AppStyle.primaryPadding),
-              // new StreamBuilder(
-              //   stream: _bloc.state,
-              //   builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
-              //     return new GestureDetector(
-              //       onTap: () => DatePicker.showDatePicker(
-              //         context,
-              //         showTitleActions: true,
-              //         minTime: _minDate,
-              //         maxTime: _maxDate,
-              //         onConfirm: (date) {
-              //           setState(() {
-              //             // _fromDate = date;
-              //             // _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
-              //           });
-              //         },
-              //         currentTime: _fromDate ?? _date,
-              //         locale: LocaleType.en
-              //       ),
-              //       // child: new TripsSearchDate(
-              //       //   title: AppConstants.tripsSearchFromDate,
-              //       //   date: (snapshot.hasData) ? ((snapshot.data.trip.endDate != null) ? DateTime.now() : DateTime.parse(snapshot.data.trip.endDate)) : null,
-              //       // )
-              //     );
-              //   }
-              // ),
+              new StreamBuilder(
+                stream: _bloc.state,
+                builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
+                  return new GestureDetector(
+                    onTap: () => DatePicker.showDatePicker(
+                      context,
+                      showTitleActions: true,
+                      minTime: _minDate,
+                      maxTime: _maxDate,
+                      onConfirm: (date) {
+                        setState(() {
+                          _toDate = date;
+                          // _fromDate = date;
+                          // _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
+                        });
+                      },
+                      currentTime: _date,
+                      locale: LocaleType.en
+                    ),
+                    child: new TripsSearchDate(
+                      title: AppConstants.tripsSearchFromDate,
+                      date: _toDate,
+                      // date: (snapshot.hasData) ? ((snapshot.data.trip.endDate != null) ? DateTime.now() : DateTime.parse(snapshot.data.trip.endDate)) : null,
+                    )
+                  );
+                }
+              ),
               new SizedBox(height: AppStyle.primaryPadding),
               new Row(
                 children: <Widget>[
