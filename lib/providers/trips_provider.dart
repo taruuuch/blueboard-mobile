@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:blueboard/configs/api_config.dart';
 import 'package:blueboard/models/country.dart';
+import 'package:blueboard/models/createTrip.dart';
 import 'package:blueboard/models/trip.dart';
 import 'package:blueboard/models/tripSlim.dart';
 import 'package:blueboard/providers/api_client.dart';
@@ -14,7 +15,7 @@ class TripsProvider {
 		return List<TripSlim>.from(response.data.map((i) => TripSlim.fromJson(i)));
 	}
 
-	Future add(Trip trip) async {
+	Future add(CreateTrip trip) async {
 		await _apiClient.post(ApiConfig.tripUrl, json.encode(trip.toJson()));
 	}
 

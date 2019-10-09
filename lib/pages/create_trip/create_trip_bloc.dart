@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:blueboard/models/country.dart';
-import 'package:blueboard/models/trip.dart';
+import 'package:blueboard/models/createTrip.dart';
 import 'package:blueboard/pages/create_trip/create_trip_event.dart';
 import 'package:blueboard/pages/create_trip/create_trip_state.dart';
 import 'package:blueboard/providers/trips_provider.dart';
@@ -8,15 +8,15 @@ import 'package:blueboard/services/navigation.dart';
 
 class CreateTripBloc extends Bloc<CreateTripEvent, CreateTripState> {
   final _tripsProvider = TripsProvider();
-  Trip trip;
+  List<Country> countries;
 
   @override
   get initialState => CreateTripState.initial();
 
   @override
   Stream<CreateTripState> mapEventToState(CreateTripEvent event) async* {
-    if (event is CreateTrip) {
-      yield* _createTrip(trip: trip);
+    if (event is AddTrip) {
+      yield* _createTrip(trip: event.trip);
     }
 
     if (event is GetCountries) {
@@ -28,12 +28,13 @@ class CreateTripBloc extends Bloc<CreateTripEvent, CreateTripState> {
     }
   }
 
-  Stream<CreateTripState> _createTrip({Trip trip}) async* {
+  Stream<CreateTripState> _createTrip({CreateTrip trip}) async* {
     yield CreateTripState.loading();
 
     try {
       await _tripsProvider.add(trip);
-      yield CreateTripState.success(trip: trip);
+      yield CreateTripState.success();
+      NavigationService.toTripsPage();
     } catch (e) {
       yield CreateTripState.error(e.response.statusMessage.toString());
     }
@@ -43,7 +44,7 @@ class CreateTripBloc extends Bloc<CreateTripEvent, CreateTripState> {
     yield CreateTripState.loading();
 
     try {
-      List<Country> countries = await _tripsProvider.countries();
+      countries = await _tripsProvider.countries();
       yield CreateTripState.success(countries: countries);
     } catch (e) {
       yield CreateTripState.error(e.response.statusMessage.toString());

@@ -37,7 +37,10 @@ import 'package:flutter/services.dart';
 ///False will let user type in new values as well. Default is true
 ///
 ///itemsVisibleInDropdown - int - Number of suggestions to be shown by default in the Dropdown after which the list scrolls. Defaults to 3
-class DropDownField extends FormField<String> {
+///
+typedef String GetTitle(dynamic item);
+
+class DropDownField extends FormField<dynamic> {
   final dynamic value;
   final Widget icon;
   final String hintText;
@@ -53,6 +56,7 @@ class DropDownField extends FormField<String> {
   final ValueChanged<dynamic> onValueChanged;
   final bool strict;
   final int itemsVisibleInDropdown;
+  final GetTitle getTitle;
 
   /// Controls the text being edited.
   ///
@@ -80,13 +84,14 @@ class DropDownField extends FormField<String> {
       this.onValueChanged,
       this.itemsVisibleInDropdown: 3,
       this.enabled: true,
-      this.strict: true})
+      this.strict: true,
+      this.getTitle})
       : super(
           key: key,
           autovalidate: false,
           initialValue: controller != null ? controller.text : (value ?? ''),
           onSaved: setter,
-          builder: (FormFieldState<String> field) {
+          builder: (FormFieldState<dynamic> field) {
             final DropDownFieldState state = field;
             final ScrollController _scrollController = ScrollController();
             final InputDecoration effectiveDecoration = InputDecoration(
@@ -137,7 +142,7 @@ class DropDownField extends FormField<String> {
                           if (items != null) {
                             if (strict &&
                                 newValue.isNotEmpty &&
-                                !items.contains(newValue))
+                                !items.map((i)=>getTitle(i)).contains(newValue))
                               return 'Invalid value in this field!';
                           }
 
@@ -186,7 +191,7 @@ class DropDownField extends FormField<String> {
   DropDownFieldState createState() => DropDownFieldState();
 }
 
-class DropDownFieldState extends FormFieldState<String> {
+class DropDownFieldState extends FormFieldState<dynamic> {
   TextEditingController _controller;
   bool _showdropdown = false;
   bool _isSearching = true;
@@ -197,7 +202,7 @@ class DropDownFieldState extends FormFieldState<String> {
   TextEditingController get _effectiveController =>
       widget.controller ?? _controller;
 
-  List<String> get _items => widget.items;
+  List<dynamic> get _items => widget.items;
 
   void toggleDropDownVisibility() {}
 
@@ -251,11 +256,11 @@ class DropDownFieldState extends FormFieldState<String> {
     });
   }
 
-  List<ListTile> _getChildren(List<String> items) {
+  List<ListTile> _getChildren(List<dynamic> items) {
     List<ListTile> childItems = List();
     for (var item in items) {
       if (_searchText.isNotEmpty) {
-        if (item.toUpperCase().contains(_searchText.toUpperCase()))
+        if (widget.getTitle(item).toUpperCase().contains(_searchText.toUpperCase()))
           childItems.add(_getListTile(item));
       } else {
         childItems.add(_getListTile(item));
@@ -265,7 +270,8 @@ class DropDownFieldState extends FormFieldState<String> {
     return childItems;
   }
 
-  ListTile _getListTile(String text) {
+  ListTile _getListTile(dynamic item) {
+    var text = widget.getTitle(item);
     return ListTile(
       dense: true,
       title: Text(
@@ -277,7 +283,7 @@ class DropDownFieldState extends FormFieldState<String> {
           _handleControllerChanged();
           _showdropdown = false;
           _isSearching = false;
-          if (widget.onValueChanged != null) widget.onValueChanged(text);
+          if (widget.onValueChanged != null) widget.onValueChanged(item);
         });
       },
     );

@@ -11,7 +11,10 @@ class CreateTripDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Column(
       children: <Widget>[
-        new Text(title, style: TextStyle(fontWeight: FontWeight.w700)),
+        new Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.w700)
+        ),
         (date != null)
             ? new Text(DateFormat('dd.MM.yyyy').format(date))
             : new SizedBox.shrink(),

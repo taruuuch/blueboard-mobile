@@ -4,16 +4,16 @@ class ApiConfig {
   /*
   * @baseUrl = link to api server
   */
-  static String baseUrl = 'http://10.0.2.2:5000/api/v1'; //For use server on emulator :)
-  // static String baseUrl = 'http://192.168.1.10:5000/api/v1'; //For use server on wifi :)
+  // static String baseUrl = 'http://10.0.2.2:5000/api/v1'; //For use server on emulator :)
+  static String baseUrl = 'http://192.168.1.10:5000/api/v1'; //For use server on wifi :)
 
   /*
   * Auth links to api
   * @signIn = sign in api link for auth user, return accessTocken and expires
   * @signUp = 
   */
-  static String signInUrl = '/Auth/sign-in';
-  static String signUpUrl = '/Auth/sign-up';
+  static String signInUrl = '/auth/sign-in';
+  static String signUpUrl = '/auth/sign-up';
 
 	/*
   * User links to api
@@ -27,7 +27,7 @@ class ApiConfig {
   * User links to api
   * @tripUrl = 
   */
-	static String tripUrl = '/Trips';
-  static String tripSearchUrl = '/Trips/search';
+	static String tripUrl = '/trips';
+  static String tripSearchUrl = '/trips/search';
   static String countries = '/countries';
 }

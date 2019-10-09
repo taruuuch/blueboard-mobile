@@ -1,6 +1,7 @@
 import 'package:blueboard/configs/app_constans.dart';
 import 'package:blueboard/configs/app_style.dart';
 import 'package:blueboard/models/country.dart';
+import 'package:blueboard/models/createTrip.dart';
 import 'package:blueboard/pages/create_trip/create_trip_bloc.dart';
 import 'package:blueboard/pages/create_trip/create_trip_event.dart';
 import 'package:blueboard/pages/create_trip/create_trip_state.dart';
@@ -20,6 +21,8 @@ class CreateTripForm extends StatefulWidget {
 }
 
 class _CreateTripFormState extends State<CreateTripForm> {
+  CreateTripBloc _bloc;
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
@@ -29,27 +32,57 @@ class _CreateTripFormState extends State<CreateTripForm> {
   static final DateTime _minDate = new DateTime(2018, 1, 1);
   static final DateTime _maxDate = new DateTime(_date.year + 3, _date.month, _date.day);
 
-  DateTime _fromDate;
-  DateTime _toDate;
+  DateTime _startDate;
+  DateTime _endDate;
 
-  List<Country> countries;
   Country selectedCountry;
+  CreateTrip trip;
 
-  _onCancelPressed(CreateTripBloc _bloc) {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, _getCountries);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = Provider.of<CreateTripBloc>(context);
+  }
+
+  void _getCountries() {
+    _bloc.dispatch(GetCountries());
+  }
+
+  void _onCancelPressed(CreateTripBloc _bloc) {
     _bloc.dispatch(Cancel());
+  }
+
+  void _onNextStepPressed(CreateTripBloc _bloc) {
+    List<String> _coutries = new List();
+    _coutries.add(selectedCountry.id);
+
+    trip = new CreateTrip(
+      _nameController.text,
+      _descriptionController.text,
+      _startDate.toString(),
+      _endDate.toString(),
+      _coutries
+    );
+
+    _bloc.dispatch(AddTrip(
+      trip: trip
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    final CreateTripBloc _bloc = Provider.of<CreateTripBloc>(context);
-
     return new Form(
       key: _formKey,
       child: new SingleChildScrollView(
         padding: const EdgeInsets.all(AppStyle.formPadding),
           child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new InputField(
                 controller: _nameController,
@@ -70,10 +103,12 @@ class _CreateTripFormState extends State<CreateTripForm> {
                     required: true,
                     strict: true,
                     labelText: AppConstants.createTripCountriesLabel,
-                    items: countries,
-                    setter: (dynamic newValue) {
-                        selectedCountry = newValue;
-                    }
+                    items: (snapshot.hasData) ? snapshot.data.countries : null,
+                    setter: (dynamic value) {
+                      setState(() => selectedCountry = value);
+                    },
+                    onValueChanged: (value) => setState(() => selectedCountry = value),
+                    getTitle: (item) => item.name,
                   );
                 },
               ),
@@ -99,18 +134,14 @@ class _CreateTripFormState extends State<CreateTripForm> {
                       minTime: _minDate,
                       maxTime: _maxDate,
                       onConfirm: (date) {
-                        setState(() {
-                          _fromDate = date;
-                          // _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
-                        });
-                      }, 
+                        setState(() => { _startDate = date });
+                      },
                       currentTime: _date,
                       locale: LocaleType.en
                     ),
                     child: new TripsSearchDate(
-                      title: AppConstants.tripsSearchFromDate,
-                      date: _fromDate,
-                      // date: (snapshot.hasData) ? ((snapshot.data.trip.startDate != null) ? DateTime.now() : DateTime.parse(snapshot.data.trip.startDate)) : null,
+                      title: 'Start trip date',
+                      date: _startDate,
                     )
                   );
                 }
@@ -126,19 +157,14 @@ class _CreateTripFormState extends State<CreateTripForm> {
                       minTime: _minDate,
                       maxTime: _maxDate,
                       onConfirm: (date) {
-                        setState(() {
-                          _toDate = date;
-                          // _fromDate = date;
-                          // _toDate = (_toDate != null) ? ((_fromDate.difference(_toDate).inDays > 0) ? null : _toDate) : null;
-                        });
+                        setState(() => { _endDate = date });
                       },
                       currentTime: _date,
                       locale: LocaleType.en
                     ),
                     child: new TripsSearchDate(
-                      title: AppConstants.tripsSearchFromDate,
-                      date: _toDate,
-                      // date: (snapshot.hasData) ? ((snapshot.data.trip.endDate != null) ? DateTime.now() : DateTime.parse(snapshot.data.trip.endDate)) : null,
+                      title: 'End trip date',
+                      date: _endDate,
                     )
                   );
                 }
@@ -166,7 +192,7 @@ class _CreateTripFormState extends State<CreateTripForm> {
                           child: new Text('Next step'),
                           color: Theme.of(context).buttonColor,
                           textColor: Colors.white,
-                          onPressed: () => {},
+                          onPressed: () => _onNextStepPressed(_bloc),
                         );
                       }
                     ),

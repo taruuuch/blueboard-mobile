@@ -53,7 +53,7 @@ class _TripPageState extends State<TripPage> {
     super.didChangeDependencies();
     _bloc = Provider.of<TripBloc>(context);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

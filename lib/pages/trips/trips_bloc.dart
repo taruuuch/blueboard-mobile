@@ -28,8 +28,8 @@ class TripsBloc extends Bloc<TripsEvent, TripsState> {
     if (event is ShowTrip) {
       yield* _showTrip();
     }
-  }  
-	
+  }
+
   Stream<TripsState> _loadTrips() async* {
     yield TripsState.loading();
 

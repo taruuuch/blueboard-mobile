@@ -22,7 +22,7 @@ class AppDrawer extends StatelessWidget {
             DrawerMenuItem(
                 icon: Icons.create,
                 title: 'Create Trip',
-                onTap: () => NavigationService.toTripsPage()),
+                onTap: () => NavigationService.toCreateTripPage()),
             new Divider(
               color: Colors.black38,
             ),
