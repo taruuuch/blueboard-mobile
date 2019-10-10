@@ -28,10 +28,14 @@ class FormValidators {
   static Function(String) loginValidate = (String value) {
     if (value.isEmpty) {
       return _validatorConstants['empty_login'];
-    } else {
-      if (value.contains("@") && !RegExp(emailRegex).hasMatch(value)) {
+    }
+
+    if (value.contains("@")) {
+      if (!RegExp(emailRegex).hasMatch(value)) {
         return _validatorConstants['invalid_email'];
-      } else if (!RegExp(loginRegex).hasMatch(value)) {
+      }
+    } else {
+      if (!RegExp(loginRegex).hasMatch(value)) {
         return _validatorConstants['invalid_username'];
       }
     }
@@ -49,7 +53,8 @@ class FormValidators {
     return null;
   };
 
-  static Function(String, String) passwordRepeatValidate = (String value, String password) {
+  static Function(String, String) passwordRepeatValidate =
+      (String value, String password) {
     if (value.isEmpty) {
       return _validatorConstants['password_repeat'];
     } else if (value != password) {
