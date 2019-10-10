@@ -6,15 +6,15 @@ class InputField extends StatelessWidget {
   final bool obscureText;
   final TextEditingController controller;
   final TextInputAction textInputAction;
-  final String Function(String) formValidator; 
+  final String Function(String) formValidator;
   final void Function(String) fieldSubmitted;
 
   final FocusNode _focusNode = new FocusNode();
 
   InputField({
-    key, 
-    this.keyboardType, 
-    this.labelText, 
+    key,
+    this.keyboardType,
+    this.labelText,
     this.obscureText = false,
     this.controller,
     this.textInputAction,

@@ -10,8 +10,8 @@ class TripItem extends StatelessWidget {
 
   TripItem({
     this.id,
-		this.decorationImage, 
-		this.title, 
+		this.decorationImage,
+		this.title,
 		this.description
 	}) : super();
 
@@ -22,8 +22,8 @@ class TripItem extends StatelessWidget {
 			onLongPress: () => print('test long tap'),
       child: new Card(
         margin: const EdgeInsets.only(
-					left: AppStyle.tripItemPadding, 
-					right: AppStyle.tripItemPadding, 
+					left: AppStyle.tripItemPadding,
+					right: AppStyle.tripItemPadding,
 					top: AppStyle.tripItemPadding
 				),
         shape: RoundedRectangleBorder(
@@ -34,9 +34,9 @@ class TripItem extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: new Container(
           padding: EdgeInsets.only(
-						top: 50.0, 
-						left: AppStyle.tripItemPadding, 
-						right: AppStyle.tripItemPadding, 
+						top: 50.0,
+						left: AppStyle.tripItemPadding,
+						right: AppStyle.tripItemPadding,
 						bottom: AppStyle.tripItemPadding
 					),
           decoration: new BoxDecoration(
@@ -44,7 +44,7 @@ class TripItem extends StatelessWidget {
 							image: decorationImage,
 							fit: BoxFit.cover,
 							colorFilter: new ColorFilter.mode(
-								Colors.black.withOpacity(0.5), 
+								Colors.black.withOpacity(0.5),
 								BlendMode.dstATop
 							)
 						),

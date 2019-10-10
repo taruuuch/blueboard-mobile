@@ -15,6 +15,8 @@ class FormValidators {
     'first_name_empty': 'Please enter your name',
     'last_name_empty': 'Please enter your last name',
     'search_empty': 'Please enter your search value',
+    'start_date_empty': 'Please choose start date',
+    'end_date_empty': 'Please choose end date',
   };
 
   static Function(String) emailValidate = (String value) {
@@ -97,6 +99,14 @@ class FormValidators {
     if (value.isEmpty) {
 			return _validatorConstants['description_empty'];
 		}
+
+    return null;
+  };
+
+  static Function(String) dateValidation = (String date) {
+    if (date.isEmpty) {
+      return 'Please choose start and end date';
+    }
 
     return null;
   };

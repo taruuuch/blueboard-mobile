@@ -3,6 +3,8 @@ import 'package:blueboard/pages/create_trip/create_trip_bloc.dart';
 import 'package:blueboard/pages/create_trip/create_trip_page.dart';
 import 'package:blueboard/pages/first_setup/first_setup_page.dart';
 import 'package:blueboard/pages/first_setup/first_setup_bloc.dart';
+import 'package:blueboard/pages/participants_invite/participants_invite_bloc.dart';
+import 'package:blueboard/pages/participants_invite/participants_invite_page.dart';
 import 'package:blueboard/pages/sign_in/sign_in_page.dart';
 import 'package:blueboard/pages/sign_in/sign_in_bloc.dart';
 import 'package:blueboard/pages/sign_up/sign_up_page.dart';
@@ -20,7 +22,7 @@ void main() => runApp(App());
 
 class App extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => 
+  Widget build(BuildContext context) =>
 		new MultiProvider(
 			providers: [
 				Provider<SignInBloc> (
@@ -40,7 +42,10 @@ class App extends StatelessWidget {
         ),
         Provider<CreateTripBloc> (
           builder: (context) => CreateTripBloc(),
-        )
+        ),
+        Provider<ParticipantsInviteBloc> (
+          builder: (context) => ParticipantsInviteBloc(),
+        ),
 			],
 			child: new MaterialApp(
 				theme: AppStyle.themeDataLight,
@@ -69,6 +74,9 @@ class App extends StatelessWidget {
 						case CreateTripPage.tag:
 							return MaterialPageRoute(builder: (context) => CreateTripPage());
 							break;
+            case ParticipantsInvitePage.tag:
+              return MaterialPageRoute(builder: (context) => ParticipantsInvitePage(tripId: routeSettings.arguments));
+              break;
 						default:
 							return MaterialPageRoute(builder: (context) => SignInPage());
 							break;

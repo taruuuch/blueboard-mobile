@@ -3,6 +3,7 @@ import 'package:blueboard/models/country.dart';
 import 'package:blueboard/models/createTrip.dart';
 import 'package:blueboard/pages/create_trip/create_trip_event.dart';
 import 'package:blueboard/pages/create_trip/create_trip_state.dart';
+import 'package:blueboard/pages/participants_invite/participants_invite_page.dart';
 import 'package:blueboard/providers/trips_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 
@@ -16,7 +17,7 @@ class CreateTripBloc extends Bloc<CreateTripEvent, CreateTripState> {
   @override
   Stream<CreateTripState> mapEventToState(CreateTripEvent event) async* {
     if (event is AddTrip) {
-      yield* _createTrip(trip: event.trip);
+      yield* _nextStep(trip: event.trip);
     }
 
     if (event is GetCountries) {
@@ -28,13 +29,13 @@ class CreateTripBloc extends Bloc<CreateTripEvent, CreateTripState> {
     }
   }
 
-  Stream<CreateTripState> _createTrip({CreateTrip trip}) async* {
+  Stream<CreateTripState> _nextStep({CreateTrip trip}) async* {
     yield CreateTripState.loading();
 
     try {
-      await _tripsProvider.add(trip);
+      String tripId = await _tripsProvider.add(trip);
       yield CreateTripState.success();
-      NavigationService.toTripsPage();
+      NavigationService.navigateTo(ParticipantsInvitePage.tag, arguments: tripId);
     } catch (e) {
       yield CreateTripState.error(e.response.statusMessage.toString());
     }

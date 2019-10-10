@@ -10,24 +10,34 @@ class ApiConfig {
   /*
   * Auth links to api
   * @signIn = sign in api link for auth user, return accessTocken and expires
-  * @signUp = 
+  * @signUp =
   */
   static String signInUrl = '/auth/sign-in';
   static String signUpUrl = '/auth/sign-up';
 
 	/*
   * User links to api
-  * @userUrl = 
-  * @userSetupUrl = 
+  * @userUrl =
+  * @userSetupUrl =
   */
 	static String userUrl = '/me';
 	static String userSetupUrl = '/me/setup';
 
 	/*
   * User links to api
-  * @tripUrl = 
+  * @tripUrl =
   */
 	static String tripUrl = '/trips';
   static String tripSearchUrl = '/trips/search';
   static String countries = '/countries';
+
+	/*
+  * Participants links to api
+  * @participantsUrl =
+  * @participantsSearchUrl =
+  * @participantsInviteUrl =
+  */
+  static String participantsUrl = '/participants';
+  static String participantsSearchUrl = '/participants/search';
+  static String participantsInviteUrl = '/participants/invite';
 }

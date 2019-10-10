@@ -63,12 +63,6 @@ class _FirstSetupFormState extends State<FirstSetupForm> {
 							// 	labelText: 'Your email',
 							// 	keyboardType: TextInputType.text,
 							// ),
-							// TODO: Phone field
-							// new SizedBox(height: AppStyle.primaryPadding),
-							// new InputField(
-							// 	labelText: 'Your phone',
-							// 	keyboardType: TextInputType.text,
-							// ),
 							new SizedBox(height: AppStyle.primaryPadding),
 							new Row(
                 mainAxisAlignment: MainAxisAlignment.end,

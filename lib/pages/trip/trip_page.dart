@@ -1,9 +1,11 @@
 import 'package:blueboard/configs/app_style.dart';
+import 'package:blueboard/pages/participants_invite/participants_invite_page.dart';
 import 'package:blueboard/pages/trip/trip_bloc.dart';
 import 'package:blueboard/pages/trip/trip_event.dart';
 import 'package:blueboard/pages/trip/widgets/trip_budget.dart';
 import 'package:blueboard/pages/trip/widgets/trip_info.dart';
 import 'package:blueboard/pages/trip/widgets/trip_participant.dart';
+import 'package:blueboard/services/navigation.dart';
 import 'package:blueboard/widgets/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,16 +23,18 @@ class TripPage extends StatefulWidget {
 
 class _TripPageState extends State<TripPage> {
   TripBloc _bloc;
-  
+
   int _selectedTabIndex = 0;
 
   static String id;
 
   static const String edit = 'Edit';
+  static const String editParticipants = 'Edit participants';
   static const String delete = 'Delete';
 
   static const List<String> _listChoices = <String>[
     edit,
+    editParticipants,
     delete,
   ];
 
@@ -99,7 +103,7 @@ class _TripPageState extends State<TripPage> {
       ),
 		);
   }
-  
+
   void _onTabItemTapped(int index) {
     setState(() {
       _selectedTabIndex = index;
@@ -111,6 +115,8 @@ class _TripPageState extends State<TripPage> {
       debugPrint('Edit');
     } else if(choice == delete) {
       _onDeleteTrip(id);
+    } else if (choice == editParticipants) {
+      NavigationService.navigateTo(ParticipantsInvitePage.tag, arguments: id);
     }
   }
 

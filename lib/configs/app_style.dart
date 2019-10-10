@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppStyle {
-	// TODO: Global variables
+	// Global variables
   static const primaryPadding = 15.0;
   static const primaryColor = Colors.lightBlue;
   static const secondaryColor = Colors.grey;
 
-  // TODO: Splash variables
+  // Splash variables
   static const splashLogoSize = 100.0;
   static TextStyle splashTextStyle = new TextStyle(
     fontSize: 20,
@@ -14,29 +14,29 @@ class AppStyle {
     fontWeight: FontWeight.w700,
   );
 
-	// TODO: SignIn variables
+	// SignIn variables
   static const signInDividerPadding = 15.0;
   static const signInLogoSize = 100.0;
 
-	// TODO: SignUp variables
+	// SignUp variables
   static const signUpLogoSize = 100.0;
 
-  // TODO: First setup variables
+  // First setup variables
   static const firstSetupLogoSize = 100.0;
 
-	// TODO: Form variables
+	// Form variables
   static const formPadding = 15.0;
 
-	// TODO: Button variables
+	// Button variables
 	static const buttonBackground = Colors.blueGrey;
   static const buttonHeight = 42.0;
 	static const buttonMinWidth = 100.0;
 
-	// TODO: Trip variables
+	// Trip variables
 	static const tripItemPadding = 15.0;
 	static const tripItemBorderRadius = 10.0;
 
-	// TODO: Application theme
+	// Application theme
   static final ThemeData themeDataLight = new ThemeData(
     primaryColor: Colors.lightBlue,
     accentColor: Colors.lightBlueAccent,

@@ -9,21 +9,22 @@ import 'package:blueboard/providers/api_client.dart';
 class TripsProvider {
 	var _apiClient = ApiClient.instance;
 
-	// TODO: getAll - return all user trips
+	// getAll - return all user trips
 	Future getAll() async {
 		var response = await _apiClient.get(ApiConfig.tripUrl);
 		return List<TripSlim>.from(response.data.map((i) => TripSlim.fromJson(i)));
 	}
 
 	Future add(CreateTrip trip) async {
-		await _apiClient.post(ApiConfig.tripUrl, json.encode(trip.toJson()));
+		var response = await _apiClient.post(ApiConfig.tripUrl, json.encode(trip.toJson()));
+    return response.data;
 	}
 
 	Future update(Trip trip) async {
 		await _apiClient.put(ApiConfig.tripUrl, json.encode(trip.toJson()));
 	}
 
-	// TODO: Get and delete single trip by ID
+	// Get and delete single trip by ID
 	Future get(id) async {
 		var response = await _apiClient.get(ApiConfig.tripUrl + '/' + id);
 		return Trip.fromJson(response.data);
@@ -33,7 +34,7 @@ class TripsProvider {
 		await _apiClient.delete(ApiConfig.tripUrl, id);
 	}
 
-	// TODO: Search trips
+	// Search trips
 	Future search({String searchValue, DateTime fromDate, DateTime toDate}) async {
     Map<String, dynamic> parameters = {};
 

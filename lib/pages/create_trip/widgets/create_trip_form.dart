@@ -59,6 +59,8 @@ class _CreateTripFormState extends State<CreateTripForm> {
   }
 
   void _onNextStepPressed(CreateTripBloc _bloc) {
+    if (!_formKey.currentState.validate() || _startDate == null || _endDate == null) return;
+
     List<String> _coutries = new List();
     _coutries.add(selectedCountry.id);
 
@@ -124,51 +126,86 @@ class _CreateTripFormState extends State<CreateTripForm> {
                 },
               ),
               new SizedBox(height: AppStyle.primaryPadding),
+              new Divider(),
+              new SizedBox(height: AppStyle.primaryPadding),
+              new Row(
+                children: <Widget>[
+                  Expanded(
+                    child: new StreamBuilder(
+                      stream: _bloc.state,
+                      builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
+                        return new GestureDetector(
+                          onTap: () => DatePicker.showDatePicker(
+                            context,
+                            showTitleActions: true,
+                            minTime: _minDate,
+                            maxTime: _maxDate,
+                            onConfirm: (date) {
+                              setState(() => { _startDate = date });
+                            },
+                            currentTime: _date,
+                            locale: LocaleType.en
+                          ),
+                          child: new TripsSearchDate(
+                            title: 'Start trip date',
+                            date: _startDate,
+                          )
+                        );
+                      }
+                    ),
+                  ),
+                  Expanded(
+                    child: new StreamBuilder(
+                      stream: _bloc.state,
+                      builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
+                        return new GestureDetector(
+                          onTap: () => DatePicker.showDatePicker(
+                            context,
+                            showTitleActions: true,
+                            minTime: (_startDate == null)
+                              ? _minDate
+                              : new DateTime(_startDate.year, _startDate.month, _startDate.day + 1),
+                            maxTime: _maxDate,
+                            onConfirm: (date) {
+                              setState(() => { _endDate = date });
+                            },
+                            currentTime: _date,
+                            locale: LocaleType.en
+                          ),
+                          child: new TripsSearchDate(
+                            title: 'End trip date',
+                            date: _endDate,
+                          )
+                        );
+                      }
+                    ),
+                  ),
+                ],
+              ),
               new StreamBuilder(
                 stream: _bloc.state,
-                builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
-                  return new GestureDetector(
-                    onTap: () => DatePicker.showDatePicker(
-                      context,
-                      showTitleActions: true,
-                      minTime: _minDate,
-                      maxTime: _maxDate,
-                      onConfirm: (date) {
-                        setState(() => { _startDate = date });
-                      },
-                      currentTime: _date,
-                      locale: LocaleType.en
-                    ),
-                    child: new TripsSearchDate(
-                      title: 'Start trip date',
-                      date: _startDate,
-                    )
-                  );
-                }
+                builder: (context, snapshot) {
+                  if (_startDate == null || _endDate == null)
+                    return new Column(
+                      children: <Widget>[
+                        new SizedBox(height: AppStyle.primaryPadding),
+                        new Center(
+                          child: new Text(
+                            'Choose date!',
+                            style: new TextStyle(
+                              color: Colors.redAccent
+                            ),
+                          ),
+                        )
+
+                      ],
+                    );
+                  else
+                    return new SizedBox.shrink();
+                },
               ),
               new SizedBox(height: AppStyle.primaryPadding),
-              new StreamBuilder(
-                stream: _bloc.state,
-                builder: (context, AsyncSnapshot<CreateTripState> snapshot) {
-                  return new GestureDetector(
-                    onTap: () => DatePicker.showDatePicker(
-                      context,
-                      showTitleActions: true,
-                      minTime: _minDate,
-                      maxTime: _maxDate,
-                      onConfirm: (date) {
-                        setState(() => { _endDate = date });
-                      },
-                      currentTime: _date,
-                      locale: LocaleType.en
-                    ),
-                    child: new TripsSearchDate(
-                      title: 'End trip date',
-                      date: _endDate,
-                    )
-                  );
-                }
-              ),
+              new Divider(),
               new SizedBox(height: AppStyle.primaryPadding),
               new Row(
                 children: <Widget>[
