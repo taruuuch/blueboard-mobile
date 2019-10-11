@@ -1,12 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:blueboard/models/participantInvite.dart';
+import 'package:blueboard/models/tripParticipant.dart';
 import 'package:blueboard/pages/participants_invite/participants_invite_event.dart';
 import 'package:blueboard/pages/participants_invite/participants_invite_state.dart';
 import 'package:blueboard/providers/participants_provider.dart';
+import 'package:blueboard/providers/trips_provider.dart';
 import 'package:blueboard/services/navigation.dart';
 
 class ParticipantsInviteBloc extends Bloc<ParticipantsInviteEvent, ParticipantsInviteState> {
   final _participantsProvider = ParticipantsProvider();
+  final _tripsProvider = TripsProvider();
 
   @override
   get initialState => ParticipantsInviteState.initial();
@@ -38,7 +41,8 @@ class ParticipantsInviteBloc extends Bloc<ParticipantsInviteEvent, ParticipantsI
     yield ParticipantsInviteState.loading();
 
     try {
-
+      List<TripParticipant> participants = await _tripsProvider.participants(tripId);
+      yield ParticipantsInviteState.success(participants: participants);
     } catch (e) {
       yield ParticipantsInviteState.error(e.response.statusMessage.toString());
     }
@@ -48,7 +52,8 @@ class ParticipantsInviteBloc extends Bloc<ParticipantsInviteEvent, ParticipantsI
     yield ParticipantsInviteState.loading();
 
     try {
-      await _participantsProvider.search(searchValue);
+      List<TripParticipant> participants = await _participantsProvider.search(searchValue);
+      yield ParticipantsInviteState.success(participants: participants);
     } catch (e) {
       yield ParticipantsInviteState.error(e.response.statusMessage.toString());
     }
@@ -59,6 +64,7 @@ class ParticipantsInviteBloc extends Bloc<ParticipantsInviteEvent, ParticipantsI
 
     try {
       await _participantsProvider.invite(participant);
+      yield ParticipantsInviteState.success();
     } catch (e) {
       yield ParticipantsInviteState.error(e.response.statusMessage.toString());
     }
@@ -69,6 +75,7 @@ class ParticipantsInviteBloc extends Bloc<ParticipantsInviteEvent, ParticipantsI
 
     try {
       await _participantsProvider.delete(id);
+      yield ParticipantsInviteState.success();
     } catch (e) {
       yield ParticipantsInviteState.error(e.response.statusMessage.toString());
     }
@@ -78,6 +85,7 @@ class ParticipantsInviteBloc extends Bloc<ParticipantsInviteEvent, ParticipantsI
     yield ParticipantsInviteState.loading();
 
     try {
+      yield ParticipantsInviteState.success();
       NavigationService.toTripsPage();
     } catch (e) {
       yield ParticipantsInviteState.error(e.response.statusMessage.toString());

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:blueboard/configs/api_config.dart';
-import 'package:blueboard/models/participant.dart';
 import 'package:blueboard/models/participantInvite.dart';
+import 'package:blueboard/models/tripParticipant.dart';
 import 'package:blueboard/providers/api_client.dart';
 
 class ParticipantsProvider {
@@ -10,7 +10,7 @@ class ParticipantsProvider {
   Future search(String searchValue) async {
     var parameters = {'query': searchValue};
 		var response = await _apiClient.get(ApiConfig.participantsSearchUrl, parameters: parameters);
-		return List<Participant>.from(response.data.map((i) => Participant.fromJson(i)));
+		return List<TripParticipant>.from(response.data.map((i) => TripParticipant.fromJson(i)));
 	}
 
   Future invite(ParticipantInvite participant) async {

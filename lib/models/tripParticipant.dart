@@ -9,12 +9,16 @@ class TripParticipant {
 		this.firstName,
 		this.lastName,
 		this.role,
+    this.username,
+    this.avatar,
 	);
 
   String id;
   String firstName;
   String lastName;
-  String role;
+  int role;
+  String username;
+  String avatar;
 
   factory TripParticipant.fromJson(Map<String, dynamic> json) => _$TripParticipantFromJson(json);
 

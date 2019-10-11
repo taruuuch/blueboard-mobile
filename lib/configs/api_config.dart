@@ -29,7 +29,13 @@ class ApiConfig {
   */
 	static String tripUrl = '/trips';
   static String tripSearchUrl = '/trips/search';
-  static String countries = '/countries';
+
+	/*
+  * Countries link to api
+  * @countriesUrl =
+  */
+  static String countriesUrl = '/countries';
+
 
 	/*
   * Participants links to api

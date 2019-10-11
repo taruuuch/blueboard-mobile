@@ -22,7 +22,7 @@ class ParticipantsInvitePage extends StatelessWidget {
       drawer: AppDrawer(),
       body: new Container(
         padding: const EdgeInsets.all(AppStyle.formPadding),
-        child: new ParticipantsInviteSearch(),
+        child: new ParticipantsInviteSearch(tripId),
       ),
     );
   }

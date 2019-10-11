@@ -11,7 +11,9 @@ TripParticipant _$TripParticipantFromJson(Map<String, dynamic> json) {
     json['id'] as String,
     json['firstName'] as String,
     json['lastName'] as String,
-    json['role'] as String,
+    json['role'] as int,
+    json['username'] as String,
+    json['avatar'] as String,
   );
 }
 
@@ -21,4 +23,6 @@ Map<String, dynamic> _$TripParticipantToJson(TripParticipant instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'role': instance.role,
+      'username': instance.username,
+      'avatar': instance.avatar,
     };

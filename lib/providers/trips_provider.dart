@@ -3,6 +3,7 @@ import 'package:blueboard/configs/api_config.dart';
 import 'package:blueboard/models/country.dart';
 import 'package:blueboard/models/createTrip.dart';
 import 'package:blueboard/models/trip.dart';
+import 'package:blueboard/models/tripParticipant.dart';
 import 'package:blueboard/models/tripSlim.dart';
 import 'package:blueboard/providers/api_client.dart';
 
@@ -47,7 +48,13 @@ class TripsProvider {
 	}
 
   Future countries() async {
-    var response = await _apiClient.get(ApiConfig.countries);
+    var response = await _apiClient.get(ApiConfig.countriesUrl);
     return List<Country>.from(response.data.map((i) => Country.fromJson(i)));
+  }
+
+  Future participants(id) async {
+    String participantsUrl = ApiConfig.tripUrl + '/' + id + '/participants';
+    var response = await _apiClient.get(participantsUrl);
+    return List<TripParticipant>.from(response.data.map((i) => TripParticipant.fromJson(i)));
   }
 }
